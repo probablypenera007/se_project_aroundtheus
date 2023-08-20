@@ -49,7 +49,6 @@
   grid-template-areas:
     "title button"
     "description description";
-
   max-width: 415px;
   max-height: 77px;
   margin: 0;
