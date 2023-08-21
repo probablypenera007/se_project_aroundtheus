@@ -1,5 +1,5 @@
 @import url(./vendor/normalize.css);
-@import url(./vendor/fonts.css);
+@import url(../vendor/fonts.css);
 
 .page {
   background-color: #000;
@@ -127,6 +127,7 @@
   color: #000;
   font-size: 24px;
   padding-left: 25px;
+  font-weight: 900;
 }
 
 .card__icon {
@@ -134,6 +135,6 @@
   width: 21px;
   height: 18px;
   position: absolute;
-  margin: 313px 20px 30px 241px;
+  margin: 309px 20px 30px 241px;
   border: none;
 }
