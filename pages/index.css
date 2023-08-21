@@ -103,7 +103,7 @@
   grid-template-rows: 33% 33% 33%;
 }
 
-.cards__row {
+.cards__content {
   display: grid;
   grid-template-columns: repeat(auto-fit, 282px);
   grid-row-gap: 20px;
