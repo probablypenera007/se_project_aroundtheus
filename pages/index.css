@@ -93,3 +93,47 @@
   width: 150px;
   height: 50px;
 }
+
+.cards {
+  height: 742px;
+  max-width: 880px;
+  min-width: 282px;
+  margin: 47.5px auto 67px;
+  display: grid;
+  grid-template-rows: 33% 33% 33%;
+}
+
+.cards__row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 282px);
+  grid-row-gap: 20px;
+  grid-column-gap: 17px;
+}
+
+.card {
+  margin: 0;
+  border-radius: 10px;
+  background-color: #fff;
+  display: grid;
+}
+
+.card__image {
+  height: 282px;
+  width: 282px;
+  border-radius: 10px 10px 0 0;
+}
+
+.card__title {
+  color: #000;
+  font-size: 24px;
+  padding-left: 25px;
+}
+
+.card__icon {
+  background: transparent url(../images/Vector.svg) right no-repeat;
+  width: 21px;
+  height: 18px;
+  position: absolute;
+  margin: 313px 20px 30px 241px;
+  border: none;
+}
