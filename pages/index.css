@@ -31,7 +31,7 @@
   .profile__button-edit {
     height: 18px;
     width: 18px;
-    background-size: cover;
+    background-size: 50%;
   }
   .profile__button-add {
     background-size: 30%;

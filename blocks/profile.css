@@ -24,7 +24,8 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 373px;
+  max-width: 415px;
+  height: 77px;
 }
 
 .profile__name {
@@ -49,9 +50,9 @@
 .profile__button-edit {
   height: 24px;
   width: 24px;
-  margin-top: 15px;
-  background: transparent url(../images/Edt-button-mobile.svg) center no-repeat;
+  background: transparent url(../images/Vector\ pencil.svg) center no-repeat;
   border: 1px solid #fff;
+  margin-top: 15px;
   grid-area: button;
   opacity: 1;
   transition: opacity 0.3s linear;
