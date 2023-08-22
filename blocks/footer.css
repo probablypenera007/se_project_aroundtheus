@@ -10,4 +10,25 @@
   font-family: "Inter", Arial, sans-serif;
   font-weight: 400;
   margin: 0;
+  max-width: 320px;
+}
+
+@media screen and (max-width: 900px) {
+  .footer__copyright {
+    margin-left: 114px;
+  }
+}
+
+@media screen and (max-width: 616px) {
+  .footer {
+    margin-top: 48px;
+    margin-bottom: 36px;
+    width: 282px;
+    font-weight: 400;
+  }
+
+  .footer__copyright {
+    font-size: 19px;
+    margin-left: 20px;
+  }
 }

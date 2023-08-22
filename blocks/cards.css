@@ -57,3 +57,16 @@
 .card__icon:hover {
   opacity: 0.5;
 }
+
+@media screen and (max-width: 900px) {
+  .cards__content {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 616px) {
+  .cards {
+    margin-top: 36px;
+    justify-content: center;
+  }
+}

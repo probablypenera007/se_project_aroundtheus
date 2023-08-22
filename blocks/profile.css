@@ -6,7 +6,6 @@
 
 .profile__avatar {
   width: 100%;
-  height: 100%;
   border-radius: 50%;
   object-fit: cover;
   background-position: center;
@@ -34,6 +33,10 @@
   font-weight: 500;
   grid-area: title;
   margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 373px;
 }
 
 .profile__subtitle {
@@ -74,4 +77,68 @@
 
 .profile__button-add:hover {
   opacity: 0.6;
+}
+
+@media screen and (max-width: 770px) {
+  .profile__info {
+    grid-gap: 0 10px;
+  }
+
+  .profile__name {
+    font-size: 22px;
+  }
+
+  .profile__subtitle {
+    font-size: 14px;
+  }
+  .profile__button-edit {
+    height: 18px;
+    width: 18px;
+    background-size: 50%;
+  }
+  .profile__button-add {
+    background-size: 30%;
+    width: 50px;
+  }
+}
+
+@media screen and (max-width: 616px) {
+  .profile {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .profile__info {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .profile__name {
+    font-size: 22px;
+    font-weight: 500;
+    font-family: "inter", Arial, sans-serif;
+    text-align: center;
+    max-width: 196px;
+  }
+  .profile__subtitle {
+    width: 100%;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: "inter", Arial, sans-serif;
+    text-align: center;
+    max-width: 282px;
+  }
+  .profile__button-add {
+    background: url(../images/plus-sign1.svg) center no-repeat;
+    margin: 0;
+    width: 282px;
+    height: 50px;
+    margin-top: 36px;
+  }
+  .profile__avatar {
+    height: 100%;
+    width: 100%;
+    margin: 38.25px 72.75px 26.25px 78.5px;
+  }
 }
