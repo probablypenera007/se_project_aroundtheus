@@ -1,69 +1,41 @@
-@import url(./vendor/normalize.css);
+@import url(../vendor/normalize.css);
 @import url(../vendor/fonts.css);
 @import url(../blocks/page.css);
 @import url(../blocks/header.css);
 @import url(../blocks/profile.css);
-@import url(../blocks/card.css);
+@import url(../blocks/cards.css);
 @import url(../blocks/footer.css);
 
 @media screen and (max-width: 900px) {
   .cards__content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 282px);
-    grid-row-gap: 20px;
-    grid-column-gap: 17px;
     justify-content: center;
   }
 
-  .footer {
-    margin-top: 67px;
-    margin-bottom: 60px;
+  .footer__copyright {
     margin-left: 114px;
-    display: flex;
   }
 }
 
 @media screen and (max-width: 770px) {
   .profile__info {
-    display: grid;
-    grid-template-areas:
-      "title button"
-      "description description";
     grid-gap: 0 10px;
-    margin-right: auto;
   }
 
   .profile__name {
     font-size: 22px;
-    line-height: 48px;
-    font-weight: 500;
-    grid-area: title;
-    margin: 0;
   }
 
   .profile__subtitle {
     font-size: 14px;
-    line-height: 22px;
-    font-weight: 400;
-    margin: 0;
-    grid-area: description;
   }
   .profile__button-edit {
     height: 18px;
     width: 18px;
-    margin-top: 15px;
-    background: transparent url(../images/Edit\ Button.svg) center no-repeat;
-    border: 1px solid #fff;
-    grid-area: button;
+    background-size: cover;
   }
-
   .profile__button-add {
-    background: transparent url(../images/Add\ Button.svg) center no-repeat;
-    border: 1px solid #fff;
-    margin-left: auto;
-    margin-bottom: 20px;
+    background-size: 30%;
     width: 50px;
-    height: 50px;
   }
 }
 
@@ -71,11 +43,8 @@
   .page {
     margin: 0;
   }
-
-  .header {
-    margin-top: 28px;
-  }
   .header__logo {
+    margin-top: 28px;
     width: 126px;
     height: 24px;
     margin-left: 27px;
@@ -88,7 +57,6 @@
   .profile {
     flex-direction: column;
     justify-content: center;
-    align-items: center;
   }
   .profile__info {
     display: flex;
@@ -102,6 +70,10 @@
     font-weight: 500;
     font-family: "inter", Arial, sans-serif;
     text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 196px;
   }
   .profile__subtitle {
     width: 100%;
@@ -118,24 +90,26 @@
     margin-top: 36px;
   }
   .profile__avatar {
-    width: 212px;
-    height: 169px;
-    margin-bottom: 20px;
+    height: 100%;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 38.25px 72.75px 26.25px 78.5px;
   }
 
   .cards {
+    margin-top: 36px;
     justify-content: center;
   }
 
-  .page__content {
-    display: flex;
-    flex-direction: column;
-    min-height: 239vh;
-  }
   .footer {
     margin: 48px 19px 36px;
     width: 282px;
-    font-size: 14px;
     font-weight: 400;
+  }
+
+  .footer__copyright {
+    font-size: 14px;
   }
 }
