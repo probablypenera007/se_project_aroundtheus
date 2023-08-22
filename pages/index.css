@@ -81,6 +81,10 @@
     font-weight: 400;
     font-family: "inter", Arial, sans-serif;
     text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 282px;
   }
   .profile__button-add {
     background: url(../images/plus-sign1.svg) center no-repeat;
