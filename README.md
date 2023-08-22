@@ -25,7 +25,6 @@ This project is made so all the elements are displayed correctly on popular scre
 
 **GitHub Profile**
 https://github.com/probablypenera007
-https://github.com/users/probablypenera007/projects/1/views/1
 
 ### Plan on improving the project
 
