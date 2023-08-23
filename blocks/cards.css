@@ -15,58 +15,14 @@
   list-style-type: none;
 }
 
-.card {
-  border-radius: 10px;
-  background-color: #fff;
-  display: grid;
-}
-
-.card__image {
-  height: 282px;
-  width: 282px;
-  border-radius: 10px 10px 0 0;
-}
-
-.card__description {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 25px 29px 25px 20px;
-}
-
-.card__title {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  color: #000;
-  font-size: 24px;
-  font-weight: 900;
-  max-width: 219px;
-  margin: 0;
-}
-
-.card__icon {
-  background: transparent url(../images/Vector.svg) right no-repeat;
-  width: 21px;
-  height: 18px;
-  border: none;
-  opacity: 1;
-  transition: opacity 0.1s linear;
-}
-
-.card__icon:hover {
-  opacity: 0.5;
-}
-
 @media screen and (max-width: 900px) {
   .cards__content {
     justify-content: center;
   }
 }
 
-@media screen and (max-width: 616px) {
+@media screen and (max-width: 630px) {
   .cards {
     margin-top: 36px;
-    justify-content: center;
   }
 }
