@@ -9,6 +9,7 @@
   align-items: center;
   padding-left: 19px;
   padding-right: 19px;
+  z-index: 999;
 }
 
 .modal_opened {
@@ -53,7 +54,7 @@
   border-bottom: 2px solid rgba(0, 0, 0, 0.2);
 }
 .modal__form-name::placeholder {
-  color: #000;
+  color: gray;
 }
 .modal__form-subtitle {
   margin-top: 29.75px;
@@ -67,7 +68,7 @@
   border-bottom: 2px solid rgba(0, 0, 0, 0.2);
 }
 .modal__form-subtitle::placeholder {
-  color: #000;
+  color: gray;
 }
 .modal__button-close {
   position: absolute;

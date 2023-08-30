@@ -24,12 +24,37 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
+/* ELEMENTS */
+const profileButtonEdit = document.querySelector("#profile-button-edit");
+const profileEditModal = document.querySelector("#modal-edit-profile");
+const profileButtonClose = profileEditModal.querySelector(
+  ".modal__button-close"
+);
+const profileName = document.querySelector(".profile__name");
+const profileBio = document.querySelector(".profile__subtitle");
+const profileCurrentName = document.querySelector("#edit-name");
+const profileCurrentBio = document.querySelector("#edit-bio");
+const profileFormEdit = profileEditModal.querySelector(".modal__form");
 
-console.log(initialCards);
+/* FUNCTIONS */
+function closePopUp() {
+  profileEditModal.classList.remove("modal_opened");
+}
 
-const profileButtonEdit = document.querySelector(".profile__button-edit");
-const profileEditModal = document.querySelector("modal");
-
+/* EVENT LISTENERS */
 profileButtonEdit.addEventListener("click", () => {
+  profileCurrentName.value = profileName.textContent;
+  profileCurrentBio.value = profileBio.textContent;
   profileEditModal.classList.add("modal_opened");
+});
+
+profileButtonClose.addEventListener("click", () => {
+  closePopUp();
+});
+
+profileFormEdit.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+  profileName.textContent = profileCurrentName.value;
+  profileBio.textContent = profileCurrentBio.value;
+  closePopUp();
 });

@@ -29,90 +29,31 @@
           />
           <div class="profile__info">
             <h1 class="profile__name">Jacques Cousteau</h1>
-            <button class="profile__button-edit" type="button"></button>
+            <button
+              class="profile__button-edit"
+              id="profile-button-edit"
+              type="button"
+            ></button>
             <p class="profile__subtitle">Explorer</p>
           </div>
           <button class="profile__button-add" type="button"></button>
         </section>
 
         <section class="cards page__section">
-          <ul class="cards__content">
-            <li class="card">
-              <img
-                src="./images/card-images/yosemite.jpg"
-                alt="Yosemite"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Yosemite Valley</h2>
-                <button class="card__icon" type="button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/card-images/lake-louise.jpg"
-                alt="Lake Louise"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Lake Louise</h2>
-                <button class="card__icon" type="button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/card-images/bald-mountains.jpg"
-                alt="Bald Mountains"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Bald Mountains</h2>
-                <button class="card__icon" type="button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/card-images/latemar.jpg"
-                alt="Latemar"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Latemar</h2>
-                <button class="card__icon" type="button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/card-images/vanoise.jpg"
-                alt="Vanoise"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Vanoise National Park</h2>
-                <button class="card__icon" type="button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/card-images/lago.jpg"
-                alt="Lago"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Lago Di Braies</h2>
-                <button class="card__icon" type="button"></button>
-              </div>
-            </li>
-          </ul>
+          <ul class="cards__content"></ul>
         </section>
       </main>
       <footer class="footer page__section">
         <p class="footer__copyright">© 2022 Around The U.S.</p>
       </footer>
     </div>
-    <div class="modal">
+    <div class="modal" id="modal-edit-profile">
       <div class="modal__container">
-        <button class="modal__button-close" type="button"></button>
+        <button
+          class="modal__button-close"
+          id="modal-button-close"
+          type="button"
+        ></button>
         <p class="modal__title">Edit Profile</p>
         <form class="modal__form">
           <label for="edit-name" class="modal__form-label"></label>
@@ -120,21 +61,30 @@
             type="text"
             class="modal__form-name"
             id="edit-name"
-            placeholder="Jacques Cousteau"
+            placeholder="Username"
             required
           />
           <label for="edit-subtitle" class="modal__form-label"></label>
           <input
             type="text"
             class="modal__form-subtitle"
-            id="edit-subtitle"
-            placeholder="Explorer"
+            id="edit-bio"
+            placeholder="Bio"
             required
           />
           <button class="modal__button-save" type="submit">SAVE</button>
         </form>
       </div>
     </div>
+    <template id="card-template">
+      <li class="card">
+        <img src="" alt=" " class="card__image" />
+        <div class="card__description">
+          <h2 class="card__title"></h2>
+          <button class="card__icon" type="button"></button>
+        </div>
+      </li>
+    </template>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
