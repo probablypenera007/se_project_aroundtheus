@@ -35,7 +35,9 @@ const profileBio = document.querySelector(".profile__subtitle");
 const profileCurrentName = document.querySelector("#edit-name");
 const profileCurrentBio = document.querySelector("#edit-bio");
 const profileFormEdit = profileEditModal.querySelector(".modal__form");
-
+const cardsContent = document.querySelector(".cards__content");
+const cardTemplate =
+  document.querySelector("#card-template").content.firstElementChild;
 /* FUNCTIONS */
 function closePopUp() {
   profileEditModal.classList.remove("modal_opened");
@@ -57,4 +59,12 @@ profileFormEdit.addEventListener("submit", (evt) => {
   profileName.textContent = profileCurrentName.value;
   profileBio.textContent = profileCurrentBio.value;
   closePopUp();
+});
+
+initialCards.forEach((cardData) => {
+  const cardElement = cardTemplate.cloneNode(true);
+  const cardImage = cardElement.querySelector(".card__image");
+  const cardTitle = cardElement.querySelector(".card__title");
+  cardTitle.textContent = cardData.name;
+  cardsContent.append(cardElement);
 });
