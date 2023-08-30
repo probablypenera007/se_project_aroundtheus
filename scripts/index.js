@@ -9,7 +9,7 @@ const initialCards = [
   },
   {
     name: "Bald Mountains",
-    link: "ttps://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
   },
   {
     name: "Latemar",
@@ -36,14 +36,27 @@ const profileCurrentName = document.querySelector("#edit-name");
 const profileCurrentBio = document.querySelector("#edit-bio");
 const profileFormEdit = profileEditModal.querySelector(".modal__form");
 const cardsContent = document.querySelector(".cards__content");
-const cardTemplate =
-  document.querySelector("#card-template").content.firstElementChild;
+const cardTemplate = document
+  .querySelector("#card-template")
+  .content.firstElementChild.cloneNode(true);
+const data = initialCards;
+
 /* FUNCTIONS */
 function closePopUp() {
   profileEditModal.classList.remove("modal_opened");
 }
 
-function getCardElement(data) {}
+function getCardElement(data) {
+  const cardElement = cardTemplate.cloneNode(true);
+  const cardImage = cardElement.querySelector(".card__image");
+  const cardTitle = cardElement.querySelector(".card__title");
+
+  cardImage.src = data.link;
+  cardImage.alt = data.name;
+  cardTitle.textContent = data.name;
+  return cardElement;
+}
+
 /* EVENT LISTENERS */
 profileButtonEdit.addEventListener("click", () => {
   profileCurrentName.value = profileName.textContent;
@@ -62,11 +75,7 @@ profileFormEdit.addEventListener("submit", (evt) => {
   closePopUp();
 });
 
-initialCards.forEach((cardData) => {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardImage = cardElement.querySelector(".card__image");
-  const cardTitle = cardElement.querySelector(".card__title");
-
-  cardTitle.textContent = cardData.name;
+initialCards.forEach((data) => {
+  const cardElement = getCardElement(data);
   cardsContent.append(cardElement);
 });
