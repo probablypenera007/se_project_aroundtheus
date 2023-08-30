@@ -43,6 +43,7 @@ function closePopUp() {
   profileEditModal.classList.remove("modal_opened");
 }
 
+function getCardElement(data) {}
 /* EVENT LISTENERS */
 profileButtonEdit.addEventListener("click", () => {
   profileCurrentName.value = profileName.textContent;
@@ -65,6 +66,7 @@ initialCards.forEach((cardData) => {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
+
   cardTitle.textContent = cardData.name;
   cardsContent.append(cardElement);
 });
