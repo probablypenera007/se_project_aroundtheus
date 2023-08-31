@@ -60,7 +60,7 @@
   color: gray;
 }
 
-#edit-bio {
+.modal__input:nth-of-type(even) {
   margin-top: 29.75px;
 }
 
@@ -127,7 +127,7 @@
     max-width: 238px;
   }
 
-  #edit-bio {
+  .modal__input:nth-of-type(even) {
     margin-top: 30px;
   }
 
