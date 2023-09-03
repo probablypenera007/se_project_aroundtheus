@@ -36,7 +36,11 @@
             ></button>
             <p class="profile__subtitle">Explorer</p>
           </div>
-          <button class="profile__button-add" type="button"></button>
+          <button
+            class="profile__button-add"
+            id="profile-button-add"
+            type="button"
+          ></button>
         </section>
 
         <section class="cards page__section">
@@ -47,6 +51,7 @@
         <p class="footer__copyright">© 2022 Around The U.S.</p>
       </footer>
     </div>
+    <!-- EDIT MODAL-->
     <div class="modal" id="modal-edit-profile">
       <div class="modal__container">
         <button
@@ -55,7 +60,7 @@
           type="button"
         ></button>
         <h3 class="modal__title">Edit Profile</h3>
-        <form name="modal-edit-form" class="modal__form">
+        <form name="modal-edit-form" class="modal__form" id="modal-form-edit">
           <label for="edit-name" class="modal__form-label"></label>
           <input
             type="text"
@@ -73,6 +78,42 @@
             required
           />
           <button class="modal__button-save" type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+    <!-- ADD MODAL-->
+    <div class="modal" id="modal-add-profile">
+      <div class="modal__container">
+        <button
+          class="modal__button-close"
+          id="modal-button-close-add"
+          type="button"
+        ></button>
+        <h3 class="modal__title">New Place</h3>
+        <form name="modal-add-form" class="modal__form" id="add-modal-form">
+          <label for="add-title" class="modal__form-label"></label>
+          <input
+            type="text"
+            class="modal__input modal__input_type_title"
+            id="add-title"
+            placeholder="Title"
+            required
+          />
+          <label for="add-imageURL" class="modal__form-label"></label>
+          <input
+            type="text"
+            class="modal__input modal__input_type_url"
+            id="add-imageURL"
+            placeholder="Image URL"
+            required
+          />
+          <button
+            class="modal__button-create"
+            id="modal-button-create"
+            type="submit"
+          >
+            Create
+          </button>
         </form>
       </div>
     </div>

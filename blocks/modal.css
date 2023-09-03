@@ -105,6 +105,29 @@
   opacity: 0.8;
 }
 
+.modal__button-create {
+  margin: 0 auto;
+  padding: 0;
+  margin-top: 48px;
+  background-color: #000;
+  color: #fff;
+  border-radius: 2px;
+  border: none;
+  width: 358px;
+  height: 50px;
+  transition: opacity 0.3s linear;
+  opacity: 1;
+  cursor: pointer;
+  font-family: "inter", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.modal__button-create:hover {
+  opacity: 0.8;
+}
+
 @media screen and (max-width: 777px) {
   .modal__container {
     min-height: 322px;
@@ -138,6 +161,14 @@
   }
 
   .modal__button-save {
+    height: 46px;
+    width: 238px;
+    font-size: 14px;
+    line-height: 17px;
+    font-family: inherit;
+  }
+
+  .modal__button-create {
     height: 46px;
     width: 238px;
     font-size: 14px;

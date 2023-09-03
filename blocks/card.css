@@ -38,6 +38,10 @@
   cursor: pointer;
 }
 
+.card__icon_active {
+  background-image: url(../images/Unionlike_active.svg);
+}
+
 .card__icon:hover {
   opacity: 0.5;
 }
