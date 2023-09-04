@@ -128,14 +128,25 @@
   opacity: 0.8;
 }
 
-.modal_previewImage {
+.modal__previewImage {
   width: 433px;
   height: 540px;
 }
 
 .modal__container-previewImage {
+  background-color: transparent;
+
   padding: 0;
   margin: 90px auto;
+}
+
+.modal__previewTitle {
+  color: #fff;
+  font-family: "inter", Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  margin: 10px 0 0;
+  padding: 0;
 }
 
 @media screen and (max-width: 777px) {
@@ -188,10 +199,17 @@
 
   .modal__previewImage {
     width: 240px;
-    height: 240px;
+    height: 299px;
   }
 
   .modal__container-previewImage {
-    margin: 136px auto;
+    margin: 136px auto 133px auto;
+  }
+
+  .modal__button-close_preview {
+    top: -30px;
+    right: 10px;
+    height: 30px;
+    width: 30px;
   }
 }

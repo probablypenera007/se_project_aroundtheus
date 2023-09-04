@@ -48,9 +48,8 @@ const profileButtonCloseAdd = profileAddModal.querySelector(
 const profileAddImageTitle = profileFormAdd.querySelector("#add-title");
 const profileAddImageLink = profileFormAdd.querySelector("#add-imageURL");
 const previewImageModal = document.querySelector("#modal-previewImage");
-//const previewImages = document.querySelector(".modal__previewImage"); // select preview image image
-//const previewImageTitle = document.querySelector(".modal__previewTitle"); // select preview image title
-const previewImageModalClose = document.querySelector(
+
+const previewImageModalClose = previewImageModal.querySelector(
   "#modal-button-close-preview"
 );
 const cardsContent = document.querySelector(".cards__content");
@@ -68,7 +67,6 @@ function PopUp() {
 
 function openMod() {
   profileAddModal.classList.add("modal_opened");
-  previewImageModal.classList.add("modal_opened");
 }
 
 function getCardElement(data) {
@@ -76,23 +74,21 @@ function getCardElement(data) {
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
   const heartButton = cardElement.querySelector(".card__like-button");
-  //delete button
   const trashButton = cardElement.querySelector(".card__delete-button");
-  const previewImageTitle = cardElement.querySelector(".modal__previewTitle");
-  const previewImages = cardElement.querySelector(".modal__previewImage");
 
   trashButton.addEventListener("click", () => {
     cardElement.remove("card__delete-button");
   });
-  //cardelement.removed()
-  previewImages.addEventListener("click", () => {
+
+  cardImage.addEventListener("click", () => {
+    const previewImage = document.querySelector(".modal__previewImage");
+    const previewImageTitle = document.querySelector(".modal__previewTitle");
     previewImage.src = data.link;
     previewImage.alt = data.name;
     previewImageTitle.textContent = data.name;
-
     previewImageModal.classList.add("modal_opened");
   });
-  //addclicklistener to the cardimage element
+
   heartButton.addEventListener("click", () =>
     heartButton.classList.toggle("card__like-button_active")
   );
