@@ -67,6 +67,21 @@ function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
+  const heartButton = cardElement.querySelector(".card__like-button");
+  //delete button
+  const trashButton = cardElement.querySelector(".card__delete-button");
+
+  //add the event listener for deelte
+  trashButton.addEventListener("click", () => {
+    cardElement.remove("card__delete-button");
+  });
+  //cardelement.removed()
+
+  //addclicklistener to the cardimage element
+  //openmodal previewimage
+  heartButton.addEventListener("click", () =>
+    heartButton.classList.toggle("card__like-button_active")
+  );
 
   cardImage.src = data.link;
   cardImage.alt = data.name;
