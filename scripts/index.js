@@ -47,6 +47,12 @@ const profileButtonCloseAdd = profileAddModal.querySelector(
 );
 const profileAddImageTitle = profileFormAdd.querySelector("#add-title");
 const profileAddImageLink = profileFormAdd.querySelector("#add-imageURL");
+const previewImageModal = document.querySelector("#modal-previewImage");
+//const previewImages = document.querySelector(".modal__previewImage"); // select preview image image
+//const previewImageTitle = document.querySelector(".modal__previewTitle"); // select preview image title
+const previewImageModalClose = document.querySelector(
+  "#modal-button-close-preview"
+);
 const cardsContent = document.querySelector(".cards__content");
 const cardTemplate = document
   .querySelector("#card-template")
@@ -57,10 +63,12 @@ const data = initialCards;
 function PopUp() {
   profileEditModal.classList.remove("modal_opened");
   profileAddModal.classList.remove("modal_opened");
+  previewImageModal.classList.remove("modal_opened");
 }
 
 function openMod() {
   profileAddModal.classList.add("modal_opened");
+  previewImageModal.classList.add("modal_opened");
 }
 
 function getCardElement(data) {
@@ -70,15 +78,21 @@ function getCardElement(data) {
   const heartButton = cardElement.querySelector(".card__like-button");
   //delete button
   const trashButton = cardElement.querySelector(".card__delete-button");
+  const previewImageTitle = cardElement.querySelector(".modal__previewTitle");
+  const previewImages = cardElement.querySelector(".modal__previewImage");
 
-  //add the event listener for deelte
   trashButton.addEventListener("click", () => {
     cardElement.remove("card__delete-button");
   });
   //cardelement.removed()
+  previewImages.addEventListener("click", () => {
+    previewImage.src = data.link;
+    previewImage.alt = data.name;
+    previewImageTitle.textContent = data.name;
 
+    previewImageModal.classList.add("modal_opened");
+  });
   //addclicklistener to the cardimage element
-  //openmodal previewimage
   heartButton.addEventListener("click", () =>
     heartButton.classList.toggle("card__like-button_active")
   );
@@ -121,6 +135,7 @@ profileFormAdd.addEventListener("submit", (evt) => {
 
 profileButtonAdd.addEventListener("click", openMod);
 profileButtonCloseAdd.addEventListener("click", PopUp);
+previewImageModalClose.addEventListener("click", PopUp);
 
 initialCards.forEach((data) => {
   const cardElement = getCardElement(data);

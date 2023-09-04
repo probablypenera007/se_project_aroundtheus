@@ -128,6 +128,16 @@
   opacity: 0.8;
 }
 
+.modal_previewImage {
+  width: 433px;
+  height: 540px;
+}
+
+.modal__container-previewImage {
+  padding: 0;
+  margin: 90px auto;
+}
+
 @media screen and (max-width: 777px) {
   .modal__container {
     min-height: 322px;
@@ -174,5 +184,14 @@
     font-size: 14px;
     line-height: 17px;
     font-family: inherit;
+  }
+
+  .modal__previewImage {
+    width: 240px;
+    height: 240px;
+  }
+
+  .modal__container-previewImage {
+    margin: 136px auto;
   }
 }
