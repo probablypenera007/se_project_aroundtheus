@@ -25,7 +25,6 @@ const initialCards = [
   },
 ];
 /* ELEMENTS */
-const profileFormElement = document.querySelector(".modal__form");
 const profileButtonEdit = document.querySelector("#profile-button-edit");
 const profileEditModal = document.querySelector("#modal-edit-profile");
 const profileButtonClose = profileEditModal.querySelector(
@@ -59,7 +58,7 @@ const cardTemplate = document
 const data = initialCards;
 
 /* FUNCTIONS */
-function popUp(popup) {
+function togglePopUp(popup) {
   popup.classList.toggle("modal_opened");
 }
 
@@ -80,7 +79,7 @@ function getCardElement(data) {
     previewImage.src = data.link;
     previewImage.alt = data.name;
     previewImageTitle.textContent = data.name;
-    previewImageModal.classList.add("modal_opened");
+    togglePopUp(previewImageModal);
   });
 
   heartButton.addEventListener("click", () =>
@@ -98,30 +97,30 @@ function getCardElement(data) {
 profileButtonEdit.addEventListener("click", () => {
   profileCurrentName.value = profileName.textContent;
   profileCurrentBio.value = profileBio.textContent;
-  profileEditModal.classList.add("modal_opened");
+  togglePopUp(profileEditModal);
 });
 
 profileButtonClose.addEventListener("click", () => {
-  popUp(profileEditModal);
+  togglePopUp(profileEditModal);
 });
 
 profileFormEdit.addEventListener("submit", (evt) => {
   evt.preventDefault();
   profileName.textContent = profileCurrentName.value;
   profileBio.textContent = profileCurrentBio.value;
-  popUp(profileEditModal);
+  togglePopUp(profileEditModal);
 });
 
 profileButtonCloseAdd.addEventListener("click", () => {
-  popUp(profileAddModal);
+  togglePopUp(profileAddModal);
 });
 
 profileButtonAdd.addEventListener("click", () => {
-  popUp(profileAddModal);
+  togglePopUp(profileAddModal);
 });
 
 previewImageModalClose.addEventListener("click", () => {
-  popUp(previewImageModal);
+  togglePopUp(previewImageModal);
 });
 
 profileFormAdd.addEventListener("submit", (evt) => {
@@ -132,8 +131,8 @@ profileFormAdd.addEventListener("submit", (evt) => {
     name,
     link,
   });
-  profileFormAdd.reset(profileAddModal);
-  popUp(profileAddModal);
+  togglePopUp(profileAddModal);
+  profileFormAdd.reset();
   cardsContent.prepend(cardElement);
 });
 
