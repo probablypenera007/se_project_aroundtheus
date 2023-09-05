@@ -33,8 +33,8 @@ const profileButtonClose = profileEditModal.querySelector(
 );
 const profileName = document.querySelector(".profile__name");
 const profileBio = document.querySelector(".profile__subtitle");
-const profileCurrentName = profileFormElement.querySelector("#edit-name");
-const profileCurrentBio = profileFormElement.querySelector("#edit-bio");
+const profileCurrentName = document.querySelector("#edit-name");
+const profileCurrentBio = document.querySelector("#edit-bio");
 const profileFormEdit = profileEditModal.querySelector("#modal-form-edit");
 
 /*ADD ELEMENTS */
@@ -59,14 +59,8 @@ const cardTemplate = document
 const data = initialCards;
 
 /* FUNCTIONS */
-function PopUp() {
-  profileEditModal.classList.remove("modal_opened");
-  profileAddModal.classList.remove("modal_opened");
-  previewImageModal.classList.remove("modal_opened");
-}
-
-function openMod() {
-  profileAddModal.classList.add("modal_opened");
+function popUp(popup) {
+  popup.classList.toggle("modal_opened");
 }
 
 function getCardElement(data) {
@@ -100,6 +94,7 @@ function getCardElement(data) {
 }
 
 /* EVENT LISTENERS */
+
 profileButtonEdit.addEventListener("click", () => {
   profileCurrentName.value = profileName.textContent;
   profileCurrentBio.value = profileBio.textContent;
@@ -107,14 +102,26 @@ profileButtonEdit.addEventListener("click", () => {
 });
 
 profileButtonClose.addEventListener("click", () => {
-  PopUp();
+  popUp(profileEditModal);
 });
 
 profileFormEdit.addEventListener("submit", (evt) => {
   evt.preventDefault();
   profileName.textContent = profileCurrentName.value;
   profileBio.textContent = profileCurrentBio.value;
-  PopUp();
+  popUp(profileEditModal);
+});
+
+profileButtonCloseAdd.addEventListener("click", () => {
+  popUp(profileAddModal);
+});
+
+profileButtonAdd.addEventListener("click", () => {
+  popUp(profileAddModal);
+});
+
+previewImageModalClose.addEventListener("click", () => {
+  popUp(previewImageModal);
 });
 
 profileFormAdd.addEventListener("submit", (evt) => {
@@ -125,13 +132,10 @@ profileFormAdd.addEventListener("submit", (evt) => {
     name,
     link,
   });
+  profileFormAdd.reset(profileAddModal);
+  popUp(profileAddModal);
   cardsContent.prepend(cardElement);
-  PopUp();
 });
-
-profileButtonAdd.addEventListener("click", openMod);
-profileButtonCloseAdd.addEventListener("click", PopUp);
-previewImageModalClose.addEventListener("click", PopUp);
 
 initialCards.forEach((data) => {
   const cardElement = getCardElement(data);

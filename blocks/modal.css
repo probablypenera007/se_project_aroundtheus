@@ -11,14 +11,17 @@
   padding-right: 19px;
   z-index: 2;
   opacity: 0;
+  pointer-events: none;
   visibility: hidden;
-  transition: visibility 0.5s, opacity 0.5s linear;
+  transition: visibility 0s 0.5s, opacity 0.5s linear;
 }
 
 .modal_opened {
+  pointer-events: all;
   display: flex;
   visibility: visible;
   opacity: 1;
+  transition: visibility 0s, opacity 0.5s linear;
 }
 
 .modal__container {
