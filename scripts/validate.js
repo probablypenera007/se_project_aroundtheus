@@ -22,10 +22,6 @@ function checkInputValidity(formEl, inputEl, config) {
   hideInputError(formEl, inputEl, config);
 }
 
-function hasInvalidInput(inputList) {
-  return;
-}
-
 //disable buttton
 
 //enable button
@@ -48,7 +44,7 @@ function toggleButtonState(inputElm, submitButton, { inactiveButtonClass }) {
 function setEventListeners(formEl, config) {
   const { inputSelector } = config;
   const inputElm = [...formEl.querySelectorAll(inputSelector)];
-  const submitButton = formEl.querySelector(".modal__button");
+  const submitButton = formEl.querySelector(".modal__button_submit");
   inputElm.forEach((inputEl) => {
     inputEl.addEventListener("input", (evt) => {
       checkInputValidity(formEl, inputEl, config);

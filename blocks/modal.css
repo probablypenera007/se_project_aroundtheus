@@ -147,13 +147,12 @@
 }
 
 .modal__button_disabled {
-  opacity: 0.2;
+  opacity: 0.1;
 }
 
 .modal__input_type_error {
   box-sizing: border-box;
   border: none;
-
   border-bottom: 1px solid rgb(255, 0, 0);
 }
 
