@@ -11,7 +11,7 @@ function showInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
 function hideInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
   const errorMessageElm = formEl.querySelector(`#${inputEl.id}-error`);
   inputEl.classList.remove(inputErrorClass);
-  errorMessageElm.textContent = "";
+  errorMessageElm.textContent = " ";
   errorMessageElm.classList.remove(errorClass);
 }
 
@@ -42,9 +42,9 @@ function toggleButtonState(inputElm, submitButton, { inactiveButtonClass }) {
   }
 }
 function setEventListeners(formEl, config) {
-  const { inputSelector } = config;
+  const { inputSelector, submitButtonSelector } = config;
   const inputElm = [...formEl.querySelectorAll(inputSelector)];
-  const submitButton = formEl.querySelector(".modal__button_submit");
+  const submitButton = formEl.querySelector(submitButtonSelector);
   inputElm.forEach((inputEl) => {
     inputEl.addEventListener("input", (evt) => {
       checkInputValidity(formEl, inputEl, config);
@@ -61,18 +61,6 @@ function enableValidation(config) {
     });
 
     setEventListeners(formEl, config);
-    //look for all inputs inside of form
-    //loop throguh all the inputs to see if all are valid
-    //if input in not valid
-    //grab the validation message
-    //add error class to input
-    //display error message
-    //disable button
-    //if all inputd are valid
-    //enable button
-    //reset error message
-
-    //console.log(formElm);
   });
 }
 
