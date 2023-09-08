@@ -28,7 +28,7 @@ const initialCards = [
 const profileButtonEdit = document.querySelector("#profile-button-edit");
 const profileEditModal = document.querySelector("#modal-edit-profile");
 const profileButtonClose = profileEditModal.querySelector(
-  ".modal__button-close"
+  "#modal-edit-button-close"
 );
 const profileName = document.querySelector(".profile__name");
 const profileBio = document.querySelector(".profile__subtitle");
@@ -37,7 +37,7 @@ const profileCurrentBio = document.querySelector("#edit-bio");
 const profileFormEdit = profileEditModal.querySelector("#modal-form-edit");
 
 /*ADD ELEMENTS */
-
+const modalClass = [...document.querySelectorAll(".modal")];
 const profileButtonAdd = document.querySelector("#profile-button-add");
 const profileAddModal = document.querySelector("#modal-add-profile");
 const profileFormAdd = profileAddModal.querySelector("#add-modal-form");
@@ -123,18 +123,6 @@ previewImageModalClose.addEventListener("click", () => {
   togglePopUp(previewImageModal);
 });
 
-previewImageModal.addEventListener("click", () => {
-  previewImageModal.classList.remove("modal_opened");
-});
-
-profileAddModal.addEventListener("click", () => {
-  profileAddModal.classList.remove("modal_opened");
-});
-
-profileEditModal.addEventListener("click", () => {
-  profileEditModal.classList.remove("modal_opened");
-});
-
 profileFormAdd.addEventListener("submit", (evt) => {
   evt.preventDefault();
   const name = profileAddImageTitle.value;
@@ -142,6 +130,17 @@ profileFormAdd.addEventListener("submit", (evt) => {
   const cardElement = getCardElement({
     name,
     link,
+  });
+
+  modalClass.forEach((container) => {
+    container.addEventListener("mousedown", (evt) => {
+      if (evt.target.classList.contains("modal_opened")) {
+        togglePopUp(container);
+      }
+      if (evt.target.classList.contains("modal__button-close")) {
+        togglePopUp(container);
+      }
+    });
   });
 
   togglePopUp(profileAddModal);

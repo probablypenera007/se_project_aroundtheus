@@ -89,7 +89,7 @@
   opacity: 0.6;
 }
 
-.modal__button-save {
+.modal__button_submit {
   margin: 0 auto;
   padding: 0;
   margin-top: 48px;
@@ -108,30 +108,7 @@
   line-height: 22px;
 }
 
-.modal__button-save:hover {
-  opacity: 0.8;
-}
-
-.modal__button-create {
-  margin: 0 auto;
-  padding: 0;
-  margin-top: 48px;
-  background-color: #000;
-  color: #fff;
-  border-radius: 2px;
-  border: none;
-  width: 358px;
-  height: 50px;
-  transition: opacity 0.3s linear;
-  opacity: 1;
-  cursor: pointer;
-  font-family: "inter", Arial, sans-serif;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 22px;
-}
-
-.modal__button-create:hover {
+.modal__button_submit:hover {
   opacity: 0.8;
 }
 
@@ -212,15 +189,7 @@
     width: 26px;
   }
 
-  .modal__button-save {
-    height: 46px;
-    width: 238px;
-    font-size: 14px;
-    line-height: 17px;
-    font-family: inherit;
-  }
-
-  .modal__button-create {
+  .modal__button_submit {
     height: 46px;
     width: 238px;
     font-size: 14px;
