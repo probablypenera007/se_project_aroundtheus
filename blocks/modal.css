@@ -156,6 +156,32 @@
   padding: 0;
 }
 
+/*
+.modal__error{
+  
+}
+
+.modal__error_visible{
+
+}
+
+.modal__button_disabled{
+
+}
+
+.modal__button{
+
+}
+
+.modal__button_disabled{
+
+}
+
+.modal__input_type_error{
+
+}
+*/
+
 @media screen and (max-width: 777px) {
   .modal__container {
     min-height: 322px;

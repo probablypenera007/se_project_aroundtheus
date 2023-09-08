@@ -55,7 +55,7 @@
     <div class="modal" id="modal-edit-profile">
       <div class="modal__container">
         <button
-          class="modal__button-close"
+          class="modal__button modal__button-close"
           id="modal-edit-button-close"
           type="button"
         ></button>
@@ -71,6 +71,7 @@
             maxlength="400"
             required
           />
+          <span class="modal__error">Error message here</span>
           <label for="edit-bio" class="modal__form-label"></label>
           <input
             type="text"
@@ -81,7 +82,10 @@
             maxlength="200"
             required
           />
-          <button class="modal__button-save" type="submit">Save</button>
+          <span class="modal__error">Error message here</span>
+          <button class="modal__button modal__button-save" type="submit">
+            Save
+          </button>
         </form>
       </div>
     </div>
@@ -89,7 +93,7 @@
     <div class="modal" id="modal-add-profile">
       <div class="modal__container">
         <button
-          class="modal__button-close"
+          class="modal__button modal__button-close"
           id="modal-button-close-add"
           type="button"
         ></button>
@@ -103,6 +107,7 @@
             placeholder="Title"
             required
           />
+          <span class="modal__error">Error message here</span>
           <label for="add-imageURL" class="modal__form-label"></label>
           <input
             type="text"
@@ -111,8 +116,9 @@
             placeholder="Image URL"
             required
           />
+          <span class="modal__error">Error message here</span>
           <button
-            class="modal__button-create"
+            class="modal__button modal__button-create"
             id="modal-button-create"
             type="submit"
           >
@@ -143,5 +149,6 @@
       </li>
     </template>
     <script src="./scripts/index.js" defer></script>
+    <script src="./scripts/validate.js" defer></script>
   </body>
 </html>
