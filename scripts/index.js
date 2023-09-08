@@ -37,7 +37,6 @@ const profileCurrentBio = document.querySelector("#edit-bio");
 const profileFormEdit = profileEditModal.querySelector("#modal-form-edit");
 
 /*ADD ELEMENTS */
-const modalClass = [...document.querySelectorAll(".modal")];
 const profileButtonAdd = document.querySelector("#profile-button-add");
 const profileAddModal = document.querySelector("#modal-add-profile");
 const profileFormAdd = profileAddModal.querySelector("#add-modal-form");
@@ -132,17 +131,6 @@ profileFormAdd.addEventListener("submit", (evt) => {
     link,
   });
 
-  modalClass.forEach((container) => {
-    container.addEventListener("mousedown", (evt) => {
-      if (evt.target.classList.contains("modal_opened")) {
-        togglePopUp(container);
-      }
-      if (evt.target.classList.contains("modal__button-close")) {
-        togglePopUp(container);
-      }
-    });
-  });
-
   togglePopUp(profileAddModal);
   profileFormAdd.reset();
   cardsContent.prepend(cardElement);
@@ -151,4 +139,16 @@ profileFormAdd.addEventListener("submit", (evt) => {
 initialCards.forEach((data) => {
   const cardElement = getCardElement(data);
   cardsContent.prepend(cardElement);
+});
+
+const modalClass = [...document.querySelectorAll(".modal")];
+modalClass.forEach((modalContainer) => {
+  modalContainer.addEventListener("mousedown", (evt) => {
+    if (evt.target.classList.contains("modal_opened")) {
+      togglePopUp(modalContainer);
+    }
+    if (evt.target.classList.contains("modal__button-close")) {
+      togglePopUp(modalContainer);
+    }
+  });
 });
