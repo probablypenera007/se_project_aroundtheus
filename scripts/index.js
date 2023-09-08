@@ -61,6 +61,11 @@ function togglePopUp(popup) {
   popup.classList.toggle("modal_opened");
 }
 
+function escClose(esc) {
+  esc.classList.remove("modal_opened");
+  document.addEventListener.apply("keydown", escKeyClose);
+}
+
 function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector(".card__image");
@@ -152,3 +157,15 @@ modalClass.forEach((modalContainer) => {
     }
   });
 });
+
+document.addEventListener("keydown", function (evt) {
+  if (evt.key == "Escape") {
+    profileEditModal.classList.remove("modal_opened");
+    profileAddModal.classList.remove("modal_opened");
+    previewImageModal.classList.remove("modal_opened");
+  }
+});
+/*var popup = document.getElementById("myPopUp-1");
+            window.addEventListener("keyup", function (evt) {
+                var isPopupVisible = popup.classList.contains('active');
+                if (isPopupVisible && evt.keyCode == 27) togglePopUp();*/
