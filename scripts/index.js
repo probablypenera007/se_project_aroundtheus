@@ -123,6 +123,18 @@ previewImageModalClose.addEventListener("click", () => {
   togglePopUp(previewImageModal);
 });
 
+previewImageModal.addEventListener("click", () => {
+  previewImageModal.classList.remove("modal_opened");
+});
+
+profileAddModal.addEventListener("click", () => {
+  profileAddModal.classList.remove("modal_opened");
+});
+
+profileEditModal.addEventListener("click", () => {
+  profileEditModal.classList.remove("modal_opened");
+});
+
 profileFormAdd.addEventListener("submit", (evt) => {
   evt.preventDefault();
   const name = profileAddImageTitle.value;
@@ -131,6 +143,7 @@ profileFormAdd.addEventListener("submit", (evt) => {
     name,
     link,
   });
+
   togglePopUp(profileAddModal);
   profileFormAdd.reset();
   cardsContent.prepend(cardElement);
