@@ -1,3 +1,5 @@
+import Card from "./Card.js";
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -24,6 +26,15 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
+
+const cardData = {
+  name: "Yosemite Valley",
+  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+};
+
+const card = new Card(cardData, "#card-template");
+card.getView();
+
 /* ELEMENTS */
 const profileButtonEdit = document.querySelector("#profile-button-edit");
 const profileEditModal = document.querySelector("#modal-edit-profile");
@@ -88,9 +99,9 @@ function getCardElement(data) {
     openModal(previewImageModal);
   });
 
-  heartButton.addEventListener("click", () =>
-    heartButton.classList.toggle("card__like-button_active")
-  );
+  //heartButton.addEventListener("click", () => {
+  //heartButton.classList.toggle("card__like-button_active");
+  //});
 
   cardImage.src = data.link;
   cardImage.alt = data.name;
