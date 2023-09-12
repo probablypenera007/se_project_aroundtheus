@@ -12,6 +12,7 @@ export default class Card {
     this._cardElement
       .querySelector(".card__like-button")
       .addEventListener("click", () => {
+        // this._heartButton.classList.toggle("card__like-button_active");
         this._handleHeartButton();
       });
 
@@ -25,7 +26,7 @@ export default class Card {
 
   _handleHeartButton() {
     this._cardElement
-      .querySelector(".card__like-buton")
+      .querySelector(".card__like-button")
       .classList.toggle("card__like-button_active");
   }
 
@@ -35,21 +36,16 @@ export default class Card {
   }
 
   getView() {
+    //public method
+    //get the card view
+    // this._cardElement = cardTemplate;
     this._cardElement = document
       .querySelector(this._cardSelector)
       .content.querySelector(".card")
       .cloneNode(true);
-
-    //public method
-    //get the card view
-    // this._cardElement = cardTemplate;
-
-    //this._cardImage = this._cardElement.querySelector(".card__image");
-    //const cardTitle = this._cardElement.querySelector(".card__title");
-    this._heartButton = this._cardElement.querySelector(".card__like-button");
-    this._trashButton = this._cardElement.querySelector(".card__delete-button");
     //set event listeners
     this._setEventListeners();
     //return the card
+    return this._cardElement;
   }
 }

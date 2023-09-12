@@ -1,4 +1,4 @@
-import Card from "./Card.js";
+import Card from "../components/Card.js";
 
 const initialCards = [
   {
@@ -27,13 +27,10 @@ const initialCards = [
   },
 ];
 
-const cardData = {
+const data = {
   name: "Yosemite Valley",
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
 };
-
-const card = new Card(cardData, "#card-template");
-card.getView();
 
 /* ELEMENTS */
 const profileButtonEdit = document.querySelector("#profile-button-edit");
@@ -65,7 +62,6 @@ const cardsContent = document.querySelector(".cards__content");
 const cardTemplate = document
   .querySelector("#card-template")
   .content.firstElementChild.cloneNode(true);
-const data = initialCards;
 
 function openModal(modal) {
   // open the modal
@@ -80,15 +76,18 @@ function closeModal(modal) {
 }
 
 function getCardElement(data) {
-  const cardElement = cardTemplate.cloneNode(true);
+  const card = new Card(data, "#card-template");
+  const cardElement = card.getView();
+
+  //const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
   const heartButton = cardElement.querySelector(".card__like-button");
   const trashButton = cardElement.querySelector(".card__delete-button");
 
-  trashButton.addEventListener("click", () => {
-    cardElement.remove("card__delete-button");
-  });
+  //trashButton.addEventListener("click", () => {
+  //cardElement.remove();
+  //});
 
   cardImage.addEventListener("click", () => {
     const previewImage = document.querySelector(".modal__previewImage");
