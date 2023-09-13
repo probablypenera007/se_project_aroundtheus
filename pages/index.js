@@ -1,4 +1,5 @@
 import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
 
 const initialCards = [
   {
@@ -84,27 +85,29 @@ function handleImageClick(data) {
   openModal(previewImageModal);
 }
 
+const validationSettings = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button_submit",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
+const editFormValidator = new FormValidator(
+  validationSettings,
+  profileFormEdit
+);
+editFormValidator.enableValidation();
+
+const addFormValidator = new FormValidator(validationSettings, profileFormAdd);
+addFormValidator.enableValidation();
+
 function getCardElement(data) {
   const card = new Card(data, "#card-template", handleImageClick);
   const cardElement = card.getView();
-
-  //const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
-  const heartButton = cardElement.querySelector(".card__like-button");
-  const trashButton = cardElement.querySelector(".card__delete-button");
-
-  //trashButton.addEventListener("click", () => {
-  //cardElement.remove();
-  //});
-
-  //cardImage.addEventListener("click", () => {
-  //handleImageClick(data);
-  //});
-
-  //heartButton.addEventListener("click", () => {
-  //heartButton.classList.toggle("card__like-button_active");
-  //});
 
   cardImage.src = data.link;
   cardImage.alt = data.name;

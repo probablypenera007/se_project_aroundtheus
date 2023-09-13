@@ -186,6 +186,7 @@
     right: 0px;
     height: 26px;
     width: 26px;
+    background-color: transparent;
   }
 
   .modal__button_submit {
