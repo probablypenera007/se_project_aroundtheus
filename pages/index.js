@@ -86,7 +86,6 @@ function handleImageClick(data) {
 }
 
 const validationSettings = {
-  formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button_submit",
   inactiveButtonClass: "modal__button_disabled",
@@ -149,6 +148,7 @@ profileFormAdd.addEventListener("submit", (evt) => {
   closeModal(profileAddModal);
   profileFormAdd.reset();
   cardsContent.prepend(cardElement);
+  addFormValidator.toggleButtonState(); // call toggleButtonState here
 });
 
 initialCards.forEach((data) => {
