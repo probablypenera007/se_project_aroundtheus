@@ -142,16 +142,13 @@
   color: red;
 }
 
-.modal__button {
-  background-color: #000;
-}
-
-.moadl__button:hover:not(:disabled) {
+.modal__button:hover:not(:disabled) {
   opacity: 0.8;
 }
 
 .modal__button_disabled:hover {
   opacity: 0.1;
+  background-color: transparent;
 }
 
 .modal__button_disabled {
