@@ -40,15 +40,22 @@ export default class Card {
     this._cardElement = null;
   }
 
-  getView() {
-    //public method
-    //get the card view
-    // this._cardElement = cardTemplate;
+  _getElement() {
     this._cardElement = document
       .querySelector(this._cardSelector)
       .content.querySelector(".card")
       .cloneNode(true);
-    //set event listeners
+  }
+
+  getView() {
+    this._getElement();
+    //get the card view
+    const cardTitle = this._cardElement.querySelector(".card__title");
+    const cardImage = this._cardElement.querySelector(".card__image");
+    cardImage.src = this._link;
+    cardImage.alt = this._name;
+    cardTitle.textContent = this._name;
+    //set event listeners;
     this._setEventListeners();
     //return the card
     return this._cardElement;
