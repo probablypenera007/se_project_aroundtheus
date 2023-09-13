@@ -75,8 +75,17 @@ function closeModal(modal) {
   document.removeEventListener("keydown", closeByEscape);
 }
 
+function handleImageClick(data) {
+  const previewImage = document.querySelector(".modal__previewImage");
+  const previewImageTitle = document.querySelector("#preview-title");
+  previewImage.src = data.link;
+  previewImage.alt = data.name;
+  previewImageTitle.textContent = data.name;
+  openModal(previewImageModal);
+}
+
 function getCardElement(data) {
-  const card = new Card(data, "#card-template");
+  const card = new Card(data, "#card-template", handleImageClick);
   const cardElement = card.getView();
 
   //const cardElement = cardTemplate.cloneNode(true);
@@ -89,14 +98,9 @@ function getCardElement(data) {
   //cardElement.remove();
   //});
 
-  cardImage.addEventListener("click", () => {
-    const previewImage = document.querySelector(".modal__previewImage");
-    const previewImageTitle = document.querySelector("#preview-title");
-    previewImage.src = data.link;
-    previewImage.alt = data.name;
-    previewImageTitle.textContent = data.name;
-    openModal(previewImageModal);
-  });
+  //cardImage.addEventListener("click", () => {
+  //handleImageClick(data);
+  //});
 
   //heartButton.addEventListener("click", () => {
   //heartButton.classList.toggle("card__like-button_active");
