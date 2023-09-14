@@ -108,12 +108,6 @@ const getElement = card._getElement();
 function getCardElement(data) {
   const card = new Card(data, "#card-template", handleImageClick);
   const cardElement = card.getView();
-  //const cardImage = cardElement.querySelector(".card__image");
-  // const cardTitle = cardElement.querySelector(".card__title");
-
-  //cardImage.src = data.link;
-  //cardImage.alt = data.name;
-  //cardTitle.textContent = data.name;
   return cardElement;
 }
 
