@@ -81,6 +81,7 @@ const section = new Section(
   },
   ".cards__content"
 );
+section.renderItems();
 
 /* EVENT LISTENERS */
 
@@ -121,11 +122,11 @@ profileFormAdd.addEventListener("submit", (evt) => {
   addFormValidator.toggleButtonState(); // call the togglebuttonstate on the add form validator
 });
 
-initialCards.forEach((data) => {
+//initialCards.forEach((data) => {
   //loop through the initial cards array
-  const cardElement = getCardElement(data); //create acard element using the data
-  cardsContent.prepend(cardElement); //prepend the card element to the cards container
-});
+  //const cardElement = getCardElement(data); //create acard element using the data
+  //cardsContent.prepend(cardElement); //prepend the card element to the cards container
+//});
 
 function closeByEscape(evt) {
   //function to close the modal by escape key
