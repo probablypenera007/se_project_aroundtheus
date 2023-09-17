@@ -19,6 +19,7 @@ import {
   previewImageModalClose,
   cardsContent,
   cardTemplate,
+  validationSettings,
 } from "../src/constants/constants.js";
 import Card from "../src/components/Card.js"; //importing the Card class
 import FormValidator from "../src/components/FormValidator.js"; //and formvalidator class
@@ -50,14 +51,7 @@ function handleImageClick(data) {
   openModal(previewImageModal); //open preview modal
 }
 
-const validationSettings = {
-  //validation settings for the form validator
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button_submit",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
+
 /*FORMVALIDATOR*/
 const editFormValidator = new FormValidator( //create form validator for profile edit form
   validationSettings,

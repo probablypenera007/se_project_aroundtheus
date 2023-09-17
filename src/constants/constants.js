@@ -27,6 +27,15 @@ export const initialCards = [ // initial array of cards
 
 export const data = initialCards;
 
+export const validationSettings = {
+    //validation settings for the form validator
+    inputSelector: ".modal__input",
+    submitButtonSelector: ".modal__button_submit",
+    inactiveButtonClass: "modal__button_disabled",
+    inputErrorClass: "modal__input_type_error",
+    errorClass: "modal__error_visible",
+  };
+
 /* ELEMENTS */
 export const profileButtonEdit = document.querySelector("#profile-button-edit"); //profile edit button
 export const profileEditModal = document.querySelector("#modal-edit-profile"); //profile edit modal
