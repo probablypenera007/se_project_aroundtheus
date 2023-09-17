@@ -33,10 +33,7 @@ const initialCards = [ // initial array of cards
   },
 ];
 
-const data = { //sample data for card
-  name: "Yosemite Valley",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-};
+const data = initialCards;
 
 /* ELEMENTS */
 const profileButtonEdit = document.querySelector("#profile-button-edit"); //profile edit button
