@@ -1,14 +1,15 @@
-import Popup from "./Popup";
+import { previewImageModal, previewImageTitle } from "../constants/constants";
+import PopUp from "../components/PopUp.js";
 
-class PopupWithImage extends Popup{
-    //child class of PopUp
-    //this class has to change the parent open()method
-    constructor(){
-       super(); //calls the constructor og the parent class
-       //this.open = something
-    }
-    open(){
-      //you need to add an image to the popup and the corresponding 
-    //image src attribute along with a caption for the image.
-    }
+export default class PopUpWithImage extends Popup {
+  constructor(popUpSelector) {
+    super(popUpSelector);
+    this._image = this._popup.querySelector(previewImageModal);
+    this._caption = this._popup.querySelector(previewImageTitle);
+  }
+  open(imageSrc, caption) {
+    this._image.src = imageSrc;
+    this._caption.textContent = caption;
+    super.open();
+  }
 }

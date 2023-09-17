@@ -1,30 +1,29 @@
-export default class Popup {
-  constructor(popUpSelector) {
-    //constructor single parameter
-    this._popUpSelector = document.querySelector("modal_opened");
-    this._handleEscClose = this._handleEscClose;
-  }
-  open() {
-    //opens the popup
-    this._popUpSelector.classList.add("modal_opened");
-    document.addEventListener("keyup", this._handleEscClose);
-  }
-  close() {
-    this._popUpSelector.classList.remove("modal_opened");
-    document.removeEventListener("keydown", this._handleEscClose);
-    //closes the popup
-  }
-  _handleEscClose = (evt) => {
-    evt.preventDefault();
-    if (evt.key === "Escape") {
-      this.close();
+import PopUpWithImage from "../components/PopUpWithImage.js";
+import PopUpWithForm from "../components/PopUpWithForm.js";
+
+export default class PopUp{
+    constructor(popUpSelector) {
+        this._popup = document.querySelector(popUpSelector);
+        this._closeIcon = this._popup.querySelector(".modal__button-close");
+        this._handleEscClose = this._handleEscClose.bind(this);
+        this.setEventListeners();
     }
-    //stores the logic for the closing the popup by pressing the Esc key
-  };
-  setEventListeners() {
-    //hat adds a click event listener to the close icon of the popup.
-    // The modal window should also close
-    //when users click on the shaded area around the form. PopupwithForm
-    //PopupwithForm and PopupwithImage
-  }
+    open() {
+        this._popup.classList.add("modal_opened");
+        document.addEventListener("keydown", this._handleEscClose);
+    }
+    close() {
+        this._popup.classList.remove("modal_opened");
+        document.removeEventListener("keydown", this._handleEscClose); 
+    }
+    _handleEscClose(evt) {
+        if (evt.key === "Escape") {
+            this.close();
+        }
+    };
+    setEventListeners(){
+        this._closeIcon.addEventListener("click", () => {
+            this.close();
+        });
+    }
 }

@@ -24,10 +24,12 @@ import {
 import Card from "../src/components/Card.js"; //importing the Card class
 import FormValidator from "../src/components/FormValidator.js"; //and formvalidator class
 import Section from "../src/components/Section.js";
-//import Popup from "../components/Popup.js";
-//import PopupWithImage from "../components/PopupWithImage.js";
-//import PopupWithForm from "../components/PopupWithForm.js";
+//import PopUp from "../components/PopUp.js";
+//import PopUpWithImage from "../components/PopUpWithImage.js";
+//import PopUpWithForm from "../components/PopUpWithForm.js";
 //import UserInfo from "../components/Userinfo.js";
+
+
 
 function openModal(modal) {
   // open the modal
@@ -82,6 +84,10 @@ const section = new Section(
   ".cards__content"
 );
 section.renderItems();
+
+/*POPUP*/
+//const popUpWithImage = new PopUpWithImage(previewImageModal);
+//const popUpWithForm = new PopUpWithForm(profileAddModal, submitCallback);
 
 /* EVENT LISTENERS */
 
