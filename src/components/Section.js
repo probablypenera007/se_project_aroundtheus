@@ -1,8 +1,10 @@
+import * as DOM from "../utils/dom.js"
+
 export default class Section{
     constructor({items, renderer}, containerSelector ){
        this._items = items;
        this._renderer = renderer;
-       this._container = document.querySelector(containerSelector);
+       this._container = DOM.cardsContent;
        //this CSS class selector is where you'll add the card elements
     }
     renderItems(){

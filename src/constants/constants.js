@@ -27,7 +27,7 @@ export const initialCards = [ // initial array of cards
 
 
 
-export const validationSettings = {
+export const settings = {
     //validation settings for the form validator
     inputSelector: ".modal__input",
     submitButtonSelector: ".modal__button_submit",

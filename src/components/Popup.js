@@ -1,7 +1,7 @@
 //import PopUpWithImage from "../components/PopUpWithImage.js";
 //import PopUpWithForm from "../components/PopUpWithForm.js";
 
-class PopUp{
+export default class PopUp{
     constructor({popUpSelector}) {
         this._popup = document.querySelector(popUpSelector);
         this._closeIcon = this._popup.querySelector(".modal__button-close");
@@ -20,7 +20,7 @@ class PopUp{
         if (evt.key === "Escape") {
             this.close();
         }
-    };
+    }
     setEventListeners(){
         this._closeIcon.addEventListener("click", () => {
             this.close();
@@ -28,4 +28,4 @@ class PopUp{
     }
 }
 
-export default PopUp;
+//export default PopUp;
