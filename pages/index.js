@@ -10,6 +10,7 @@ import PopUp from "../src/components/PopUp.js";
 import PopUpWithImage from "../src/components/PopUpWithImage.js";
 import PopUpWithForm from "../src/components/PopUpWithForm.js";
 import UserInfo from "../src/components/UserInfo.js";
+import * as DOM from "../src/utils/dom.js";
 
 export const data = initialCards;
 /* ELEMENTS */
