@@ -1,47 +1,31 @@
 import {
   initialCards,
-  data,
-  profileButtonEdit,
-  profileEditModal,
-  profileButtonClose,
-  profileName,
-  profileBio,
-  profileCurrentName,
-  profileCurrentBio,
-  profileFormEdit,
-  profileButtonAdd,
-  profileAddModal,
-  profileFormAdd,
-  profileButtonCloseAdd,
-  profileAddImageTitle,
-  profileAddImageLink,
-  previewImageModal,
-  previewImageModalClose,
-  cardsContent,
-  cardTemplate,
   validationSettings,
+  userInfoSettings,
 } from "../src/constants/constants.js";
-import Card from "../src/components/Card.js"; //importing the Card class
-import FormValidator from "../src/components/FormValidator.js"; //and formvalidator class
+import Card from "../src/components/Card.js"; 
+import FormValidator from "../src/components/FormValidator.js";
 import Section from "../src/components/Section.js";
-//import PopUp from "../components/PopUp.js";
-//import PopUpWithImage from "../components/PopUpWithImage.js";
-//import PopUpWithForm from "../components/PopUpWithForm.js";
-//import UserInfo from "../components/Userinfo.js";
+import PopUp from "../src/components/PopUp.js"; 
+import PopUpWithImage from "../src/components/PopUpWithImage.js";
+import PopUpWithForm from "../src/components/PopUpWithForm.js";
+import UserInfo from "../src/components/UserInfo.js";
+
+export const data = initialCards;
+/* ELEMENTS */
 
 
-
-function openModal(modal) {
+//function openModal(modal) {
   // open the modal
-  modal.classList.add("modal_opened"); // ad lass to show modal
-  document.addEventListener("keydown", closeByEscape); //listen for keydown event to close modal
-}
+  //modal.classList.add("modal_opened"); // ad lass to show modal
+  //document.addEventListener("keydown", closeByEscape); //listen for keydown event to close modal
+//}
 
-function closeModal(modal) {
+//function closeModal(modal) {
   // close the modal
-  modal.classList.remove("modal_opened"); // remove class to hide modal
-  document.removeEventListener("keydown", closeByEscape); // remove keydown event listener
-}
+  //modal.classList.remove("modal_opened"); // remove class to hide modal
+  //document.removeEventListener("keydown", closeByEscape); // remove keydown event listener
+//}
 
 function handleImageClick(data) {
   //function to handle image click
@@ -50,7 +34,8 @@ function handleImageClick(data) {
   previewImage.src = data.link; //set image source
   previewImage.alt = data.name; // and alt text
   previewImageTitle.textContent = data.name; //set title text
-  openModal(previewImageModal); //open preview modal
+  //openModal(previewImageModal); //open preview modal
+  PopUpWithImage.open();
 }
 
 
@@ -66,14 +51,14 @@ addFormValidator.enableValidation();
 
 /*CARD*/
 const card = new Card(data, "#card-template", handleImageClick); //create a card instance
-const getElement = card._getElement();
+//const getElement = card._getElement();
 
-function getCardElement(data) {
+const getCardElement = (data) => {
   //function to get card element
   const card = new Card(data, "#card-template", handleImageClick); //create a card instance
   const cardElement = card.getView(); //get card view element
   return cardElement; //return card element
-}
+};
 
 /*SECTIONS*/
 const section = new Section(
@@ -86,47 +71,72 @@ const section = new Section(
 section.renderItems();
 
 /*POPUP*/
-//const popUpWithImage = new PopUpWithImage(previewImageModal);
-//const popUpWithForm = new PopUpWithForm(profileAddModal, submitCallback);
+function handleFormSubmit(formData) {
+  profileFormEdit.addEventListener("submit", (evt) => {
+    //event listener for profile edit form submit
+    evt.preventDefault();
+    profileName.textContent = profileCurrentName.value; //set current name input value to profile name
+    profileBio.textContent = profileCurrentBio.value; // set current bio input value to porfile bio
+    //closeModal(profileEditModal); //open profile edit
+    popUpWithForm.close();
+  
+    userInfo.setUserInfo({
+      name:profileName.textContent,
+      job: profileBio.textContent,
+    })
+  });
+  profileFormAdd.addEventListener("submit", (evt) => {
+    //event listener for profile add form syubmit
+    evt.preventDefault(); //prevent default form submission
+    const name = profileAddImageTitle.value; //get name and link input
+    const link = profileAddImageLink.value; // from the profile add form
+    const cardElement = getCardElement({
+      //create a card element using the name and link
+      name, //inputs from the profile add form
+      link,
+    
+    });
+    popUpWithImage.close();
+      profileFormAdd.reset();
+      cardsContent.prepend(cardElement);
+      addFormValidator.toggleButtonState();
+    //closeModal(profileAddModal); //close profile add modal
+    //profileFormAdd.reset(); //reset the profile add form
+    //cardsContent.prepend(cardElement); //prepend the new card element to the card content container
+    //addFormValidator.toggleButtonState(); // call the togglebuttonstate on the add form validator
+  });
+}
+
+const popUpWithImage = new PopUpWithImage(".modal__previewImage");
+const popUpWithForm = new PopUpWithForm (profileEditModal, handleFormSubmit);
+
+/*USERINFO*/
+const userInfo = new UserInfo (
+  userInfoSettings.userNameSelector,
+  userInfoSettings.jobNameSelector,
+)
 
 /* EVENT LISTENERS */
 
 profileButtonEdit.addEventListener("click", () => {
   //event listener for profile edit button click
-  profileCurrentName.value = profileName.textContent;
-  profileCurrentBio.value = profileBio.textContent;
-  openModal(profileEditModal);
+  const currentUserInfo =userInfo.getUserinfo();
+  profileCurrentName.value = currentUserInfo.name;
+  profileCurrentBio.value = currentUserInfo.job;
+  popUpWithForm.open();
 });
 
-profileFormEdit.addEventListener("submit", (evt) => {
-  //event listener for profile edit form submit
-  evt.preventDefault();
-  profileName.textContent = profileCurrentName.value; //set current name input value to profile name
-  profileBio.textContent = profileCurrentBio.value; // set current bio input value to porfile bio
-  closeModal(profileEditModal); //open profile edit
-});
+
+
+
 
 profileButtonAdd.addEventListener("click", () => {
   //event listener for profile add button click
-  openModal(profileAddModal);
+  //openModal(profileAddModal);
+  popUpWithImage.open();
 });
 
-profileFormAdd.addEventListener("submit", (evt) => {
-  //event listener for profile add form syubmit
-  evt.preventDefault(); //prevent default form submission
-  const name = profileAddImageTitle.value; //get name and link input
-  const link = profileAddImageLink.value; // from the profile add form
-  const cardElement = getCardElement({
-    //create a card element using the name and link
-    name, //inputs from the profile add form
-    link,
-  });
 
-  closeModal(profileAddModal); //close profile add modal
-  profileFormAdd.reset(); //reset the profile add form
-  cardsContent.prepend(cardElement); //prepend the new card element to the card content container
-  addFormValidator.toggleButtonState(); // call the togglebuttonstate on the add form validator
-});
 
 //initialCards.forEach((data) => {
   //loop through the initial cards array

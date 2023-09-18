@@ -1,21 +1,17 @@
-import {
-  profileFormAdd,
-  profileFormEdit,
-  inputSelector,
-} from "../constants/constants";
-import Popup from "./PopUp";
+import PopUp from "./PopUp.js";
 
-export default class PopupwithForm extends Popup {
-  constructor(popupSelector, submitCallback) {
-    super(popupSelector);
-    this._form = this._popup.querySelector(profileFormAdd, profileFormEdit);
-    this.submitCallback = submitCallback;
+class PopUpWithForm extends PopUp {
+  constructor(popupSelector, handleFormSubmit) {
+    super({ popupSelector });
+    this._form = this._popup.querySelector(".modal__form");
+    this.submitCallback = handleFormSubmit;
+    this.setEventListeners();
     //1st param popsupSelector = modalcontainer
     //2nd param a callback functionpopupwithform
     //calls when the form's submit event fires
   }
   _getInputValues() {
-    const inputs = this._form.querySelector(inputSelector);
+    const inputs = this._form.querySelectorAll(".modal__input");
     const values = {};
     inputs.forEach((input) => {
       values[input.name] = input.value;
@@ -26,9 +22,10 @@ export default class PopupwithForm extends Popup {
   }
   setEventListeners() {
     super.setEventListeners();
-    this._form.addEventListeners("submit", (evt) => {
+    this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      this.submitCallback(this.inputs._getInputValues());
+      const formData = this._getInputValues();
+      this.submitCallback(formData);
     });
     //modifies the seteventlistener in popup
     //popup.js seteventlistener becomes a parent
@@ -45,3 +42,5 @@ export default class PopupwithForm extends Popup {
   }
   //instance of the popupwithform class for each popup
 }
+
+export default PopUpWithForm;

@@ -1,17 +1,18 @@
-class Userinfo { //repsonsible for rendering information from the user
-    constructor(){//robject with selectors of two elements
-        //username and containing the users jopb
-
+class UserInfo { //repsonsible for rendering information from the user
+    constructor(userNameSelector, jobNameSelector){//object with selectors of two elements
+        this._nameSlct = document.querySelector(userNameSelector);
+        this._jobnameSlct = document.querySelector(jobNameSelector);
     }
     getUserinfo(){
-        //public method returns an object with information bout user
-        //handy for cases when necessary to display user data in open form
+        return {
+            name: this._nameSlct.textContent,
+            job: this._jobnameSlct.textContent,
+        };
+
     }
-    setUserInfo(){
-        //public medthod takes new user data
-        //adds it on the page
+    setUserInfo({name, job}){
+        this._nameSlct.textContent = name;
+        this._jobnameSlct.textContent = job;
     }
-    //instance of the user info class in index.js
-    //use it's method setuserinfo() handle to the form submission
-    //inside an instance of the popupwithform class
+   
 }

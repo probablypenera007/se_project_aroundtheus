@@ -1,11 +1,10 @@
-import { previewImageModal, previewImageTitle } from "../constants/constants";
-import PopUp from "../components/PopUp.js";
+import PopUp from "./PopUp.js";
 
-export default class PopUpWithImage extends Popup {
-  constructor(popUpSelector) {
-    super(popUpSelector);
-    this._image = this._popup.querySelector(previewImageModal);
-    this._caption = this._popup.querySelector(previewImageTitle);
+class PopUpWithImage extends PopUp {
+  constructor() {
+    super({ popUpSelector: ".modal-previewImage" });
+    this._image = this._popup.querySelector(".modal__previewImage");
+    this._caption = this._popup.querySelector(".modal__previewTitle");
   }
   open(imageSrc, caption) {
     this._image.src = imageSrc;
@@ -13,3 +12,5 @@ export default class PopUpWithImage extends Popup {
     super.open();
   }
 }
+
+export default PopUpWithImage;
