@@ -13,7 +13,16 @@ import UserInfo from "../src/components/UserInfo.js";
 import * as DOM from "../src/utils/dom.js";
 
 export const data = initialCards;
-/* ELEMENTS */
+
+/*FORMVALIDATOR*/
+const editFormValidator = new FormValidator(
+  validationSettings,
+  DOM.profileFormEdit
+);
+editFormValidator.enableValidation();
+
+const addFormValidator = new FormValidator(validationSettings, DOM.profileFormAdd); 
+addFormValidator.enableValidation();
 
 
 //function openModal(modal) {
@@ -40,15 +49,7 @@ function handleImageClick(data) {
 }
 
 
-/*FORMVALIDATOR*/
-const editFormValidator = new FormValidator( //create form validator for profile edit form
-  validationSettings,
-  profileFormEdit
-);
-editFormValidator.enableValidation();
 
-const addFormValidator = new FormValidator(validationSettings, profileFormAdd); //create form validator for profile add form
-addFormValidator.enableValidation();
 
 /*CARD*/
 const card = new Card(data, "#card-template", handleImageClick); //create a card instance
