@@ -1,8 +1,9 @@
 import PopUp from "./PopUp.js";
+import * as DOM from "../utils/dom.js"
 
 export default class PopUpWithForm extends PopUp {
   constructor(popupSelector, handleFormSubmit) {
-    super({ popupSelector });
+    super( DOM.profileEditModal);
     this._form = this._popup.querySelector(".modal__form");
     this.submitCallback = handleFormSubmit;
     this.setEventListeners();
@@ -22,6 +23,9 @@ export default class PopUpWithForm extends PopUp {
   }
   setEventListeners() {
     super.setEventListeners();
+    this._closeIcon.addEventListener("click", (evt) => {
+      this.close();
+    })
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
       const formData = this._getInputValues();

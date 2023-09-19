@@ -7,7 +7,6 @@ import {
 import FormValidator from "../src/components/FormValidator.js";
 import Card from "../src/components/Card.js"; 
 import Section from "../src/components/Section.js";
-//import PopUp from "../src/components/PopUp.js"; 
 import PopUpWithImage from "../src/components/PopUpWithImage.js";
 import PopUpWithForm from "../src/components/PopUpWithForm.js";
 import UserInfo from "../src/components/UserInfo.js";
@@ -28,6 +27,7 @@ function closeByEscape(evt) {
   }
 
 /*FORMVALIDATOR*/
+function handleFormSubmit(formData) {}
 const editFormValidator = new FormValidator(
   settings,
   DOM.profileFormEdit
@@ -60,8 +60,8 @@ const section = new Section(
 section.renderItems();
 
 /*POPUPS*/
-const popUpWithImage = new PopUpWithImage();
-const popUpWithForm = new PopUpWithForm (DOM.profileEditModal, handleFormSubmit);
+const popUpWithImage = new PopUpWithImage(".modal__previewImage");
+const popUpWithForm = new PopUpWithForm (handleFormSubmit);
 
 /*USERINFO*/
 const userInfo = new UserInfo (
@@ -75,10 +75,14 @@ const userInfo = new UserInfo (
 
 DOM.profileButtonEdit.addEventListener("click", () => {
   //event listener for profile edit button click
-  const currentUserInfo =userInfo.getUserinfo();
+  const currentUserInfo = userInfo.getUserinfo();
   DOM.profileCurrentName.value = currentUserInfo.name;
   DOM.profileCurrentBio.value = currentUserInfo.job;
   popUpWithForm.open();
+  //const currentUserInfo =userInfo.getUserinfo();
+  //DOM.profileCurrentName.value = currentUserInfo.name;
+  //DOM.profileCurrentBio.value = currentUserInfo.job;
+  //popUpWithForm.open();
 });
 
 DOM.profileFormEdit.addEventListener("submit", (evt) => {
@@ -87,6 +91,8 @@ DOM.profileFormEdit.addEventListener("submit", (evt) => {
   DOM.profileName.textContent = DOM.profileCurrentName.value; //set current name input value to profile name
   DOM.profileBio.textContent = DOM.profileCurrentBio.value; // set current bio input value to porfile bio
   //closeModal(profileEditModal); //open profile edit
+  handleFormSubmit({ name:DOM.profileName.textContent,
+    job: DOM.profileBio.textContent,})
   popUpWithForm.close();
   userInfo.setUserInfo({
   name:DOM.profileName.textContent,
@@ -106,6 +112,7 @@ DOM.profileFormAdd.addEventListener("submit", (evt) => {
   const name = DOM.profileAddImageTitle.value; //get name and link input
   const link = DOM.profileAddImageLink.value; // from the profile add form
   const cardElement = getCardElement({name,link});
+  handleFormSubmit({name,link});
 //create a card element using the name and link
  //inputs from the profile add form
 popUpWithImage.close();
@@ -126,7 +133,7 @@ popUpWithImage.close();
 
 
 
-//const modals = [...document.querySelectorAll(".modal")]; //get all modal containers
+
 //modals.forEach((modalContainer) => {
 //modalContainer.addEventListener("mousedown", (evt) => {
 //addevent listeners to modal container
@@ -154,8 +161,7 @@ popUpWithImage.close();
 
 //function handleImageClick(data) {
   //function to handle image click
-  //const previewImage = document.querySelector(".modal__previewImage"); //get preview image element
-  //const previewImageTitle = document.querySelector("#preview-title"); //get preview image title element
+  
   //previewImage.src = data.link; //set image source
   //previewImage.alt = data.name; // and alt text
   //previewImageTitle.textContent = data.name; //set title text

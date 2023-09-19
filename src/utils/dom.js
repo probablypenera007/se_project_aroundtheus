@@ -1,3 +1,4 @@
+export const modals = [...document.querySelectorAll(".modal")]; //get all modal containers
 export const profileButtonEdit = document.querySelector("#profile-button-edit"); //profile edit button
 export const profileEditModal = document.querySelector("#modal-edit-profile"); //profile edit modal
 export const profileButtonClose = profileEditModal.querySelector( //profile edit modal close button
@@ -19,7 +20,8 @@ export const profileButtonCloseAdd = profileAddModal.querySelector( // profile a
 export const profileAddImageTitle = profileFormAdd.querySelector("#add-title"); //profile add image title
 export const profileAddImageLink = profileFormAdd.querySelector("#add-imageURL"); // prtofile add image link
 export const previewImageModal = document.querySelector("#modal-previewImage"); //preview image modal
-
+export const previewImage = document.querySelector(".modal__previewImage"); //get preview image element
+export const previewImageTitle = document.querySelector("#preview-title"); //get preview image title element
 export const previewImageModalClose = previewImageModal.querySelector( //preview image modal close button
   "#modal-button-close-preview"
 );

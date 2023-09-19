@@ -3,7 +3,7 @@
 //Make Card take the handleCardClick() function into the constructor. 
 //When the user clicks on the card,
 // this function will open the popup with an image.
-
+//import PopUpWithImage from "../components/PopUpWithImage.js";
 
 //exporting the card class as a default export making it accessible to other modules
 export default class Card {
