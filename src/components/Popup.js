@@ -1,9 +1,9 @@
-//import * as DOM from "../utils/dom.js";
+import * as DOM from "../utils/dom.js";
 
 export default class PopUp {
   constructor({ popUpSelector }) {
     this._popupElement = document.querySelector(popUpSelector);
-    this._closeIcon = this._popupElement.querySelector(".modal__button-close");
+    this._closeIcon = this._popup.querySelector(".modal__button-close");
     this._handleEscClose = this._handleEscClose.bind(this);
     this.setEventListeners();
   }
