@@ -14,12 +14,11 @@ import * as DOM from "../src/utils/dom.js";
 export const data = initialCards;
 
 function closeByEscape(evt) {
-  document.removeEventListener("keydown", closeByEscape);
   if (evt.key === "Escape") {
     popUpWithImage.close();
     popUpWithForm.close();
   }
-}
+}  document.removeEventListener("keydown", closeByEscape);
 
 function handleFormSubmit(formData) {}
 
@@ -32,8 +31,6 @@ editFormValidator.enableValidation();
 const addFormValidator = new FormValidator(settings, DOM.profileFormAdd);
 addFormValidator.enableValidation();
 
-const popUpWithForm = new PopUpWithForm(DOM.profileEditModal,handleFormSubmit);
-const popUpWithImage = new PopUpWithImage(".modal__previewImage");
 function handleImageClick(data) {
   popUpWithImage.open(data.link, data.name);
 }
@@ -52,7 +49,9 @@ const section = new Section(
 );
 section.renderItems();
 
+const popUpWithForm = new PopUpWithForm(DOM.profileEditModal, handleFormSubmit);
 
+const popUpWithImage = new PopUpWithImage(".modal__previewImage");
 
 const userInfo = new UserInfo(
   userInfoSettings.userNameSelector,

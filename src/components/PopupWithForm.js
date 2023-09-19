@@ -3,7 +3,7 @@ import * as DOM from "../utils/dom.js"
 
 export default class PopUpWithForm extends PopUp {
   constructor(popupSelector, handleFormSubmit) {
-    super( DOM.profileEditModal);
+    super( {popupSelector: DOM.profileEditModal});
     this._form = this._popup.querySelector(".modal__form");
     this.submitCallback = handleFormSubmit;
     this.setEventListeners();
