@@ -3,9 +3,9 @@ import * as DOM from "../utils/dom.js"
 
 export default class PopUpWithForm extends PopUp {
   constructor(popupSelector, handleFormSubmit) {
-    super( {popupSelector: DOM.profileEditModal});
-    this._form = this._popup.querySelector(".modal__form");
-    this.submitCallback = handleFormSubmit;
+    super( {popupSelector});
+    this._form = this._popupElement.querySelector(".modal__form");
+    this._handleFormSubmit = handleFormSubmit;
     this.setEventListeners();
     //1st param popsupSelector = modalcontainer
     //2nd param a callback functionpopupwithform
@@ -24,12 +24,12 @@ export default class PopUpWithForm extends PopUp {
   setEventListeners() {
     super.setEventListeners();
     this._closeIcon.addEventListener("click", (evt) => {
-      this.close();
+      this._form.close();
     })
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
       const formData = this._getInputValues();
-      this.submitCallback(formData);
+      this.handleFormSubmit(formData);
     });
     //modifies the seteventlistener in popup
     //popup.js seteventlistener becomes a parent

@@ -3,6 +3,7 @@ import {
   settings,
   userInfoSettings,
 } from "../src/constants/constants.js";
+
 import FormValidator from "../src/components/FormValidator.js";
 import Card from "../src/components/Card.js";
 import Section from "../src/components/Section.js";
@@ -11,7 +12,8 @@ import PopUpWithForm from "../src/components/PopUpWithForm.js";
 import UserInfo from "../src/components/UserInfo.js";
 import * as DOM from "../src/utils/dom.js";
 
-export const data = initialCards;
+
+const data = initialCards;
 
 
 
@@ -44,8 +46,8 @@ const section = new Section(
 );
 section.renderItems();
 
-const popUpWithForm = new PopUpWithForm(DOM.profileEditModal, handleFormSubmit);
-
+const popUpWithForm = new PopUpWithForm("#modal_opened", handleFormSubmit);
+//const newCardpopup = new PopUpwithForm("#id here", (value of the handleformsubmit) => {})
 const popUpWithImage = new PopUpWithImage(".modal__previewImage");
 
 function closeByEscape(evt) {
