@@ -1,6 +1,7 @@
 export default class Popup {
   constructor(popupSelector) {
     this._popupElement = document.querySelector(popupSelector);
+    //this.setEventListeners();
        //this._modals = this._popupElement.querySelectorAll(".modal"); 
   }
 

@@ -3,7 +3,7 @@ export default class UserInfo { //repsonsible for rendering information from the
         this._nameElement = document.querySelector(userNameSelector);
         this._jobElement = document.querySelector(jobNameSelector);
     }
-    getUserinfo(){
+    getUserInfo(){
         const userInput = {
             name: this._nameElement.textContent,
             job: this._jobElement.textContent,
@@ -14,5 +14,4 @@ export default class UserInfo { //repsonsible for rendering information from the
         this._nameElement.textContent = data.name;
         this._jobElement.textContent = data.job;
     }
-   
 }

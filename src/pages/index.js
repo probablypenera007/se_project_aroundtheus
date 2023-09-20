@@ -1,4 +1,3 @@
-
 import * as DOM from "../utils/dom.js";
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
@@ -6,13 +5,11 @@ import Section from "../components/Section.js";
 import PopUpWithImage from "../components/PopUpWithImage.js";
 import PopUpWithForm from "../components/PopUpWithForm.js";
 import { initialCards, settings } from "../constants/constants.js";
-
+import UserInfo from "../components/UserInfo.js";
 
 import "../pages/index.css";
 
-
 const initialCardData = initialCards;
-
 
 const {
   profileButtonEdit,
@@ -32,6 +29,7 @@ const {
   cardTemplate
 } = DOM;
 
+const userinfo = new UserInfo(".profile__name", ".profile__subtitle");
 
 const popUpWithImage = new PopUpWithImage("#modal-previewImage");
 
@@ -57,7 +55,6 @@ const popUpAddItem = new PopUpWithForm(
   }
 );
 
-
 const editFormValidator = new FormValidator(
   settings,
   profileFormEdit
@@ -70,9 +67,10 @@ const addFormValidator = new FormValidator(
 );
 addFormValidator.enableValidation();
 
-
-const cards = initialCardData.map((data) => new Card(data, "#card-template", handleImageClick));
-
+const cards = initialCardData.map((data) => {
+  const card = new Card(data, "#card-template", handleImageClick);
+  return card.getView();
+});
 
 const section = new Section(
   {
@@ -86,6 +84,13 @@ const section = new Section(
   ".cards__content"
 );
 
+const submitButtons = document.querySelectorAll(settings.submitButtonSelector);
+submitButtons.forEach((submitButton) => {
+  submitButton.addEventListener("click", (evt) => {
+    evt.preventDefault();
+//logic
+  })
+});
 
 function handleImageClick(data) {
   const previewImage = document.querySelector(".modal__previewImage");
@@ -97,21 +102,32 @@ function handleImageClick(data) {
   popUpWithImage.open();
 }
 
-
 profileButtonEdit.addEventListener("click", () => {
   profileCurrentName.value = profileName.textContent;
   profileCurrentBio.value = profileBio.textContent;
+
+  const userData = userinfo.getUserInfo();
+  profileCurrentName.value = userData.name;
+  profileCurrentBio.value = userData.job;
   popUpEditProfile.open();
 });
 
+function updateUserInfo(name, job){
+  const newData = { name, job };
+  userinfo.setUserInfo(newData);
+}
 
-profileFormEdit.addEventListener("submit", (evt) => { 
-  evt.preventDefault(); 
-  profileName.textContent = profileCurrentName.value; 
-  profileBio.textContent = profileCurrentBio.value; 
-  popUpEditProfile.close(); 
+profileFormEdit.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+  const newName = profileCurrentName.value;
+  const newBio = profileCurrentBio.value;
+
+  userinfo.setUserInfo({
+    name: newName,
+    job: newBio
+  });
+  popUpEditProfile.close();
 });
-
 
 profileButtonAdd.addEventListener("click", () => {
   popUpAddItem.open();
@@ -140,7 +156,6 @@ function closeByEscape(evt) {
 }
 
 document.addEventListener("keydown", closeByEscape);
-
 
 const modals = DOM.modals;
 modals.forEach((modalContainer) => {
