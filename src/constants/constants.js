@@ -23,7 +23,7 @@ export const initialCards = [ // initial array of cards
     name: "Lago di Braies",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
-];
+]; 
 
 
 
@@ -34,6 +34,7 @@ export const settings = {
     inactiveButtonClass: "modal__button_disabled",
     inputErrorClass: "modal__input_type_error",
     errorClass: "modal__error_visible",
+    formSelector: ".modal__form",
   };
 
 export const userInfoSettings = {

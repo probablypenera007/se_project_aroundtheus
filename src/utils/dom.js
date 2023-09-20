@@ -1,3 +1,5 @@
+
+
 export const modals = [...document.querySelectorAll(".modal")]; //get all modal containers
 export const profileButtonEdit = document.querySelector("#profile-button-edit"); //profile edit button
 export const profileEditModal = document.querySelector("#modal-edit-profile"); //profile edit modal

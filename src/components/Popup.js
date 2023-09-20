@@ -1,34 +1,34 @@
-import * as DOM from "../utils/dom.js";
-
-export default class PopUp {
-  constructor({popUpSelector}) {
-    this._popupElement = document.querySelector(popUpSelector);
-    this._closeIcon = this._popupElement.querySelector(".modal__button-close");
-    console.log(this._closeIcon);
-    this._handleEscClose = this._handleEscClose.bind(this);
-    this.setEventListeners();
+export default class Popup {
+  constructor(popupSelector) {
+    this._popupElement = document.querySelector(popupSelector);
+       //this._modals = this._popupElement.querySelectorAll(".modal"); 
   }
 
-  open() {
+    open() {
     this._popupElement.classList.add("modal_opened");
-    document.addEventListener("keydown", this._handleEscClose);
+    document.addEventListener("keydown", this._closeByEscape);
   }
 
   close() {
     this._popupElement.classList.remove("modal_opened");
-    document.removeEventListener("keydown", this._handleEscClose);
+    document.removeEventListener("keydown", this._closeByEscape);
   }
 
-  _handleEscClose(evt) {
+   _closeByEscape = (evt) => {
     if (evt.key === "Escape") {
       this.close();
     }
-  }
+  };
 
-  setEventListeners() {
-    this._closeIcon.addEventListener("click", () => {
-      this.close();
+   setEventListeners() {
+    this._popupElement.addEventListener("mousedown", (evt) => {
+      // evt.preventDefault();
+      if (evt.target.classList.contains("modal_opened")) {
+        this.close();
+      }
+      if (evt.target.classList.contains("modal__button-close")) {
+        this.close();
+      }
     });
   }
 }
-//export default PopUp;

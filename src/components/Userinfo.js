@@ -4,15 +4,15 @@ export default class UserInfo { //repsonsible for rendering information from the
         this._jobElement = document.querySelector(jobNameSelector);
     }
     getUserinfo(){
-        return {
+        const userInput = {
             name: this._nameElement.textContent,
             job: this._jobElement.textContent,
         };
-
+        return userInput;
     }
-    setUserInfo({name, job}){
-        this._nameElement.textContent = name;
-        this._jobElement.textContent = job;
+    setUserInfo(data){
+        this._nameElement.textContent = data.name;
+        this._jobElement.textContent = data.job;
     }
    
 }
