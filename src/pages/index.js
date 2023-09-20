@@ -1,4 +1,4 @@
-// Import necessary modules and data
+
 import * as DOM from "../utils/dom.js";
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
@@ -7,13 +7,13 @@ import PopUpWithImage from "../components/PopUpWithImage.js";
 import PopUpWithForm from "../components/PopUpWithForm.js";
 import { initialCards, settings } from "../constants/constants.js";
 
-// Import your CSS
+
 import "../pages/index.css";
 
-// Rename your data for clarity
+
 const initialCardData = initialCards;
 
-// Destructure DOM elements you need
+
 const {
   profileButtonEdit,
   profileEditModal,
@@ -24,15 +24,15 @@ const {
   profileFormEdit,
   profileButtonAdd,
   profileFormAdd,
-  profileAddNameInput, // Input for profile name
-  profileAddBioInput, // Input for profile bio
+  profileAddNameInput, 
+  profileAddBioInput, 
   previewImageModal,
   previewImageModalClose,
   cardsContent,
   cardTemplate
 } = DOM;
 
-// Create instances of your components
+
 const popUpWithImage = new PopUpWithImage("#modal-previewImage");
 
 const popUpEditProfile = new PopUpWithForm(
@@ -57,7 +57,7 @@ const popUpAddItem = new PopUpWithForm(
   }
 );
 
-// Create instances of your form validators
+
 const editFormValidator = new FormValidator(
   settings,
   profileFormEdit
@@ -70,10 +70,10 @@ const addFormValidator = new FormValidator(
 );
 addFormValidator.enableValidation();
 
-// Create an array of Card instances based on your initialCardData
+
 const cards = initialCardData.map((data) => new Card(data, "#card-template", handleImageClick));
 
-// Create a Section instance to manage your card rendering
+
 const section = new Section(
   {
     items: initialCardData,
@@ -86,7 +86,7 @@ const section = new Section(
   ".cards__content"
 );
 
-// Handle the image click event
+
 function handleImageClick(data) {
   const previewImage = document.querySelector(".modal__previewImage");
   const previewImageTitle = document.querySelector("#preview-title");
@@ -97,14 +97,14 @@ function handleImageClick(data) {
   popUpWithImage.open();
 }
 
-// Open the profile edit form on button click
+
 profileButtonEdit.addEventListener("click", () => {
   profileCurrentName.value = profileName.textContent;
   profileCurrentBio.value = profileBio.textContent;
   popUpEditProfile.open();
 });
 
-// Handle profile edit form submission
+
 profileFormEdit.addEventListener("submit", (evt) => { 
   evt.preventDefault(); 
   profileName.textContent = profileCurrentName.value; 
@@ -112,12 +112,12 @@ profileFormEdit.addEventListener("submit", (evt) => {
   popUpEditProfile.close(); 
 });
 
-// Open the profile add form on button click
+
 profileButtonAdd.addEventListener("click", () => {
   popUpAddItem.open();
 });
 
-// Handle profile add form submission
+
 profileFormAdd.addEventListener("submit", (evt) => { 
   evt.preventDefault(); 
   const name = profileAddNameInput.value; 
@@ -127,7 +127,7 @@ profileFormAdd.addEventListener("submit", (evt) => {
   popUpAddItem.close();
 });
 
-// Handle closing modals with Escape key
+
 function closeByEscape(evt) {
   if (evt.key === "Escape") {
     const openedPopup = document.querySelector(".modal_opened");
@@ -141,7 +141,7 @@ function closeByEscape(evt) {
 
 document.addEventListener("keydown", closeByEscape);
 
-// Handle closing modals by clicking outside
+
 const modals = DOM.modals;
 modals.forEach((modalContainer) => {
   modalContainer.addEventListener("mousedown", (evt) => {
@@ -159,5 +159,4 @@ modals.forEach((modalContainer) => {
   });
 });
 
-// Render the initial card items
 section.renderItems();
