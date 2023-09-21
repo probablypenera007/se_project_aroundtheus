@@ -150,7 +150,7 @@ profileFormAdd.addEventListener("submit", (evt) => {
   evt.preventDefault();
   const name = profileAddImageTitle.value;
   const link = profileAddImageLink.value;
-  const cardElement = getCardElement({
+  handleAddProfileFormSubmit({
     name,
     link,
   });
