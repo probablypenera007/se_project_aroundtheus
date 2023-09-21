@@ -74,7 +74,7 @@ function handleAddProfileFormSubmit(title, link) {
 }
 
 const cards = initialCardData.map((data) => {
-  const card = new Card(data, "#card-template", handleImageClick);
+  const card = new Card(initialCardData, "#card-template", handleImageClick);
   return card.getCardElement();
 });
 
@@ -150,7 +150,7 @@ profileFormAdd.addEventListener("submit", (evt) => {
   evt.preventDefault();
   const name = profileAddImageTitle.value;
   const link = profileAddImageLink.value;
-  handleAddProfileFormSubmit({
+  handle({
     name,
     link,
   });

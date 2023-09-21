@@ -1,8 +1,9 @@
 export default class Popup {
-  constructor(popupSelector) {
+  constructor({popupSelector}) {
     this._popupElement = document.querySelector(popupSelector);
-    //this.setEventListeners();
-       //this._modals = this._popupElement.querySelectorAll(".modal"); 
+    //
+    // this._handleEscClose = this._handleEscClose.bind(this);
+    //this._popupElementCloseBtn =this._popupElement.querySelector(".modal__close");      
   }
 
     open() {
