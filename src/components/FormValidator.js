@@ -20,17 +20,13 @@ export default class FormValidator {
     errorMessageElm.textContent = inputEl.validationMessage; 
     errorMessageElm.classList.add(this._errorClass); 
   } 
-
- 
-
+  
   _hideInputError(formEl, inputEl) { 
     const errorMessageElm = formEl.querySelector(`#${inputEl.id}-error`); 
     inputEl.classList.remove(this._inputErrorClass); 
     errorMessageElm.textContent = " "; 
     errorMessageElm.classList.remove(this._errorClass); 
   } 
-
- 
 
   _checkInputValidity(formEl, inputEl) { 
     if (!inputEl.validity.valid) { 
@@ -43,14 +39,26 @@ export default class FormValidator {
     } 
   } 
 
+    resetValidation() {
+   this._toggleButtonState(); //<== controlling the submit button ==
+  this._inputList.forEach((inputElement) => {
+    this._hideError(inputElement) //<== clearing errors ==
+    });
+  }
  
 
   _checkFormValidity = () => { 
-    return Array.from(this._form.querySelectorAll(this._inputSelector)).every( 
+      return this._inputElements.every(
+    // return Array.from(this._form.querySelectorAll(this._inputSelector)).every( 
       (input) => input.validity.valid 
     ); 
   }; 
 
+//You could make a special method resetValidation for clearing errors and controlling the 
+//submit button.
+//And you can call it in index.js when you click on open buttons
+//
+//
   toggleButtonState() { 
     const isFormValid = this._checkFormValidity(); 
     if (isFormValid) { 
@@ -62,8 +70,6 @@ export default class FormValidator {
     } 
   } 
 
- 
-
   setEventListeners() { 
     this._inputElements.forEach((inputElement) => { 
       inputElement.addEventListener("input", () => { 
@@ -72,8 +78,6 @@ export default class FormValidator {
       }); 
     }); 
   } 
-
- 
 
   enableValidation() { 
     this._form.addEventListener("submit", (evt) => { 
