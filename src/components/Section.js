@@ -8,7 +8,8 @@ export default class Section{
     renderItems(){
         //public method that renders all elements on the page,
        this._items.forEach((item) => {
-       this._renderer(item);
+       const cardElement = this._renderer(item);
+       this._containerSelector.append(cardElement); 
        });
     }
     addItem(element)

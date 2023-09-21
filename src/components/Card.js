@@ -44,7 +44,7 @@ export default class Card {
       .cloneNode(true);
   }
 
-  getView() {
+  getCardElement() {
     this._cardElement = this._getElement();
     const cardTitle = this._cardElement.querySelector(".card__title");
     const cardImage = this._cardElement.querySelector(".card__image");

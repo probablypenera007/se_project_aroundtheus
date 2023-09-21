@@ -27,6 +27,8 @@ export const previewImageTitle = document.querySelector("#preview-title"); //get
 export const previewImageModalClose = previewImageModal.querySelector( //preview image modal close button
   "#modal-button-close-preview"
 );
+export const addSubmitButton = document.querySelector("#modal-button-create");
+export const editSubmitButton = document.querySelector("#modal-button-save");
 export const cardsContent = document.querySelector(".cards__content"); // card content container
 export const cardTemplate = document  // cloned card template
   .querySelector("#card-template")

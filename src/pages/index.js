@@ -21,12 +21,14 @@ const {
   profileFormEdit,
   profileButtonAdd,
   profileFormAdd,
-  profileAddNameInput, 
-  profileAddBioInput, 
+  profileAddImageTitle,
+  profileAddImageLink,
   previewImageModal,
   previewImageModalClose,
   cardsContent,
-  cardTemplate
+  cardTemplate,
+  addSubmitButton,
+  editSubmitButton,
 } = DOM;
 
 const userinfo = new UserInfo(".profile__name", ".profile__subtitle");
@@ -47,13 +49,23 @@ const popUpEditProfile = new PopUpWithForm(
 const popUpAddItem = new PopUpWithForm(
   "#modal-add-profile",
   (formData) => {
-    const name = formData.name;
+    const title = formData.title;
     const link = formData.link;
-    const newCardElement = card.getView({ name, link });
-    section.addItem(newCardElement);
-    popUpAddItem.close();
+    handleAddProfileFormSubmit(title, link);
   }
 );
+
+profileFormAdd.addEventListener("submit", (evt) => {
+  const title = profileAddImageTitle.value;
+  const link = profileAddImageLink.value;
+  handleAddProfileFormSubmit(title, link);
+})
+
+function handleAddProfileFormSubmit(title, link) {
+  const newCardElement = new Card({ title, link }, "#card-template", handleImageClick);
+  section.addItem(newCardElement);
+  popUpAddItem.close();
+}
 
 const editFormValidator = new FormValidator(
   settings,
@@ -63,13 +75,13 @@ editFormValidator.enableValidation();
 
 const addFormValidator = new FormValidator(
   settings,
-  profileFormAdd 
+  profileFormAdd
 );
 addFormValidator.enableValidation();
 
 const cards = initialCardData.map((data) => {
   const card = new Card(data, "#card-template", handleImageClick);
-  return card.getView();
+  return card.getCardElement();
 });
 
 const section = new Section(
@@ -77,7 +89,7 @@ const section = new Section(
     items: initialCardData,
     renderer: (item) => {
       const cards = new Card(item, "#card-template", handleImageClick);
-      const cardElement = cards.getView(item);
+      const cardElement = cards.getCardElement(item);
       section.addItem(cardElement);
     }
   },
@@ -88,8 +100,16 @@ const submitButtons = document.querySelectorAll(settings.submitButtonSelector);
 submitButtons.forEach((submitButton) => {
   submitButton.addEventListener("click", (evt) => {
     evt.preventDefault();
-//logic
-  })
+    if (submitButton === editSubmitButton) {
+      const newName = profileCurrentName.value;
+      const newBio = profileCurrentBio.value;
+      handleEditProfileFormSubmit(newName, newBio);
+    } else if (submitButton === addSubmitButton) {
+      const title = profileAddImageTitle.value;
+      const link = profileAddImageLink.value;
+      handleAddProfileFormSubmit(title, link);
+    }
+  });
 });
 
 function handleImageClick(data) {
@@ -112,37 +132,25 @@ profileButtonEdit.addEventListener("click", () => {
   popUpEditProfile.open();
 });
 
-function updateUserInfo(name, job){
-  const newData = { name, job };
-  userinfo.setUserInfo(newData);
+function handleEditProfileFormSubmit(newName, newBio) {
+  userinfo.setUserInfo({
+    name: newName,
+    job: newBio,
+  });
+
+  popUpEditProfile.close();
 }
 
 profileFormEdit.addEventListener("submit", (evt) => {
   evt.preventDefault();
   const newName = profileCurrentName.value;
   const newBio = profileCurrentBio.value;
-
-  userinfo.setUserInfo({
-    name: newName,
-    job: newBio
-  });
-  popUpEditProfile.close();
+  handleEditProfileFormSubmit(newName, newBio);
 });
 
 profileButtonAdd.addEventListener("click", () => {
   popUpAddItem.open();
 });
-
-
-profileFormAdd.addEventListener("submit", (evt) => { 
-  evt.preventDefault(); 
-  const name = profileAddNameInput.value; 
-  const link = profileAddBioInput.value; 
-  const newCardElement = card.getView({ name, link });
-  section.addItem(newCardElement);
-  popUpAddItem.close();
-});
-
 
 function closeByEscape(evt) {
   if (evt.key === "Escape") {

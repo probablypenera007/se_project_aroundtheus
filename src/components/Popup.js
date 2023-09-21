@@ -31,5 +31,11 @@ export default class Popup {
         this.close();
       }
     });
+    document.addEventListener("mousedown", (evt) => {
+      if (this._popupElement.classList.contains("modal_opened") && !evt.target.closest(".modal__content")) {
+        this.close();
+      }
+    });
+
   }
 }
