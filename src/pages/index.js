@@ -61,7 +61,7 @@ const popUpAddItem = new PopUpWithForm("#modal-add-profile", (formData) => {
 });
 popUpAddItem.setEventListeners();
 
-//Sections
+//Section and Card
 const section = new Section(
   {
     items: initialCardData,
