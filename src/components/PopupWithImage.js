@@ -16,5 +16,3 @@ export default class PopUpWithImage extends PopUp {
     }
   }
 }
-
-//export default PopUpWithImage;
