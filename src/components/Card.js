@@ -52,9 +52,13 @@ export default class Card {
     cardImage.src = this._link;
     cardImage.alt = this._name;
     cardTitle.textContent = this._name;
-
+    this._this._renderCard();
     this._setEventListeners();
-
     return this._cardElement;
+  }
+  _renderCard() {
+    this._cardElement.querySelector(".card__title").innerText = this._name;
+    this._cardElement.querySelector(".card__image").src = this._link;
+    this._cardElement.querySelector(".card__image").alt = this._name;
   }
 }
