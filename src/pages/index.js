@@ -30,6 +30,11 @@ const {
   addSubmitButton,
   editSubmitButton,
 } = DOM;
+const editFormValidator = new FormValidator(settings, profileFormEdit);
+editFormValidator.enableValidation();
+
+const addFormValidator = new FormValidator(settings, profileFormAdd);
+addFormValidator.enableValidation();
 
 const userinfo = new UserInfo(".profile__name", ".profile__subtitle");
 
@@ -46,38 +51,27 @@ const popUpEditProfile = new PopUpWithForm(
   }
 );
 
-const popUpAddItem = new PopUpWithForm(
-  "#modal-add-profile",
-  (formData) => {
-    const title = formData.title;
-    const link = formData.link;
-    handleAddProfileFormSubmit(title, link);
-  }
-);
+const popUpAddItem = new PopUpWithForm("#modal-add-profile", (formData) => {
+  const title = formData.title;
+  const link = formData.link;
+  handleAddProfileFormSubmit(title, link);
+});
 
 profileFormAdd.addEventListener("submit", (evt) => {
   const title = profileAddImageTitle.value;
   const link = profileAddImageLink.value;
   handleAddProfileFormSubmit(title, link);
-})
+});
 
 function handleAddProfileFormSubmit(title, link) {
-  const newCardElement = new Card({ title, link }, "#card-template", handleImageClick);
+  const newCardElement = new Card(
+    { title, link },
+    "#card-template",
+    handleImageClick
+  );
   section.addItem(newCardElement);
   popUpAddItem.close();
 }
-
-const editFormValidator = new FormValidator(
-  settings,
-  profileFormEdit
-);
-editFormValidator.enableValidation();
-
-const addFormValidator = new FormValidator(
-  settings,
-  profileFormAdd
-);
-addFormValidator.enableValidation();
 
 const cards = initialCardData.map((data) => {
   const card = new Card(data, "#card-template", handleImageClick);
@@ -91,7 +85,7 @@ const section = new Section(
       const cards = new Card(item, "#card-template", handleImageClick);
       const cardElement = cards.getCardElement(item);
       section.addItem(cardElement);
-    }
+    },
   },
   ".cards__content"
 );
@@ -150,6 +144,16 @@ profileFormEdit.addEventListener("submit", (evt) => {
 
 profileButtonAdd.addEventListener("click", () => {
   popUpAddItem.open();
+});
+
+profileFormAdd.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+  const name = profileAddImageTitle.value;
+  const link = profileAddImageLink.value;
+  const cardElement = getCardElement({
+    name,
+    link,
+  });
 });
 
 function closeByEscape(evt) {
