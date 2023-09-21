@@ -52,31 +52,11 @@ const popUpEditProfile = new PopUpWithForm(
 );
 
 const popUpAddItem = new PopUpWithForm("#modal-add-profile", (formData) => {
-  const title = formData.title;
+  const name = formData.name;
   const link = formData.link;
-  handleAddProfileFormSubmit(title, link);
+  handleAddProfileFormSubmit(name, link);
 });
-
-profileFormAdd.addEventListener("submit", (evt) => {
-  const title = profileAddImageTitle.value;
-  const link = profileAddImageLink.value;
-  handleAddProfileFormSubmit(title, link);
-});
-
-function handleAddProfileFormSubmit(title, link) {
-  const newCardElement = new Card(
-    { title, link },
-    "#card-template",
-    handleImageClick
-  );
-  section.addItem(newCardElement);
-  popUpAddItem.close();
-}
-
-const cards = initialCardData.map((data) => {
-  const card = new Card(initialCardData, "#card-template", handleImageClick);
-  return card.getCardElement();
-});
+popUpAddItem.setEventListeners();
 
 const section = new Section(
   {
@@ -89,22 +69,18 @@ const section = new Section(
   },
   ".cards__content"
 );
+section.renderItems();
 
-const submitButtons = document.querySelectorAll(settings.submitButtonSelector);
-submitButtons.forEach((submitButton) => {
-  submitButton.addEventListener("click", (evt) => {
-    evt.preventDefault();
-    if (submitButton === editSubmitButton) {
-      const newName = profileCurrentName.value;
-      const newBio = profileCurrentBio.value;
-      handleEditProfileFormSubmit(newName, newBio);
-    } else if (submitButton === addSubmitButton) {
-      const title = profileAddImageTitle.value;
-      const link = profileAddImageLink.value;
-      handleAddProfileFormSubmit(title, link);
-    }
-  });
-});
+function handleAddProfileFormSubmit(title, link) {
+  const newCardElement = new Card(
+    { name: title, link },
+    "#card-template",
+    handleImageClick
+  );
+  const cardElement = newCardElement.getCardElement();
+  section.addItem(cardElement);
+  popUpAddItem.close();
+}
 
 function handleImageClick(data) {
   const previewImage = document.querySelector(".modal__previewImage");
@@ -126,14 +102,9 @@ profileButtonEdit.addEventListener("click", () => {
   popUpEditProfile.open();
 });
 
-function handleEditProfileFormSubmit(newName, newBio) {
-  userinfo.setUserInfo({
-    name: newName,
-    job: newBio,
-  });
-
-  popUpEditProfile.close();
-}
+profileButtonAdd.addEventListener("click", () => {
+  popUpAddItem.open();
+});
 
 profileFormEdit.addEventListener("submit", (evt) => {
   evt.preventDefault();
@@ -142,19 +113,14 @@ profileFormEdit.addEventListener("submit", (evt) => {
   handleEditProfileFormSubmit(newName, newBio);
 });
 
-profileButtonAdd.addEventListener("click", () => {
-  popUpAddItem.open();
-});
-
-profileFormAdd.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  const name = profileAddImageTitle.value;
-  const link = profileAddImageLink.value;
-  handle({
-    name,
-    link,
+function handleEditProfileFormSubmit(newName, newBio) {
+  userinfo.setUserInfo({
+    name: newName,
+    job: newBio,
   });
-});
+
+  popUpEditProfile.close();
+}
 
 function closeByEscape(evt) {
   if (evt.key === "Escape") {
@@ -186,4 +152,3 @@ modals.forEach((modalContainer) => {
   });
 });
 
-section.renderItems();
