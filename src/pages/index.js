@@ -4,7 +4,7 @@ import Card from "../components/Card.js";
 import Section from "../components/Section.js";
 import PopUpWithImage from "../components/PopUpWithImage.js";
 import PopUpWithForm from "../components/PopUpWithForm.js";
-import { initialCards, settings, userInfoSettings } from "../constants/constants.js";
+import { initialCards, settings,} from "../constants/constants.js";
 import UserInfo from "../components/UserInfo.js";
 import "../pages/index.css";
 
@@ -34,7 +34,7 @@ editFormValidator.enableValidation();
 addFormValidator.enableValidation();
 
 //User Info
-const userinfo = new UserInfo(userInfoSettings.userNameSelector, userInfoSettings.jobNameSelector);
+const userinfo = new UserInfo(".profile__name", ".profile__subtitle");
 
 //Popups
 const popUpWithImage = new PopUpWithImage("#modal-previewImage");
@@ -43,9 +43,9 @@ popUpWithImage.setEventListeners();
 const popUpEditProfile = new PopUpWithForm(
   "#modal-edit-profile",
   (formData) => {
-  const name = formData.name;
-  const bio = formData.bio;
-    userinfo.setUserInfo({name, job: bio});
+  //const name = formData.name;
+  //const bio = formData.bio;
+    userinfo.setUserInfo(formData);
     //DOM.profileName.textContent = name;
     //DOM.profileBio.textContent = bio;
     popUpEditProfile.close();
@@ -54,7 +54,8 @@ const popUpEditProfile = new PopUpWithForm(
 popUpEditProfile.setEventListeners();
 
 
-const popUpAddItem = new PopUpWithForm("#modal-add-profile", (formData) => {
+const popUpAddItem = new PopUpWithForm("#modal-add-profile",
+ (formData) => {
   const name = formData.name;
   const link = formData.link;
   handleAddProfileFormSubmit(name, link);
@@ -75,19 +76,17 @@ const section = new Section(
 section.renderItems();
 
 function createCard(item) {
-  const cardElement = new Card(item, "#card-template", handleImageClick)// here you create a card
+  const cardElement = new Card(item,
+     "#card-template", handleImageClick)
 return cardElement.getCardElement();
 }
 
   //Event Handlers
 function handleAddProfileFormSubmit(title, link) {
-  const newCardElement = new Card(
+  const newCard = createCard(
     { name: title, link },
-    "#card-template",
-    handleImageClick
   );
-  const cardElement = newCardElement.getCardElement();
-  section.addItem(cardElement);
+  section.addItem(newCard);
   popUpAddItem.close();
 }
 
@@ -100,34 +99,35 @@ function handleImageClick(data) {
 
 // Add Event Listeners
 DOM.profileButtonEdit.addEventListener("click", () => {
-  const userData= userinfo.getUserInfo();
-  popUpEditProfile.setInputValues(userData);
-  //popUpEditProfile.setInputValues({name, job})
-  popUpEditProfile.open();
-  //formValidators["modal-edit-form"].resetValidation();
+  const formData= userinfo.getUserInfo();
+    popUpEditProfile.setInputValues(formData);
+    popUpEditProfile.open();
+ // formValidators["modal-edit-form"].resetValidation();
 });
+
+
 
 DOM.profileButtonAdd.addEventListener("click", () => {
   popUpAddItem.open();
   addFormValidator.toggleButtonState();
-  //  formValidators["modal-add-form"].resetValidation();
+  //formValidators["modal-add-form"].resetValidation();
 });
 
-DOM.profileFormEdit.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  const newName = DOM.profileCurrentName.value;
-  const newBio = DOM.profileCurrentBio.value;
-  handleEditProfileFormSubmit(newName, newBio);
-});
+//DOM.profileFormEdit.addEventListener("submit", (evt) => {
+//  evt.preventDefault();
+//  const newName = DOM.profileCurrentName.value;
+//  const newBio = DOM.profileCurrentBio.value;
+//  handleEditProfileFormSubmit(newName, newBio);
+//});
+//
+//function handleEditProfileFormSubmit(newName, newBio) {
+//  userinfo.setUserInfo({
+//    name: newName,
+//    job: newBio,
+//  });
 
-function handleEditProfileFormSubmit(newName, newBio) {
-  userinfo.setUserInfo({
-    name: newName,
-    job: newBio,
-  });
-
-popUpEditProfile.close();
-}
+//popUpEditProfile.close();
+//}
 //add event listener for closing popups by Esc key
 //document.addEventListener("keydown", (evt) => {
 //  if (evt.key === "Escape") {
