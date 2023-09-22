@@ -18,6 +18,12 @@ export default class PopUpWithForm extends PopUp {
     return popInpValues;
   }
 
+  _handleSubmit(evt) {
+    evt.preventDefault(); 
+    const inputValue = this._getInputValues();
+    this._handleFormSubmit(inputValue); 
+  }
+
   setEventListeners() {
     this._popForm.addEventListener("submit", (evt) => {
       evt.preventDefault(); 
@@ -26,31 +32,6 @@ export default class PopUpWithForm extends PopUp {
     });
     super.setEventListeners();
   }
-
-  //Could be improved
-  //You can make  setInputValues in class PopupWithForm, which can insert data into inputs:
-  //
-   // setInputValues(data) {
-    //  this._inputList.forEach((input) => {
-        // here you insert the `value` by the `name` of the input
-   //     input.value = data[input.name];
-  //    });
- //   }
-  //
-  //
-   //
-  //So, this way you’ll not have to search the inputs of the profile in index.js 
-  
-
-
-
-
-
-
-
-
-
-
 
   close() {
     this._popForm.reset();
