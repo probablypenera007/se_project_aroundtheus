@@ -8,32 +8,9 @@ import { initialCards, settings } from "../constants/constants.js";
 import UserInfo from "../components/UserInfo.js";
 import "../pages/index.css";
 
-//DOM Elements
-const {
-  profileButtonEdit,
-  profileEditModal,
-  profileName,
-  profileBio,
-  profileCurrentName,
-  profileCurrentBio,
-  profileFormEdit,
-  profileButtonAdd,
-  profileFormAdd,
-  profileAddImageTitle,
-  profileAddImageLink,
-  previewImageModal,
-  previewImageModalClose,
-  cardsContent,
-  cardTemplate,
-  addSubmitButton,
-  editSubmitButton,
-} = DOM;
-//Initial Cards
-const initialCardData = initialCards;
-
 //Form Validators
-const editFormValidator = new FormValidator(settings, profileFormEdit);
-const addFormValidator = new FormValidator(settings, profileFormAdd);
+const editFormValidator = new FormValidator(settings, DOM.profileFormEdit);
+const addFormValidator = new FormValidator(settings, DOM.profileFormAdd);
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
 
@@ -48,8 +25,8 @@ const popUpEditProfile = new PopUpWithForm(
   (formData) => {
     const name = formData.name;
     const bio = formData.bio;
-    profileName.textContent = name;
-    profileBio.textContent = bio;
+    DOM.profileName.textContent = name;
+    DOM.profileBio.textContent = bio;
     popUpEditProfile.close();
   }
 );
@@ -64,7 +41,7 @@ popUpAddItem.setEventListeners();
 //Section and Card
 const section = new Section(
   {
-    items: initialCardData,
+    items: initialCards,
     renderer: (item) => {
       const cards = new Card(item, "#card-template", handleImageClick);
       const cardElement = cards.getCardElement(item);
@@ -96,24 +73,24 @@ function handleImageClick(data) {
 }
 
 // Add Event Listeners
-profileButtonEdit.addEventListener("click", () => {
-  profileCurrentName.value = profileName.textContent;
-  profileCurrentBio.value = profileBio.textContent;
+DOM.profileButtonEdit.addEventListener("click", () => {
+  DOM.profileCurrentName.value = DOM.profileName.textContent;
+  DOM.profileCurrentBio.value = DOM.profileBio.textContent;
 
   const userData = userinfo.getUserInfo();
-  profileCurrentName.value = userData.name;
-  profileCurrentBio.value = userData.job;
+  DOM.profileCurrentName.value = userData.name;
+  DOM.profileCurrentBio.value = userData.job;
   popUpEditProfile.open();
 });
 
-profileButtonAdd.addEventListener("click", () => {
+DOM.profileButtonAdd.addEventListener("click", () => {
   popUpAddItem.open();
 });
 
-profileFormEdit.addEventListener("submit", (evt) => {
+DOM.profileFormEdit.addEventListener("submit", (evt) => {
   evt.preventDefault();
-  const newName = profileCurrentName.value;
-  const newBio = profileCurrentBio.value;
+  const newName = DOM.profileCurrentName.value;
+  const newBio = DOM.profileCurrentBio.value;
   handleEditProfileFormSubmit(newName, newBio);
 });
 

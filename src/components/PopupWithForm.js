@@ -33,30 +33,14 @@ export default class PopUpWithForm extends PopUp {
     super.setEventListeners();
   }
 
+  setInputValues(data) {
+    this._inputList.forEach((input) => {
+      input.value = data[input.name];
+    });
+  }
+
   close() {
     this._popForm.reset();
     super.close();
   }
 }
-   //({
-     // evt.preventDefault();
-      //const formData = 
-   
-   // });
-    //modifies the seteventlistener in popup
-    //popup.js seteventlistener becomes a parent
-    //say super.setEventlisteners() maybe???  when calling
-    //this method has to add the "SUBMIT" event handler to the form
-    //"CLICK" event listener to the CLOSE ICON
-  //}
-  //close() {
-    //super.close();
-    //this._popForm.reset();
-    //modifies the close parent method in order to reset the form
-    //once the popup is closed
-    //maybe super.close()????
-  //}
-  //instance of the popupwithform class for each popup
-
-
-//export default PopUpWithForm;
