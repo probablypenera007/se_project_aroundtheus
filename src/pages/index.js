@@ -4,7 +4,7 @@ import Card from "../components/Card.js";
 import Section from "../components/Section.js";
 import PopUpWithImage from "../components/PopUpWithImage.js";
 import PopUpWithForm from "../components/PopUpWithForm.js";
-import { initialCards, settings } from "../constants/constants.js";
+import { initialCards, settings, userInfoSettings } from "../constants/constants.js";
 import UserInfo from "../components/UserInfo.js";
 import "../pages/index.css";
 
@@ -34,21 +34,25 @@ editFormValidator.enableValidation();
 addFormValidator.enableValidation();
 
 //User Info
-const userinfo = new UserInfo(".profile__name", ".profile__subtitle");
+const userinfo = new UserInfo(userInfoSettings.userNameSelector, userInfoSettings.jobNameSelector);
 
 //Popups
 const popUpWithImage = new PopUpWithImage("#modal-previewImage");
+popUpWithImage.setEventListeners();
 
 const popUpEditProfile = new PopUpWithForm(
   "#modal-edit-profile",
   (formData) => {
-    const name = formData.name;
-    const bio = formData.bio;
-    DOM.profileName.textContent = name;
-    DOM.profileBio.textContent = bio;
+  const name = formData.name;
+  const bio = formData.bio;
+    userinfo.setUserInfo({name, job: bio});
+    //DOM.profileName.textContent = name;
+    //DOM.profileBio.textContent = bio;
     popUpEditProfile.close();
   }
 );
+popUpEditProfile.setEventListeners();
+
 
 const popUpAddItem = new PopUpWithForm("#modal-add-profile", (formData) => {
   const name = formData.name;
@@ -96,12 +100,8 @@ function handleImageClick(data) {
 
 // Add Event Listeners
 DOM.profileButtonEdit.addEventListener("click", () => {
-  DOM.profileCurrentName.value = DOM.profileName.textContent;
-  DOM.profileCurrentBio.value = DOM.profileBio.textContent;
-
   const userData= userinfo.getUserInfo();
-  DOM.profileCurrentName.value = userData.name;
-  DOM.profileCurrentBio.value = userData.job;
+  popUpEditProfile.setInputValues(userData);
   //popUpEditProfile.setInputValues({name, job})
   popUpEditProfile.open();
   //formValidators["modal-edit-form"].resetValidation();
@@ -126,6 +126,33 @@ function handleEditProfileFormSubmit(newName, newBio) {
     job: newBio,
   });
 
-  popUpEditProfile.close();
+popUpEditProfile.close();
 }
+//add event listener for closing popups by Esc key
+//document.addEventListener("keydown", (evt) => {
+//  if (evt.key === "Escape") {
+//    const openedPopup = document.querySelector(".modal_opened");
+//    if (openedPopup) {
+//      popUpWithImage.close();
+//      popUpEditProfile.close();
+//      popUpAddItem.close();
+//    }
+//  }
+//});
+
+//Add event listeners for closing popups clicking outside 
+//DOM.modals.forEach((modalContainer) => {
+//  modalContainer.addEventListener("mousedown", (evt) => {
+//    if (evt.target.classList.contains("modal_opened")) {
+//      popUpWithImage.close();
+//      popUpEditProfile.close();
+//      popUpAddItem.close();
+//    }
+//
+//    if (evt.target.classList.contains("modal__button-close")) {
+//      popUpWithImage.close();
+//      popUpEditProfile.close();
+//      popUpAddItem.close();
+//    }  });
+//});
 

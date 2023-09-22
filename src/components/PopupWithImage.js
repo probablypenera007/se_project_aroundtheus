@@ -7,6 +7,9 @@ export default class PopUpWithImage extends PopUp {
     this._caption = this._popupElement.querySelector("#preview-title"); 
   }
   
+setEventListeners(){
+  super.setEventListeners();
+}
   open(data) {
     super.open();
     if (data) {
@@ -14,6 +17,9 @@ export default class PopUpWithImage extends PopUp {
       this._image.alt = data.name;  
       this._caption.textContent = data.name; 
     }
+  }
+  close() {
+    super.close();
   }
 }
 
