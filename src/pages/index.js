@@ -9,10 +9,29 @@ import UserInfo from "../components/UserInfo.js";
 import "../pages/index.css";
 
 //Form Validators
-const editFormValidator = new FormValidator(settings, DOM.profileFormEdit);
-const addFormValidator = new FormValidator(settings, DOM.profileFormAdd);
-editFormValidator.enableValidation();
-addFormValidator.enableValidation();
+
+const formValidators = {}
+
+// enable validation
+const enableValidation = (settings) => {
+  const formList = Array.from(document.querySelectorAll(settings.formSelector))
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(settings, formElement)
+    // here you get the name of the form
+    const formName = formElement.getAttribute('name')
+
+   // here you store a validator by the `name` of the form
+    formValidators[formName] = validator;
+   validator.enableValidation();
+  });
+};
+
+enableValidation(settings);
+
+//const editFormValidator = new FormValidator(settings, DOM.profileFormEdit);
+//const addFormValidator = new FormValidator(settings, DOM.profileFormAdd);
+//editFormValidator.enableValidation();
+//addFormValidator.enableValidation();
 
 //User Info
 const userinfo = new UserInfo(".profile__name", ".profile__subtitle");
