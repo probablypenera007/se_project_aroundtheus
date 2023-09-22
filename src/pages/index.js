@@ -13,25 +13,25 @@ import "../pages/index.css";
 const formValidators = {}
 
 // enable validation
-const enableValidation = (settings) => {
-  const formList = Array.from(document.querySelectorAll(settings.formSelector))
-  formList.forEach((formElement) => {
-    const validator = new FormValidator(settings, formElement)
+//const enableValidation = (settings) => {
+  //const formList = Array.from(document.querySelectorAll(settings.formSelector))
+  //formList.forEach((formElement) => {
+   // const validator = new FormValidator(settings, formElement)
     // here you get the name of the form
-    const formName = formElement.getAttribute('name')
+   // const formName = formElement.getAttribute('name')
 
    // here you store a validator by the `name` of the form
-    formValidators[formName] = validator;
-   validator.enableValidation();
-  });
-};
+   // formValidators[formName] = validator;
+  // validator.enableValidation();
+  //});
+//};
 
-enableValidation(settings);
+//enableValidation(settings);
 
-//const editFormValidator = new FormValidator(settings, DOM.profileFormEdit);
-//const addFormValidator = new FormValidator(settings, DOM.profileFormAdd);
-//editFormValidator.enableValidation();
-//addFormValidator.enableValidation();
+const editFormValidator = new FormValidator(settings, DOM.profileFormEdit);
+const addFormValidator = new FormValidator(settings, DOM.profileFormAdd);
+editFormValidator.enableValidation();
+addFormValidator.enableValidation();
 
 //User Info
 const userinfo = new UserInfo(".profile__name", ".profile__subtitle");
@@ -57,13 +57,12 @@ const popUpAddItem = new PopUpWithForm("#modal-add-profile", (formData) => {
 });
 popUpAddItem.setEventListeners();
 
-//Section and Card
+//Section
 const section = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      const cards = new Card(item, "#card-template", handleImageClick);
-      const cardElement = cards.getCardElement(item);
+      const cardElement = createCard(item) 
       section.addItem(cardElement);
     },
   },
@@ -71,6 +70,10 @@ const section = new Section(
 );
 section.renderItems();
 
+function createCard(item) {
+  const cardElement = new Card(item, "#card-template", handleImageClick)// here you create a card
+return cardElement.getCardElement();
+}
 
   //Event Handlers
 function handleAddProfileFormSubmit(title, link) {
@@ -96,14 +99,17 @@ DOM.profileButtonEdit.addEventListener("click", () => {
   DOM.profileCurrentName.value = DOM.profileName.textContent;
   DOM.profileCurrentBio.value = DOM.profileBio.textContent;
 
-  const userData = userinfo.getUserInfo();
+  const userData= userinfo.getUserInfo();
   DOM.profileCurrentName.value = userData.name;
   DOM.profileCurrentBio.value = userData.job;
+  //popUpEditProfile.setInputValues({name, job})
   popUpEditProfile.open();
+  //formValidators["modal-edit-form"].resetValidation();
 });
 
 DOM.profileButtonAdd.addEventListener("click", () => {
   popUpAddItem.open();
+  //  formValidators["modal-add-form"].resetValidation();
 });
 
 DOM.profileFormEdit.addEventListener("submit", (evt) => {
