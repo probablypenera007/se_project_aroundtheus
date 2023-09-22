@@ -10,7 +10,7 @@ import "../pages/index.css";
 
 //Form Validators
 
-const formValidators = {}
+//const formValidators = {}
 
 // enable validation
 //const enableValidation = (settings) => {
@@ -88,10 +88,10 @@ function handleAddProfileFormSubmit(title, link) {
 }
 
 function handleImageClick(data) {
-  DOM.previewImage.src = data.link;
-  DOM.previewImage.alt = data.name;
-  DOM.previewImageTitle.textContent = data.name;
-  popUpWithImage.open();
+ // DOM.previewImage.src = data.link;
+ // DOM.previewImage.alt = data.name;
+ // DOM.previewImageTitle.textContent = data.name;
+  popUpWithImage.open(data);
 }
 
 // Add Event Listeners
@@ -109,6 +109,7 @@ DOM.profileButtonEdit.addEventListener("click", () => {
 
 DOM.profileButtonAdd.addEventListener("click", () => {
   popUpAddItem.open();
+  addFormValidator.toggleButtonState();
   //  formValidators["modal-add-form"].resetValidation();
 });
 
@@ -127,33 +128,4 @@ function handleEditProfileFormSubmit(newName, newBio) {
 
   popUpEditProfile.close();
 }
-
-//add event listener for closing popups by Esc key
-document.addEventListener("keydown", (evt) => {
-  if (evt.key === "Escape") {
-    const openedPopup = document.querySelector(".modal_opened");
-    if (openedPopup) {
-      popUpWithImage.close();
-      popUpEditProfile.close();
-      popUpAddItem.close();
-    }
-  }
-});
-
-//Add event listeners for closing popups clicking outside 
-DOM.modals.forEach((modalContainer) => {
-  modalContainer.addEventListener("mousedown", (evt) => {
-    if (evt.target.classList.contains("modal_opened")) {
-      popUpWithImage.close();
-      popUpEditProfile.close();
-      popUpAddItem.close();
-    }
-
-    if (evt.target.classList.contains("modal__button-close")) {
-      popUpWithImage.close();
-      popUpEditProfile.close();
-      popUpAddItem.close();
-    }
-  });
-});
 
