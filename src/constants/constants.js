@@ -1,3 +1,4 @@
+
 export const initialCards = [ // initial array of cards
   {
     name: "Yosemite Valley",
