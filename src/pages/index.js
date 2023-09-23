@@ -17,29 +17,11 @@ addFormValidator.enableValidation();
 //User Info
 const userinfo = new UserInfo(".profile__name", ".profile__subtitle");
 
-//Popups
-const popUpWithImage = new PopUpWithImage("#modal-previewImage");
-popUpWithImage.setEventListeners();
-
-const popUpEditProfile = new PopUpWithForm(
-  "#modal-edit-profile",
-  (formData) => {
-    //const name = formData.name;
-    //const bio = formData.bio;
-    userinfo.setUserInfo(formData);
-    //DOM.profileName.textContent = name;
-    //DOM.profileBio.textContent = bio;
-    popUpEditProfile.close();
-  }
-);
-popUpEditProfile.setEventListeners();
-
-const popUpAddItem = new PopUpWithForm("#modal-add-profile", (formData) => {
-  const name = formData.name;
-  const link = formData.link;
-  handleAddProfileFormSubmit(name, link);
-});
-popUpAddItem.setEventListeners();
+//Card
+function createCard(item) {
+  const cardElement = new Card(item, "#card-template", handleImageClick);
+  return cardElement.getCardElement();
+}
 
 //Section
 const section = new Section(
@@ -54,11 +36,25 @@ const section = new Section(
 );
 section.renderItems();
 
-//Card
-function createCard(item) {
-  const cardElement = new Card(item, "#card-template", handleImageClick);
-  return cardElement.getCardElement();
-}
+//Popups
+const popUpWithImage = new PopUpWithImage("#modal-previewImage");
+popUpWithImage.setEventListeners();
+
+const popUpEditProfile = new PopUpWithForm(
+  "#modal-edit-profile",
+  (formData) => {
+    userinfo.setUserInfo(formData);
+    popUpEditProfile.close();
+  }
+);
+popUpEditProfile.setEventListeners();
+
+const popUpAddItem = new PopUpWithForm("#modal-add-profile", (formData) => {
+  const name = formData.name;
+  const link = formData.link;
+  handleAddProfileFormSubmit(name, link);
+});
+popUpAddItem.setEventListeners();
 
 //Event Handlers
 function handleAddProfileFormSubmit(title, link) {
@@ -68,9 +64,6 @@ function handleAddProfileFormSubmit(title, link) {
 }
 
 function handleImageClick(data) {
-  // DOM.previewImage.src = data.link;
-  // DOM.previewImage.alt = data.name;
-  // DOM.previewImageTitle.textContent = data.name;
   popUpWithImage.open(data);
 }
 
@@ -79,15 +72,12 @@ DOM.profileButtonEdit.addEventListener("click", () => {
   const formData = userinfo.getUserInfo();
   popUpEditProfile.setInputValues(formData);
   popUpEditProfile.open();
-  //editFormValidator.resetValidation();
-  //editFormValidator.toggleButtonState();
-  // formValidators["modal-edit-form"].resetValidation();
+  // formValidators["modal-edit-form"].resetValidation();  //will make this work after project approval
 });
 
 DOM.profileButtonAdd.addEventListener("click", () => {
   popUpAddItem.open();
   addFormValidator.resetValidation();
-  //addFormValidator.toggleButtonState();
   //formValidators["modal-add-form"].resetValidation();
 });
 
