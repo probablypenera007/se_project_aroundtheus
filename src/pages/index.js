@@ -9,25 +9,6 @@ import UserInfo from "../components/UserInfo.js";
 import "../pages/index.css";
 
 //Form Validators
-
-//const formValidators = {}
-
-// enable validation
-//const enableValidation = (settings) => {
-//const formList = Array.from(document.querySelectorAll(settings.formSelector))
-//formList.forEach((formElement) => {
-// const validator = new FormValidator(settings, formElement)
-// here you get the name of the form
-// const formName = formElement.getAttribute('name')
-
-// here you store a validator by the `name` of the form
-// formValidators[formName] = validator;
-// validator.enableValidation();
-//});
-//};
-
-//enableValidation(settings);
-
 const editFormValidator = new FormValidator(settings, DOM.profileFormEdit);
 const addFormValidator = new FormValidator(settings, DOM.profileFormAdd);
 editFormValidator.enableValidation();
@@ -111,45 +92,4 @@ DOM.profileButtonAdd.addEventListener("click", () => {
 
 editFormValidator.setEventListeners();
 addFormValidator.setEventListeners();
-//DOM.profileFormEdit.addEventListener("submit", (evt) => {
-//  evt.preventDefault();
-//  const newName = DOM.profileCurrentName.value;
-//  const newBio = DOM.profileCurrentBio.value;
-//  handleEditProfileFormSubmit(newName, newBio);
-//});
-//
-//function handleEditProfileFormSubmit(newName, newBio) {
-//  userinfo.setUserInfo({
-//    name: newName,
-//    job: newBio,
-//  });
 
-//popUpEditProfile.close();
-//}
-//add event listener for closing popups by Esc key
-//document.addEventListener("keydown", (evt) => {
-//  if (evt.key === "Escape") {
-//    const openedPopup = document.querySelector(".modal_opened");
-//    if (openedPopup) {
-//      popUpWithImage.close();
-//      popUpEditProfile.close();
-//      popUpAddItem.close();
-//    }
-//  }
-//});
-
-//Add event listeners for closing popups clicking outside
-//DOM.modals.forEach((modalContainer) => {
-//  modalContainer.addEventListener("mousedown", (evt) => {
-//    if (evt.target.classList.contains("modal_opened")) {
-//      popUpWithImage.close();
-//      popUpEditProfile.close();
-//      popUpAddItem.close();
-//    }
-//
-//    if (evt.target.classList.contains("modal__button-close")) {
-//      popUpWithImage.close();
-//      popUpEditProfile.close();
-//      popUpAddItem.close();
-//    }  });
-//});
