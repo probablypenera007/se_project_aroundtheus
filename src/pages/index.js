@@ -77,9 +77,9 @@ function handleImageClick(data) {
 DOM.profileButtonEdit.addEventListener("click", () => {
   const formData = userinfo.getUserInfo();
   popUpEditProfile.setInputValues(formData);
-  //editFormValidator.resetValidation();
   popUpEditProfile.open();
-// editFormValidator.toggleButtonState();
+  //editFormValidator.resetValidation();
+ editFormValidator.toggleButtonState();
   // formValidators["modal-edit-form"].resetValidation();
 });
 
