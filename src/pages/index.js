@@ -77,15 +77,15 @@ function handleImageClick(data) {
 DOM.profileButtonEdit.addEventListener("click", () => {
   const formData = userinfo.getUserInfo();
   popUpEditProfile.setInputValues(formData);
-  popUpEditProfile.open();
   //editFormValidator.resetValidation();
- // editFormValidator.toggleButtonState();
+  popUpEditProfile.open();
+// editFormValidator.toggleButtonState();
   // formValidators["modal-edit-form"].resetValidation();
 });
 
 DOM.profileButtonAdd.addEventListener("click", () => {
   popUpAddItem.open();
-  //addFormValidator.resetValidation();
+  addFormValidator.resetValidation();
   addFormValidator.toggleButtonState();
   //formValidators["modal-add-form"].resetValidation();
 });
