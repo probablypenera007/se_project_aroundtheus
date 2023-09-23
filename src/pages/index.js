@@ -9,10 +9,35 @@ import UserInfo from "../components/UserInfo.js";
 import "../pages/index.css";
 
 //Form Validators
-const editFormValidator = new FormValidator(settings, DOM.profileFormEdit);
-const addFormValidator = new FormValidator(settings, DOM.profileFormAdd);
-editFormValidator.enableValidation();
-addFormValidator.enableValidation();
+
+const formValidators = {}
+
+// enable validation
+const enableValidation = (settings) => {
+  const formList = [...document.querySelectorAll(settings.formSelector)]
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(settings, formElement)
+    // here you get the name of the form
+    const formName = formElement.getAttribute('name')
+
+   // here you store a validator by the `name` of the form
+    formValidators[formName] = validator;
+   validator.enableValidation();
+  });
+};
+
+
+//formValidators[DOM.modalForm.getAttribute('name') ].resetValidation()
+
+// or you can use a string – the name of the form (you know it from `index.html`)
+
+//formValidators[formName].resetValidation()
+
+
+//const editFormValidator = new FormValidator(settings, DOM.profileFormEdit);
+//const addFormValidator = new FormValidator(settings, DOM.profileFormAdd);
+//editFormValidator.enableValidation();
+//addFormValidator.enableValidation();
 
 //User Info
 const userinfo = new UserInfo(".profile__name", ".profile__subtitle");
@@ -66,20 +91,23 @@ function handleAddProfileFormSubmit(title, link) {
 function handleImageClick(data) {
   popUpWithImage.open(data);
 }
+//editFormValidator.setEventListeners();
+//addFormValidator.setEventListeners();
+enableValidation(settings);
 
 // Add Event Listeners
 DOM.profileButtonEdit.addEventListener("click", () => {
   const formData = userinfo.getUserInfo();
+  formValidators["modal-edit-form"].resetValidation();
   popUpEditProfile.setInputValues(formData);
   popUpEditProfile.open();
-  // formValidators["modal-edit-form"].resetValidation();  //will make this work after project approval
+    //will make this work after project approval
 });
 
 DOM.profileButtonAdd.addEventListener("click", () => {
+  formValidators["modal-add-form"].resetValidation();
   popUpAddItem.open();
-  addFormValidator.resetValidation();
-  //formValidators["modal-add-form"].resetValidation();
+  //addFormValidator.resetValidation();
 });
 
-editFormValidator.setEventListeners();
-addFormValidator.setEventListeners();
+
