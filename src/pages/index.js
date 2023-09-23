@@ -4,7 +4,7 @@ import Card from "../components/Card.js";
 import Section from "../components/Section.js";
 import PopUpWithImage from "../components/PopUpWithImage.js";
 import PopUpWithForm from "../components/PopUpWithForm.js";
-import { initialCards, settings,} from "../constants/constants.js";
+import { initialCards, settings } from "../constants/constants.js";
 import UserInfo from "../components/UserInfo.js";
 import "../pages/index.css";
 
@@ -14,16 +14,16 @@ import "../pages/index.css";
 
 // enable validation
 //const enableValidation = (settings) => {
-  //const formList = Array.from(document.querySelectorAll(settings.formSelector))
-  //formList.forEach((formElement) => {
-   // const validator = new FormValidator(settings, formElement)
-    // here you get the name of the form
-   // const formName = formElement.getAttribute('name')
+//const formList = Array.from(document.querySelectorAll(settings.formSelector))
+//formList.forEach((formElement) => {
+// const validator = new FormValidator(settings, formElement)
+// here you get the name of the form
+// const formName = formElement.getAttribute('name')
 
-   // here you store a validator by the `name` of the form
-   // formValidators[formName] = validator;
-  // validator.enableValidation();
-  //});
+// here you store a validator by the `name` of the form
+// formValidators[formName] = validator;
+// validator.enableValidation();
+//});
 //};
 
 //enableValidation(settings);
@@ -43,8 +43,8 @@ popUpWithImage.setEventListeners();
 const popUpEditProfile = new PopUpWithForm(
   "#modal-edit-profile",
   (formData) => {
-  //const name = formData.name;
-  //const bio = formData.bio;
+    //const name = formData.name;
+    //const bio = formData.bio;
     userinfo.setUserInfo(formData);
     //DOM.profileName.textContent = name;
     //DOM.profileBio.textContent = bio;
@@ -53,9 +53,7 @@ const popUpEditProfile = new PopUpWithForm(
 );
 popUpEditProfile.setEventListeners();
 
-
-const popUpAddItem = new PopUpWithForm("#modal-add-profile",
- (formData) => {
+const popUpAddItem = new PopUpWithForm("#modal-add-profile", (formData) => {
   const name = formData.name;
   const link = formData.link;
   handleAddProfileFormSubmit(name, link);
@@ -67,7 +65,7 @@ const section = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      const cardElement = createCard(item) 
+      const cardElement = createCard(item);
       section.addItem(cardElement);
     },
   },
@@ -76,39 +74,37 @@ const section = new Section(
 section.renderItems();
 
 function createCard(item) {
-  const cardElement = new Card(item,
-     "#card-template", handleImageClick)
-return cardElement.getCardElement();
+  const cardElement = new Card(item, "#card-template", handleImageClick);
+  return cardElement.getCardElement();
 }
 
-  //Event Handlers
+//Event Handlers
 function handleAddProfileFormSubmit(title, link) {
-  const newCard = createCard(
-    { name: title, link },
-  );
+  const newCard = createCard({ name: title, link });
   section.addItem(newCard);
   popUpAddItem.close();
 }
 
 function handleImageClick(data) {
- // DOM.previewImage.src = data.link;
- // DOM.previewImage.alt = data.name;
- // DOM.previewImageTitle.textContent = data.name;
+  // DOM.previewImage.src = data.link;
+  // DOM.previewImage.alt = data.name;
+  // DOM.previewImageTitle.textContent = data.name;
   popUpWithImage.open(data);
 }
 
 // Add Event Listeners
 DOM.profileButtonEdit.addEventListener("click", () => {
-  const formData= userinfo.getUserInfo();
-    popUpEditProfile.setInputValues(formData);
-    popUpEditProfile.open();
- // formValidators["modal-edit-form"].resetValidation();
+  const formData = userinfo.getUserInfo();
+  popUpEditProfile.setInputValues(formData);
+  popUpEditProfile.open();
+  //editFormValidator.resetValidation();
+  //editFormValidator.toggleButtonState();
+  // formValidators["modal-edit-form"].resetValidation();
 });
-
-
 
 DOM.profileButtonAdd.addEventListener("click", () => {
   popUpAddItem.open();
+  addFormValidator.resetValidation();
   addFormValidator.toggleButtonState();
   //formValidators["modal-add-form"].resetValidation();
 });
@@ -140,7 +136,7 @@ DOM.profileButtonAdd.addEventListener("click", () => {
 //  }
 //});
 
-//Add event listeners for closing popups clicking outside 
+//Add event listeners for closing popups clicking outside
 //DOM.modals.forEach((modalContainer) => {
 //  modalContainer.addEventListener("mousedown", (evt) => {
 //    if (evt.target.classList.contains("modal_opened")) {
@@ -155,4 +151,3 @@ DOM.profileButtonAdd.addEventListener("click", () => {
 //      popUpAddItem.close();
 //    }  });
 //});
-
