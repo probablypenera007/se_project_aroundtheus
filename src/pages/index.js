@@ -54,6 +54,7 @@ const section = new Section(
 );
 section.renderItems();
 
+//Card
 function createCard(item) {
   const cardElement = new Card(item, "#card-template", handleImageClick);
   return cardElement.getCardElement();
@@ -79,17 +80,16 @@ DOM.profileButtonEdit.addEventListener("click", () => {
   popUpEditProfile.setInputValues(formData);
   popUpEditProfile.open();
   //editFormValidator.resetValidation();
- editFormValidator.toggleButtonState();
+  //editFormValidator.toggleButtonState();
   // formValidators["modal-edit-form"].resetValidation();
 });
 
 DOM.profileButtonAdd.addEventListener("click", () => {
   popUpAddItem.open();
   addFormValidator.resetValidation();
-  addFormValidator.toggleButtonState();
+  //addFormValidator.toggleButtonState();
   //formValidators["modal-add-form"].resetValidation();
 });
 
 editFormValidator.setEventListeners();
 addFormValidator.setEventListeners();
-
