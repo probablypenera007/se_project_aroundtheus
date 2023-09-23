@@ -79,7 +79,7 @@ DOM.profileButtonEdit.addEventListener("click", () => {
   popUpEditProfile.setInputValues(formData);
   popUpEditProfile.open();
   //editFormValidator.resetValidation();
-  editFormValidator.toggleButtonState();
+ // editFormValidator.toggleButtonState();
   // formValidators["modal-edit-form"].resetValidation();
 });
 
