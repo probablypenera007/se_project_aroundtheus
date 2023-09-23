@@ -5,11 +5,8 @@ export default class PopUpWithImage extends PopUp {
     super(popUpSelector);
     this._image = this._popupElement.querySelector(".modal__previewImage");
     this._caption = this._popupElement.querySelector("#preview-title"); 
+    
   }
-  
-setEventListeners(){
-  super.setEventListeners();
-}
   open(data) {
     super.open();
     if (data) {
@@ -18,9 +15,13 @@ setEventListeners(){
       this._caption.textContent = data.name; 
     }
   }
-  close() {
-    super.close();
-  }
+ 
 }
+
+  
+//super(close)
+//super(setEventListeners) 
+  
+
 
 //export default PopUpWithImage;
