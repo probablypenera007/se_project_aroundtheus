@@ -185,46 +185,22 @@
       </div>
     </div>
      <!-- CONFIRMATION MODAL-->
-     <div class="modal" id="modal-add-profile">
+     <div class="modal" id="modal-confirm-delete">
       <div class="modal__container">
         <button
-          class="modal__button modal__button-close modal__button-close_add"
-          id="modal-button-close-add"
+          class="modal__button modal__button-close modal__button-close_confirm-delete"
+          id="modal-button-close-confirm-delete"
           type="button"
         ></button>
-        <h3 class="modal__title">New Place</h3>
-        <form name="modal-add-form" class="modal__form" id="add-modal-form">
-          <label for="add-title" class="modal__form-label"></label>
-          <input
-            type="text"
-            class="modal__input modal__input_type_title"
-            name="name"
-            id="add-title"
-            placeholder="Title"
-            minlength="1"
-            maxlength="30"
-            autocomplete="off"
-            required
-          />
-          <span class="modal__error" id="add-title-error"></span>
-          <label for="add-imageURL" class="modal__form-label"></label>
-          <input
-            type="url"
-            name="link"
-            class="modal__input modal__input_type_url"
-            id="add-imageURL"
-            placeholder="Image URL"
-            autocomplete="off"
-            required
-          />
-          <span class="modal__error" id="add-imageURL-error"></span>
+        <h3 class="modal__title">Are You Sure?</h3>
+        <form name="modal-delete-form" class="modal__form" id="confirm-delete-modal-form">
           <button
             class="modal__button modal__button_submit modal__button_disabled"
-            id="modal-button-create"
+            id="modal-button-confirm-delete"
             type="submit"
             disabled
           >
-            Create
+            YES
           </button>
         </form>
       </div>

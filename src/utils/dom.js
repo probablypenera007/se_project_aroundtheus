@@ -39,9 +39,12 @@ export const previewImageModalClose = previewImageModal.querySelector( //preview
 /*CONFIRMATION MODAL*/
 
 /*AVATAR*/
-export const profileAvatar = document.querySelector("#profile-avatar")
-
-
+export const avatarModal = document.querySelector("#modal-avatar");
+export const avatarImage = document.querySelector("#profile-avatar");
+export const avatarModalClose = avatarModal.querySelector("#modal-button-close-avatar");
+export const avatarForm = document.querySelector("#avatar-modal-form");
+export const avatarAddImageLink = avatarForm.querySelector("#avatar-imageURL");
+export const avatarSubmitButton = avatarForm.querySelector("#modal-button-avatar");
 
 
 export const cardsContent = document.querySelector(".cards__content"); // card content container

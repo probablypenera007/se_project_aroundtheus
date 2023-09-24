@@ -37,7 +37,7 @@ const section = new Section(
       section.addItem(cardElement);
     },
   },
-  ".cards__content"
+  ".cards__content",
 );
 section.renderItems();
 
@@ -61,6 +61,12 @@ const popUpAddItem = new PopUpWithForm("#modal-add-profile", (formData) => {
 });
 popUpAddItem.setEventListeners();
 
+const popUpAvatar = new PopUpWithForm("#modal-avatar", (formData) => {
+  const avatarLink = formData.link;
+handleAvatarFormSubmit(avatarLink);
+});
+popUpAvatar.setEventListeners();
+
 //Event Handlers
 function handleAddProfileFormSubmit(title, link) {
   const newCard = createCard({ name: title, link });
@@ -71,6 +77,12 @@ function handleImageClick(data) {
   popUpWithImage.open(data);
 }
 enableValidation(settings);
+
+function handleAvatarFormSubmit(link) {
+  const newAvatar = createCard({link});
+  section.addItem(newAvatar);
+  popUpAvatar.open();
+}
 
 // Add Event Listeners
 DOM.profileButtonEdit.addEventListener("click", () => {
@@ -85,7 +97,8 @@ DOM.profileButtonAdd.addEventListener("click", () => {
   popUpAddItem.open();
 });
 
-DOM.profileAvatar.addEventListener("click", () => {
-  console.log("it's working!!!!");
+DOM.avatarImage.addEventListener("click", () => {
+  formValidators["modal-avatar-form"].resetValidation();
+  popUpAvatar.open();
 })
 
