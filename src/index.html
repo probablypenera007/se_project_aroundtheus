@@ -10,6 +10,7 @@
     <link rel="shortcut icon" type="image/jpg" href="./favicon.ico" />
     <!---  <link rel="stylesheet" href="./vendor/normalize.css" />-->
   </head>
+
   <body class="page">
     <div class="page__content">
       <header class="header page__section">
@@ -17,7 +18,7 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img class="profile__avatar"
+          <img class="profile__avatar" id="profile-avatar"
           src="<%=require("./images/jacques-cousteau.jpg")%>" alt="user avatar">
           <div class="profile__info">
             <h1 class="profile__name">Jacques Cousteau</h1>
@@ -149,6 +150,83 @@
           id="modal-card-image"
         />
         <h2 class="modal__previewTitle" id="preview-title"></h2>
+      </div>
+    </div>
+     <!-- EDIT PROFILE AVATAR-->
+     <div class="modal" id="modal-avatar">
+      <div class="modal__container modal__container-avatar">
+        <button
+          class="modal__button modal__button-close modal__button-close_avatar"
+          id="modal-button-close-avatar"
+          type="button"
+        ></button>
+        <h3 class="modal__title">Change Profile Picture</h3>
+        <form name="modal-avatar-form" class="modal__form" id="avatar-modal-form">
+          <label for="avatar-imageURL" class="modal__form-label"></label>
+          <input
+            type="url"
+            name="link"
+            class="modal__input modal__input_type_url"
+            id="avatar-imageURL"
+            placeholder="Image URL"
+            autocomplete="off"
+            required
+          />
+          <span class="modal__error" id="avatar-imageURL-error"></span>
+          <button
+            class="modal__button modal__button_submit modal__button_disabled"
+            id="modal-button-avatar"
+            type="submit"
+            disabled
+          >
+            Save - Avatar <!--this is for test will delete later-->
+          </button>
+        </form>
+      </div>
+    </div>
+     <!-- CONFIRMATION MODAL-->
+     <div class="modal" id="modal-add-profile">
+      <div class="modal__container">
+        <button
+          class="modal__button modal__button-close modal__button-close_add"
+          id="modal-button-close-add"
+          type="button"
+        ></button>
+        <h3 class="modal__title">New Place</h3>
+        <form name="modal-add-form" class="modal__form" id="add-modal-form">
+          <label for="add-title" class="modal__form-label"></label>
+          <input
+            type="text"
+            class="modal__input modal__input_type_title"
+            name="name"
+            id="add-title"
+            placeholder="Title"
+            minlength="1"
+            maxlength="30"
+            autocomplete="off"
+            required
+          />
+          <span class="modal__error" id="add-title-error"></span>
+          <label for="add-imageURL" class="modal__form-label"></label>
+          <input
+            type="url"
+            name="link"
+            class="modal__input modal__input_type_url"
+            id="add-imageURL"
+            placeholder="Image URL"
+            autocomplete="off"
+            required
+          />
+          <span class="modal__error" id="add-imageURL-error"></span>
+          <button
+            class="modal__button modal__button_submit modal__button_disabled"
+            id="modal-button-create"
+            type="submit"
+            disabled
+          >
+            Create
+          </button>
+        </form>
       </div>
     </div>
 

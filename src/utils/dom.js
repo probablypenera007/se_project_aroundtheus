@@ -1,7 +1,9 @@
 import {settings} from "../constants/constants.js"
-//export const modalForm = document.querySelectorAll(".modal__form");
+
 export const formList = [...document.querySelectorAll(settings.formSelector)]
 export const modals = [...document.querySelectorAll(".modal")]; //get all modal containers
+
+/*EDIT PROFILE*/
 export const profileButtonEdit = document.querySelector("#profile-button-edit"); //profile edit button
 export const profileEditModal = document.querySelector("#modal-edit-profile"); //profile edit modal
 export const profileButtonClose = profileEditModal.querySelector( //profile edit modal close button
@@ -12,24 +14,36 @@ export const profileBio = document.querySelector(".profile__subtitle"); // profi
 export const profileCurrentName = document.querySelector("#edit-name"); // profile current name input
 export const profileCurrentBio = document.querySelector("#edit-bio"); // profile current bio input
 export const profileFormEdit = profileEditModal.querySelector("#modal-form-edit"); // profile edit form
+export const editSubmitButton = document.querySelector("#modal-button-save");
 
-/*ADD ELEMENTS */
+/*ADD PROFILE */
 export const profileButtonAdd = document.querySelector("#profile-button-add");// profile add button
 export const profileAddModal = document.querySelector("#modal-add-profile"); // profile add modal
 export const profileFormAdd = profileAddModal.querySelector("#add-modal-form"); //profile add form
 export const profileButtonCloseAdd = profileAddModal.querySelector( // profile add modal close button
   "#modal-button-close-add"
 );
+export const addSubmitButton = document.querySelector("#modal-button-create");
+
 export const profileAddImageTitle = profileFormAdd.querySelector("#add-title"); //profile add image title
 export const profileAddImageLink = profileFormAdd.querySelector("#add-imageURL"); // prtofile add image link
+
+/*PREVIEW IMAGE*/
 export const previewImageModal = document.querySelector("#modal-previewImage"); //preview image modal
 export const previewImage = document.querySelector(".modal__previewImage"); //get preview image element
 export const previewImageTitle = document.querySelector("#preview-title"); //get preview image title element
 export const previewImageModalClose = previewImageModal.querySelector( //preview image modal close button
   "#modal-button-close-preview"
 );
-export const addSubmitButton = document.querySelector("#modal-button-create");
-export const editSubmitButton = document.querySelector("#modal-button-save");
+
+/*CONFIRMATION MODAL*/
+
+/*AVATAR*/
+export const profileAvatar = document.querySelector("#profile-avatar")
+
+
+
+
 export const cardsContent = document.querySelector(".cards__content"); // card content container
 export const cardTemplate = document  // cloned card template
   .querySelector("#card-template")

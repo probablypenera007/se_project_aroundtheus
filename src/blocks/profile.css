@@ -12,6 +12,14 @@
   background-position: center;
   margin-right: 26px;
   margin-left: 23px;
+  transition: opacity 0.3s linear;
+  cursor: pointer;
+}
+
+.profile__avatar:hover{
+  opacity: .6;
+  background-image: url(../images/Vector\ pencil.svg);
+  
 }
 
 .profile__info {

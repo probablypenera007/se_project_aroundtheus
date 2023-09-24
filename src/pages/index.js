@@ -85,4 +85,7 @@ DOM.profileButtonAdd.addEventListener("click", () => {
   popUpAddItem.open();
 });
 
+DOM.profileAvatar.addEventListener("click", () => {
+  console.log("it's working!!!!");
+})
 
