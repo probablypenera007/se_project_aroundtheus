@@ -6,6 +6,7 @@ import PopUpWithImage from "../components/PopUpWithImage.js";
 import PopUpWithForm from "../components/PopUpWithForm.js";
 import { initialCards, settings } from "../constants/constants.js";
 import UserInfo from "../components/UserInfo.js";
+import PopUpWithConfirmation from "../components/PopupWithConfirmation.js";
 import "../pages/index.css";
 
 //Form Validators
@@ -67,6 +68,10 @@ handleAvatarFormSubmit(avatarLink);
 });
 popUpAvatar.setEventListeners();
 
+const popUpConfirm = new PopUpWithConfirmation("#modal-confirm-delete")
+popUpConfirm.setEventListeners();
+
+
 //Event Handlers
 function handleAddProfileFormSubmit(title, link) {
   const newCard = createCard({ name: title, link });
@@ -101,4 +106,5 @@ DOM.avatarImage.addEventListener("click", () => {
   formValidators["modal-avatar-form"].resetValidation();
   popUpAvatar.open();
 })
+
 

@@ -37,6 +37,10 @@ export const previewImageModalClose = previewImageModal.querySelector( //preview
 );
 
 /*CONFIRMATION MODAL*/
+export const confirmModal = document.querySelector("#modal-confirm-delete");
+export const confirmModalClose = confirmModal.querySelector("#modal-button-confirm-delete");
+export const confirmForm = confirmModal.querySelector("#modal-delete-form");
+export const confirmSubmitButton = confirmModal.querySelector("#modal-button-confirm-delete");
 
 /*AVATAR*/
 export const avatarModal = document.querySelector("#modal-avatar");
@@ -46,8 +50,10 @@ export const avatarForm = document.querySelector("#avatar-modal-form");
 export const avatarAddImageLink = avatarForm.querySelector("#avatar-imageURL");
 export const avatarSubmitButton = avatarForm.querySelector("#modal-button-avatar");
 
-
+/*CARD*/
 export const cardsContent = document.querySelector(".cards__content"); // card content container
 export const cardTemplate = document  // cloned card template
   .querySelector("#card-template")
   .content.firstElementChild.cloneNode(true);
+
+
