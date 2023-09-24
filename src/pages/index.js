@@ -4,10 +4,20 @@ import Card from "../components/Card.js";
 import Section from "../components/Section.js";
 import PopUpWithImage from "../components/PopUpWithImage.js";
 import PopUpWithForm from "../components/PopUpWithForm.js";
-import { initialCards, settings } from "../constants/constants.js";
+import { initialCards, settings, atoken } from "../constants/constants.js";
 import UserInfo from "../components/UserInfo.js";
 import PopUpWithConfirmation from "../components/PopupWithConfirmation.js";
+import Api from "../components/Api.js"
 import "../pages/index.css";
+
+  const api = new Api({
+    baseUrl: "https://around-api.en.tripleten-services.com/v1",
+    headers: {
+      authorization: atoken,
+      "Content-Type": "application/json"
+    }
+  });
+
 
 //Form Validators
 const formValidators = {}
