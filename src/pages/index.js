@@ -84,5 +84,3 @@ DOM.profileButtonAdd.addEventListener("click", () => {
   formValidators["modal-add-form"].resetValidation();
   popUpAddItem.open();
 });
-
-
