@@ -44,8 +44,14 @@ const userinfo = new UserInfo(".profile__name", ".profile__subtitle");
 //Card
 function createCard(item) {
   const cardElement = new Card(item, "#card-template", handleImageClick);
+
+  const trashButton = cardElement.getTrashButton();
+  trashButton.addEventListener("click", ()=> {
+    popUpConfirm.open();
+  });
   return cardElement.getCardElement();
 }
+
 
 //Section
 const section = new Section(
@@ -145,3 +151,4 @@ DOM.avatarImage.addEventListener("click", () => {
   formValidators["modal-avatar-form"].resetValidation();
   popUpAvatar.open();
 }) 
+
