@@ -1,5 +1,5 @@
 export default class Card {
-  constructor({ name, link }, cardSelector, handleCardClick) {
+  constructor({ name, link }, cardSelector, handleCardClick, handleTrashButton) {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
@@ -35,8 +35,10 @@ export default class Card {
   }
 
   _handleTrashButton() {
+    
     this._cardElement.remove();
     this._cardElement = null;
+    this._handleTrashButtonClick
   }
 
   _getElement() {

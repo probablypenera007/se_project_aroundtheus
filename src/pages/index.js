@@ -23,7 +23,7 @@ import "../pages/index.css";
 
     
    
- 
+
   
 
 
@@ -131,7 +131,7 @@ function handleImageClick(data) {
 }
 
 function handleTrashButton(cardId) {
-  popUpConfirm.setEventListeners(() => {
+  popUpConfirm.setSubmitCall(() => {
     api.deleteCard(cardId)
     .then(() => {
       section.removeItem(cardId);
@@ -145,29 +145,6 @@ function handleTrashButton(cardId) {
   popUpConfirm.open();
 }
 
-//function handleHeartButton(cardId, isLiked){
-//  if(isLiked) {
-//    api.unlikeCard(cardId)
-//    .then((updateCard) => {
-//      updateCardLikes(cardId, updateCardLikes.likes)
-//    })
-//    .catch((error) => {
-//      console.error("Error:", error);
-//    });
-//  }else {
-//    api.likeCard(cardId)
-//    .then((updateCard) => {
-//      updateCardLikes(cardId, updateCard.likes);
-//    })
-//    .catch((error) => {
-//      console.error("Error:", error);
-//    });
-//  }
-//}
-
-//function updateCardLikes(cardId, likes){
-
-//}
 
 function handleAvatarFormSubmit() {
   const avatarLink =document.querySelector('input[name="avatar"]').value;

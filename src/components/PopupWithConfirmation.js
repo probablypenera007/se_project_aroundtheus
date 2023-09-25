@@ -8,8 +8,21 @@ export default class PopUpWithConfirmation extends Popup {
         this._deletePopupCloseBtn = this._popupElement.querySelector("#modal-button-close-confirm-delete")
         this._deletePopupSubmit = this._popupElement.querySelector("#modal-button-confirm-delete")
     }
+    open(){
+        super.open();
+        this._deletePopupSubmit.removeAttribute("disabled");
+    }
+    close(){
+        super.close();
+        this._popForm.reset();
+    }
     setEventListeners(){
         super.setEventListeners();
+        this._popForm.addEventListener("submit", () => {
+            this._handleFormSubmit();
+        })
     }
-    
+    setSubmitCall(callback){
+        this._handleFormSubmit = callback;
+    }
 }
