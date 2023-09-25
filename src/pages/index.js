@@ -39,16 +39,16 @@ const enableValidation = (settings) => {
 };
 
 //User Info
-const userinfo = new UserInfo(".profile__name", ".profile__subtitle");
+const userinfo = new UserInfo(".profile__name", ".profile__subtitle", "#profile-avatar");
 
 //Card
 function createCard(item) {
   const cardElement = new Card(item, "#card-template", handleImageClick);
 
-  const trashButton = cardElement.getTrashButton();
-  trashButton.addEventListener("click", ()=> {
-    popUpConfirm.open();
-  });
+ // const trashButton = cardElement.getTrashButton();
+ // trashButton.addEventListener("click", ()=> {
+   // popUpConfirm.open();
+ // });
   return cardElement.getCardElement();
 }
 
