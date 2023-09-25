@@ -43,6 +43,6 @@ export const userInfoSettings = {
   jobNameSelector: ".profile__subtitle",
 }
 
-export const atoken = {
-  token:"39128dac-8a63-446c-addc-260bfc5a0070",
-}
+
+ 
+

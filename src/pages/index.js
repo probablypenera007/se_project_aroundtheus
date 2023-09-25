@@ -4,20 +4,22 @@ import Card from "../components/Card.js";
 import Section from "../components/Section.js";
 import PopUpWithImage from "../components/PopUpWithImage.js";
 import PopUpWithForm from "../components/PopUpWithForm.js";
-import { initialCards, settings, atoken } from "../constants/constants.js";
+import { initialCards, settings} from "../constants/constants.js";
 import UserInfo from "../components/UserInfo.js";
 import PopUpWithConfirmation from "../components/PopupWithConfirmation.js";
 import Api from "../components/Api.js"
 import "../pages/index.css";
+//API Token =  "b6ce0d00-402e-481d-9dba-ef02482eb8ce" -this is just for reference
+
+
 
   const api = new Api({
     baseUrl: "https://around-api.en.tripleten-services.com/v1",
     headers: {
-      authorization: atoken,
+      authorization: "b6ce0d00-402e-481d-9dba-ef02482eb8ce",
       "Content-Type": "application/json"
     }
   });
-
 
 //Form Validators
 const formValidators = {}
@@ -116,5 +118,4 @@ DOM.avatarImage.addEventListener("click", () => {
   formValidators["modal-avatar-form"].resetValidation();
   popUpAvatar.open();
 })
-
 
