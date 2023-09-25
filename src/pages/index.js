@@ -41,10 +41,14 @@ const enableValidation = (settings) => {
 //User Info
 const userinfo = new UserInfo(".profile__name", ".profile__subtitle", "#profile-avatar");
 
+function fetchInfoUpdate(){}
+
 //Card
 function createCard(item) {
-  const cardElement = new Card(item, "#card-template", handleImageClick);
-
+  const cardElement = new Card(item, "#card-template", handleImageClick, 
+  handleTrashButton, 
+  //handleHeartButton
+  )
  // const trashButton = cardElement.getTrashButton();
  // trashButton.addEventListener("click", ()=> {
    // popUpConfirm.open();
@@ -98,8 +102,8 @@ const popUpAddItem = new PopUpWithForm("#modal-add-profile", (formData) => {
 });
 popUpAddItem.setEventListeners();
 
-const popUpAvatar = new PopUpWithForm("#modal-avatar", (formData) => {
-  const avatarLink = formData.avatar;
+const popUpAvatar = new PopUpWithForm("#modal-avatar", (cardData) => {
+  const avatarLink = cardData.avatar;
 handleAvatarFormSubmit(avatarLink);
 });
 popUpAvatar.setEventListeners();
@@ -118,14 +122,52 @@ function handleAddProfileFormSubmit(title, link) {
   })
 .catch((err) => {
   console.error(err);
-})
-  
+}) 
 }
 
 
 function handleImageClick(data) {
   popUpWithImage.open(data);
 }
+
+function handleTrashButton(cardId) {
+  popUpConfirm.setEventListeners(() => {
+    api.deleteCard(cardId)
+    .then(() => {
+      section.removeItem(cardId);
+      popUpConfirm.close();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      popUpConfirm.close();
+    })
+  })
+  popUpConfirm.open();
+}
+
+//function handleHeartButton(cardId, isLiked){
+//  if(isLiked) {
+//    api.unlikeCard(cardId)
+//    .then((updateCard) => {
+//      updateCardLikes(cardId, updateCardLikes.likes)
+//    })
+//    .catch((error) => {
+//      console.error("Error:", error);
+//    });
+//  }else {
+//    api.likeCard(cardId)
+//    .then((updateCard) => {
+//      updateCardLikes(cardId, updateCard.likes);
+//    })
+//    .catch((error) => {
+//      console.error("Error:", error);
+//    });
+//  }
+//}
+
+//function updateCardLikes(cardId, likes){
+
+//}
 
 function handleAvatarFormSubmit() {
   const avatarLink =document.querySelector('input[name="avatar"]').value;

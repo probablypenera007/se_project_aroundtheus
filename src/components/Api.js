@@ -53,7 +53,7 @@ export default class Api {
     updateEditProfile({name, job}) {
         return fetch("https://around-api.en.tripleten-services.com/v1/users/me ", {
             method: "PATCH",
-            body: JSON.stringify({name, job}),
+            body: JSON.stringify({name, about}),
             headers: {
             authorization: "b6ce0d00-402e-481d-9dba-ef02482eb8ce",
             "Content-Type" : "application/json", 

@@ -4,6 +4,8 @@ export default class Card {
     this._link = link;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
+    this._handleTrashButton = handleTrashButton;
+   // this._handleHeartButton = handleHeartButton;
   }
 
   _setEventListeners() {
@@ -56,4 +58,7 @@ export default class Card {
     return this._cardElement;
   }
 
+  getId(){
+    return this._id;
+  }
 }
