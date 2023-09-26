@@ -21,12 +21,6 @@ import "../pages/index.css";
    }
   });
 
-    
-   
-
-  
-
-
 //Form Validators
 const formValidators = {}
 const enableValidation = (settings) => {
@@ -82,38 +76,58 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
  console.error(err);// log the error to the console
 }); 
 section.renderItems();
+
+
 //Popups
+
+//PopUpWithImage
 const popUpWithImage = new PopUpWithImage("#modal-previewImage");
 popUpWithImage.setEventListeners();
 
+//PopUpWithForm
 const popUpEditProfile = new PopUpWithForm(
   "#modal-edit-profile",
   (formData) => {
+    return new Promise((resolve, reject) => {
     userinfo.setUserInfo(formData);
     popUpEditProfile.close();
-  }
-);
+    resolve();
+  });
+  });
 popUpEditProfile.setEventListeners();
 
+//PopUpWithForm
 const popUpAddItem = new PopUpWithForm("#modal-add-profile", (formData) => {
-  const name = formData.name;
-  const link = formData.link;
-  handleAddProfileFormSubmit(name, link)
-  .then(() => {
-    popUpAddItem.close();
+  return new Promise ((resolve, reject) => {
+    const name = formData.name;
+    const link = formData.link;
+    handleAddProfileFormSubmit(name, link)
+    .then(() => {
+      popUpAddItem.close();
+      resolve();
   })
   .catch((err) => {
     console.error(err);
+    reject(err);
+   })
   })
 });
 popUpAddItem.setEventListeners();
 
+//PopUpWithForm
 const popUpAvatar = new PopUpWithForm("#modal-avatar", (cardData) => {
   const avatarLink = cardData.avatar;
-handleAvatarFormSubmit(avatarLink);
+handleAvatarFormSubmit(avatarLink)
+.then(() => {
+  popUpAvatar.close();
+})
+.catch((err) => {
+  console.error(err);
+})
 });
 popUpAvatar.setEventListeners();
 
+//PopUpWithConfirmation
 const popUpConfirm = new PopUpWithConfirmation("#modal-confirm-delete")
 popUpConfirm.setEventListeners();
 
@@ -131,10 +145,11 @@ function handleAddProfileFormSubmit(title, link) {
   console.error(err);
   reject(err);
 }) 
+.finally(() => {
+  popUpAddItem.close();
+})
   });
-   .finally(() => {
-    popUpAddItem.close();
-  })
+
 }
 
 

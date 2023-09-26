@@ -27,15 +27,16 @@ export default class PopUpWithForm extends PopUp {
       this.close();
       this.setLoading(false);
     })
-    .catch((error) => {
-      console.error(error);
+    .catch((err) => {
+      console.error(err);
       this.setLoading(false);
     })
   }
 
   setEventListeners() {
     super.setEventListeners();
-    this._popForm.addEventListener("submit", this._handleSubmit.bind(this));
+    this._popForm.addEventListener("submit",
+    (evt) => this._handleSubmit(evt));
   }
 
   setInputValues(data) {
@@ -58,4 +59,7 @@ export default class PopUpWithForm extends PopUp {
       this._popSubmitBtn.textContent = this._popSubmitBtnText;
     }
   }
+  setSubmitCall(callback){
+    this._handleFormSubmit = callback;
+}
 }
