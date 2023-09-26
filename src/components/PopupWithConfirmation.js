@@ -10,7 +10,7 @@ export default class PopUpWithConfirmation extends Popup {
     }
     open(){
         super.open();
-        //this._deletePopupSubmit.removeAttribute("disabled");
+        this._deletePopupSubmit.removeAttribute("disabled");
     }
     close(){
         super.close();
@@ -23,14 +23,15 @@ export default class PopUpWithConfirmation extends Popup {
             this._handleFormSubmit();
         })
     }
-    setSubmitCall(callback){
-        this._handleFormSubmit = callback;
-    }
+   
     setLoading(isLoading, loadingText="Saving...") {
         if(isLoading) {
          this._popSubmitBtn.textContent = loadingText;
         } else{
           this._popSubmitBtn.textContent = this._popSubmitBtnText;
         }
+    }
+    setSubmitCall(callback){
+        this._handleFormSubmit = callback;
     }
 }
