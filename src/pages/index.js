@@ -98,7 +98,13 @@ popUpEditProfile.setEventListeners();
 const popUpAddItem = new PopUpWithForm("#modal-add-profile", (formData) => {
   const name = formData.name;
   const link = formData.link;
-  handleAddProfileFormSubmit(name, link);
+  handleAddProfileFormSubmit(name, link)
+  .then(() => {
+    popUpAddItem.close();
+  })
+  .catch((err) => {
+    console.error(err);
+  })
 });
 popUpAddItem.setEventListeners();
 
@@ -114,15 +120,21 @@ popUpConfirm.setEventListeners();
 
 //Event Handlers
 function handleAddProfileFormSubmit(title, link) {
+  return new Promise((resolve, reject) => {
   api.createCard({ name: title, link })
   .then((card) => {
     section.addItem(createCard(card));
     console.log("CARD CHECK! please please work T_T.", card);
-    popUpAddItem.close();
+    resolve(); 
   })
 .catch((err) => {
   console.error(err);
+  reject(err);
 }) 
+  });
+   .finally(() => {
+    popUpAddItem.close();
+  })
 }
 
 
@@ -174,6 +186,7 @@ DOM.profileButtonAdd.addEventListener("click", () => {
 });
 
 DOM.avatarImage.addEventListener("click", () => {
+  console.log("Successful click")
   formValidators["modal-avatar-form"].resetValidation();
   popUpAvatar.open();
 }) 
