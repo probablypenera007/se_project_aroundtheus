@@ -18,4 +18,5 @@ export default class Section{
       //public method, takes a DOM element
         //and adds it to the container
     };
+
 }

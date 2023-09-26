@@ -35,8 +35,6 @@ const enableValidation = (settings) => {
 //User Info
 const userinfo = new UserInfo(".profile__name", ".profile__subtitle", "#profile-avatar");
 
-function fetchInfoUpdate(){}
-
 //Card
 function createCard(item) {
   const cardElement = new Card(item, "#card-template", handleImageClick, 
@@ -158,10 +156,14 @@ function handleImageClick(data) {
 }
 
 function handleTrashButton(cardId) {
+  console.log("emter trash index.js")
   popUpConfirm.setSubmitCall(() => {
     api.deleteCard(cardId)
     .then(() => {
-      section.removeItem(cardId);
+      const deleteCard = document.querySelector(`[data-card-id="${cardId}"]`);
+      if (deleteCard){
+        deleteCard.remove();
+      }
       popUpConfirm.close();
     })
     .catch((error) => {
@@ -170,6 +172,7 @@ function handleTrashButton(cardId) {
     })
   })
   popUpConfirm.open();
+  console.log("exit trash index.js")
 }
 
 
@@ -205,4 +208,3 @@ DOM.avatarImage.addEventListener("click", () => {
   formValidators["modal-avatar-form"].resetValidation();
   popUpAvatar.open();
 }) 
-

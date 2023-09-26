@@ -10,7 +10,7 @@ export default class PopUpWithConfirmation extends Popup {
     }
     open(){
         super.open();
-        this._deletePopupSubmit.removeAttribute("disabled");
+        //this._deletePopupSubmit.removeAttribute("disabled");
     }
     close(){
         super.close();
@@ -18,11 +18,19 @@ export default class PopUpWithConfirmation extends Popup {
     }
     setEventListeners(){
         super.setEventListeners();
-        this._popForm.addEventListener("submit", () => {
+        this._popForm.addEventListener("submit", (evt) => {
+            evt.preventDefault();
             this._handleFormSubmit();
         })
     }
     setSubmitCall(callback){
         this._handleFormSubmit = callback;
+    }
+    setLoading(isLoading, loadingText="Saving...") {
+        if(isLoading) {
+         this._popSubmitBtn.textContent = loadingText;
+        } else{
+          this._popSubmitBtn.textContent = this._popSubmitBtnText;
+        }
     }
 }

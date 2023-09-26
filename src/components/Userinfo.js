@@ -7,14 +7,14 @@ export default class UserInfo { //repsonsible for rendering information from the
     getUserInfo() {
         const userInput = {
             name: this._nameElement.textContent,
-            job: this._jobElement.textContent,
+            about: this._jobElement.textContent,
         };
         return userInput;
     }
     
     setUserInfo(data){
         this._nameElement.textContent = data.name;
-        this._jobElement.textContent = data.job;
+        this._jobElement.textContent = data.about;
     }
     setAvatar(avatar){
         this._avatarElement.src = avatar;
