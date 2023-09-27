@@ -66,15 +66,17 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
 //process the result
 .then(([cardData, formData]) => {
  userinfo.setUserInfo(formData);
+ userinfo.setAvatar(formData.avatar);
  cardData.forEach((card) => {
    section.addItem(createCard(card));
  })
 })
 .catch((err) => {
  console.error(err);// log the error to the console
-}); 
+})
+.finally(() => {
 section.renderItems();
-
+}); 
 
 //Popups
 
@@ -219,7 +221,8 @@ DOM.profileButtonAdd.addEventListener("click", () => {
 });
 
 DOM.avatarImage.addEventListener("click", () => {
-  console.log("Successful click")
+  //console.log("Successful click")
+  const formData = userinfo.getUserInfo();
   formValidators["modal-avatar-form"].resetValidation();
   popUpAvatar.open();
 }) 

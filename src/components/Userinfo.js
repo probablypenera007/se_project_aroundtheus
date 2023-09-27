@@ -8,6 +8,7 @@ export default class UserInfo { //repsonsible for rendering information from the
         const userInput = {
             name: this._nameElement.textContent,
             about: this._aboutElement.textContent,
+            avatar: this._avatarElement.src,
         };
         return userInput;
     }
@@ -18,6 +19,6 @@ export default class UserInfo { //repsonsible for rendering information from the
     }
     setAvatar(avatar){
         this._avatarElement.src = avatar;
-        this._avatarElement.alt = this._nameElement.textContent;
+        //this._avatarElement.alt = this._nameElement.textContent;
     }
 }

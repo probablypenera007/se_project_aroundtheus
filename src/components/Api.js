@@ -76,9 +76,9 @@ export default class Api {
         }
         return Promise.reject(`Error: ${res.status}`);
       })
-      .then((dlt) => {
-        console.log("DELETE CHECK! please work T_T.", dlt);
-        return dlt;
+      .then((cardId) => {
+        console.log("DELETE CHECK! please work T_T.", cardId);
+        return cardId;
       });
   }
   likeCard(cardId) {
@@ -132,9 +132,9 @@ export default class Api {
         }
         return Promise.reject(`Error: ${res.status}`);
       })
-      .then((avtr) => {
-        console.log("AVATAR CHECK! please work T_T.", avtr);
-        return avtr;
+      .then((updatedAvatar) => {
+        console.log("AVATAR CHECK! please work T_T.", updatedAvatar);
+        return updatedAvatar;
       });
   }
 }
