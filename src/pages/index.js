@@ -38,7 +38,7 @@ const userinfo = new UserInfo(".profile__name", ".profile__subtitle", "#profile-
 //Card
 function createCard(item) {
   const cardElement = new Card(item, "#card-template", handleImageClick, 
-  handleTrashButton, 
+  handleTrashButtonClick, 
   //handleHeartButton
   )
  // const trashButton = cardElement.getTrashButton();
@@ -127,7 +127,6 @@ const popUpAvatar = new PopUpWithForm("#modal-avatar", (formData) => {
   //const avatarLink = cardData.avatar;
   const avatar = formData.avatar;
   return new Promise ((resolve, reject) => {
-  
     api.updateAvatar(avatar)
     .then((updatedAvatar) => {
       userinfo.setAvatar(updatedAvatar.avatar);
@@ -172,41 +171,42 @@ function handleImageClick(data) {
   popUpWithImage.open(data);
 }
 
-function handleTrashButton(cardId) {
-  console.log("emter trash index.js")
-  popUpConfirm.setSubmitCall(() => {
-    api.deleteCard(cardId)
+function handleTrashButtonClick(item) {
+  console.log("enter trash index.js")
+  popUpConfirm.setLoading(true);
+  popUpConfirm.setSubmitCall(() => { 
+   
+    api.deleteCard(item.getId())
     .then(() => {
-      const cardElement = document.querySelector(`[data-card-id="${cardId}"]`);
-      if (cardElement){
-        cardElement.removeCard();
-      }
-      popUpConfirm.close();
+      //const cardElement = document.querySelector(`[data-card-id="${cardId}"]`);
+      //if (cardElement){
+        popUpConfirm.close();
+        item.removeCard();
+     // }
+    popUpConfirm.setLoading(false);
     })
-    .catch((error) => {
-      console.error("Error:", error);
-      popUpConfirm.close();
+    .catch((err) => {
+      console.error("Error:", err);
+     //popUpConfirm.setLoading(false);
     })
+  
   })
+  popUpConfirm.close();
   popUpConfirm.open();
   console.log("exit trash index.js")
-}
+} 
 
-
-//function handleAvatarFormSubmit() {
-//  const avatarLink =document.querySelector('input[name="avatar"]').value;
-//  api
-// .updateAvatar(avatarLink)
-// .then((updateAvatar) => {
-//  DOM.avatarImage.src = updateAvatar.avatar;
-//  console.log("Successful Upload", updateAvatar);
-//  popUpAvatar.close();
-// })
-//  .catch((error) => {
-//    console.error("Error:", error)
-//  })//
+//function handleHeartButton(item) {
+ // if(item.isLiked) {
+ //   api.unlikeCard(item.getId)
+ //   .item.setLikes(false)
+ // }
 //}
+
+
 enableValidation(settings);
+
+
 // Add Event Listeners
 DOM.profileButtonEdit.addEventListener("click", () => {
   const formData = userinfo.getUserInfo();

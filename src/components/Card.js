@@ -1,11 +1,12 @@
 export default class Card {
-  constructor({ name, link, _id }, cardSelector, handleCardClick, handleTrashButton) {
+  constructor({ name, link, _id }, cardSelector, handleCardClick, handleTrashButtonClick, ) {
     this._name = name;
     this._link = link;
     this._id = _id;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
-    this._handleTrashButton = handleTrashButton;
+    this._handleTrashButtonClick = handleTrashButtonClick;
+    this._cardElement = this._getElement();
     //this._handleHeartButton = handleHeartButton;
   }
 
@@ -16,12 +17,13 @@ export default class Card {
         this._handleHeartButton();
       });
 
-    this._cardElement
+      this._cardElement
       .querySelector(".card__delete-button")
-      .addEventListener("click", () => {
-        console.log("delete card in card.js");
-        this._handleTrashButton(this._id);
-      });
+      .addEventListener("click", () => 
+        //console.log("delete card in card.js");
+        //this._handleTrashButton(this._id);
+        this._handleTrashButtonClick(this));
+      
 
     this._cardElement
       .querySelector(".card__image")
@@ -36,20 +38,24 @@ export default class Card {
       .classList.toggle("card__like-button_active");
   }
 
-  _handleTrashButton() {
-    if (this._handleTrashClick){
-      this._handleTrashClick(this._id);
-    }
-  }
 
-  removeCard(){
+  //_trashButtonClick() {
+   
+  //  }
+
+
+  //_handleTrashButton() {
+  //  if (this._handleTrashClick){
+  //    this._handleTrashClick(this._id);
+  //  }
+ // }
+
+  removeCard(cardElement){
     this._cardElement.remove();
     console.log("removecard method firing");
     this._cardElement = null;
 
   }
-
-  
 
   _getElement() {
     return document
