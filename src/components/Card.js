@@ -1,20 +1,23 @@
 export default class Card {
-  constructor({ name, link, _id }, cardSelector, handleCardClick, handleTrashButtonClick, ) {
+  constructor({ name, link, _id , isLiked }, cardSelector, handleCardClick, handleTrashButtonClick, handleHeartButton,) {
     this._name = name;
     this._link = link;
     this._id = _id;
+    this._isLiked = isLiked;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._handleTrashButtonClick = handleTrashButtonClick;
     this._cardElement = this._getElement();
-    //this._handleHeartButton = handleHeartButton;
+    this._handleHeartButton = handleHeartButton;
   }
 
   _setEventListeners() {
+    console.log("setting event listener for cards")
     this._cardElement
       .querySelector(".card__like-button")
       .addEventListener("click", () => {
-        this._handleHeartButton();
+        console.log('setEVENTLISTENER your heart has been liked by someone')
+        this._handleHeartButton(this);
       });
 
       this._cardElement
@@ -33,9 +36,14 @@ export default class Card {
   }
 
   _handleHeartButton() {
+    const heartButton =
     this._cardElement
-      .querySelector(".card__like-button")
-      .classList.toggle("card__like-button_active");
+      .querySelector(".card__like-button");
+      console.log("before toggle");
+      heartButton.classList.toggle("card__like-button_active");
+      console.log("after toggle");
+      console.log(heartButton.classList.contains("card__like-button_active"));
+      console.log('HANDLEHEARTBUTTON your heart has been liked by someone MIGHT BE A DUPLICATE')
   }
 
 
@@ -75,6 +83,14 @@ export default class Card {
     this._setEventListeners();
     return this._cardElement;
   }
+
+setLikeStatus(isLiked) {
+  this._isLiked = isLiked;
+  const heartButton = this._cardElement.querySelector(".card__like-button");
+  heartButton.classList.toggle("card__like-button_active", isLiked);
+  //console.log('setLikeSTATUS your heart has been liked by someone', isLiked)
+  this._handleHeartButton();
+}
 
   getId(){
     return this._id;

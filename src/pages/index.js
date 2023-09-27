@@ -36,10 +36,10 @@ const enableValidation = (settings) => {
 const userinfo = new UserInfo(".profile__name", ".profile__subtitle", "#profile-avatar");
 
 //Card
-function createCard(item) {
-  const cardElement = new Card(item, "#card-template", handleImageClick, 
+function createCard({name, link, isLiked, _id}) {
+  const cardElement = new Card({name, link, isLiked, _id}, "#card-template", handleImageClick, 
   handleTrashButtonClick, 
-  //handleHeartButton
+  handleHeartButton,
   )
  // const trashButton = cardElement.getTrashButton();
  // trashButton.addEventListener("click", ()=> {
@@ -67,8 +67,8 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
 .then(([cardData, formData]) => {
  userinfo.setUserInfo(formData);
  userinfo.setAvatar(formData.avatar);
- cardData.forEach((card) => {
-   section.addItem(createCard(card));
+ cardData.forEach((item) => {
+   section.addItem(createCard(item));
  })
 })
 .catch((err) => {
@@ -196,12 +196,25 @@ function handleTrashButtonClick(item) {
   console.log("exit trash index.js")
 } 
 
-//function handleHeartButton(item) {
- // if(item.isLiked) {
- //   api.unlikeCard(item.getId)
- //   .item.setLikes(false)
- // }
-//}
+function handleHeartButton(item) {
+  if(item.isLiked) {
+    api.unlikeCard(item.getId())
+    .then((updatedCard) => {
+      item.setLikeStatus(updatedCard.isLiked);
+    })
+    .catch((err) => {
+      console.error("Error:", err);
+    });
+ } else {
+    api.likeCard(item.getId())
+    .then((updatedCard) => {
+      item.setLikeStatus(updatedCard.isLiked);
+    })
+    .catch((err) => {
+      console.error("Error:", err);
+    })
+ }
+}
 
 
 enableValidation(settings);
