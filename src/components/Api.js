@@ -48,10 +48,10 @@ export default class Api {
         return card;
       });
   }
-  updateEditProfile({ name, job }) {
+  updateEditProfile({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      body: JSON.stringify({ name, job }),
+      body: JSON.stringify({ name, about }),
       headers: {
         authorization: "b6ce0d00-402e-481d-9dba-ef02482eb8ce",
         "Content-Type": "application/json",
@@ -117,10 +117,10 @@ export default class Api {
         return unlike;
       });
   }
-  updateAvatar(avatarLink) {
+  updateAvatar(updatedAvatar) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
-      body: JSON.stringify({ avatar: avatarLink }),
+      body: JSON.stringify({ avatar: updatedAvatar }),
       headers: {
         authorization: "b6ce0d00-402e-481d-9dba-ef02482eb8ce",
         "Content-Type": "application/json",

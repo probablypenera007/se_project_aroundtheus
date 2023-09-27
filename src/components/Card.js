@@ -6,7 +6,7 @@ export default class Card {
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._handleTrashButton = handleTrashButton;
-   // this._handleHeartButton = handleHeartButton;
+    //this._handleHeartButton = handleHeartButton;
   }
 
   _setEventListeners() {
@@ -19,6 +19,7 @@ export default class Card {
     this._cardElement
       .querySelector(".card__delete-button")
       .addEventListener("click", () => {
+        console.log("delete card in card.js");
         this._handleTrashButton(this._id);
       });
 
@@ -39,10 +40,16 @@ export default class Card {
     if (this._handleTrashClick){
       this._handleTrashClick(this._id);
     }
-   this._cardElement.remove();
-   this._cardElement = null;
-    //return this._id;
   }
+
+  removeCard(){
+    this._cardElement.remove();
+    console.log("removecard method firing");
+    this._cardElement = null;
+
+  }
+
+  
 
   _getElement() {
     return document

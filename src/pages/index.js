@@ -85,13 +85,21 @@ popUpWithImage.setEventListeners();
 //PopUpWithForm
 const popUpEditProfile = new PopUpWithForm(
   "#modal-edit-profile",
-  (formData) => {
+  ({name, about}) => {
     return new Promise((resolve, reject) => {
-    userinfo.setUserInfo(formData);
-    popUpEditProfile.close();
-    resolve();
-  });
-  });
+      api.updateEditProfile({name, about})
+      .then((updateEditProfile) => {
+        userinfo.setUserInfo(updateEditProfile);
+        popUpEditProfile.close();
+        resolve();
+      })
+      .catch((err) => {
+        console.error(err);
+        reject(err);
+      })
+    })
+  }
+);
 popUpEditProfile.setEventListeners();
 
 //PopUpWithForm
@@ -113,15 +121,22 @@ const popUpAddItem = new PopUpWithForm("#modal-add-profile", (formData) => {
 popUpAddItem.setEventListeners();
 
 //PopUpWithForm
-const popUpAvatar = new PopUpWithForm("#modal-avatar", (cardData) => {
-  const avatarLink = cardData.avatar;
-handleAvatarFormSubmit(avatarLink)
-.then(() => {
-  popUpAvatar.close();
-})
-.catch((err) => {
-  console.error(err);
-})
+const popUpAvatar = new PopUpWithForm("#modal-avatar", (formData) => {
+  //const avatarLink = cardData.avatar;
+  const avatar = formData.avatar;
+  return new Promise ((resolve, reject) => {
+  
+    api.updateAvatar(avatar)
+    .then((updatedAvatar) => {
+      userinfo.setAvatar(updatedAvatar.avatar);
+      popUpAvatar.close();
+      resolve();
+    })
+    .catch((err) => {
+      console.error(err);
+      reject(err);
+    })
+  })
 });
 popUpAvatar.setEventListeners();
 
@@ -160,9 +175,9 @@ function handleTrashButton(cardId) {
   popUpConfirm.setSubmitCall(() => {
     api.deleteCard(cardId)
     .then(() => {
-      const deleteCard = document.querySelector(`[data-card-id="${cardId}"]`);
-      if (deleteCard){
-        deleteCard.remove();
+      const cardElement = document.querySelector(`[data-card-id="${cardId}"]`);
+      if (cardElement){
+        cardElement.removeCard();
       }
       popUpConfirm.close();
     })
@@ -176,19 +191,19 @@ function handleTrashButton(cardId) {
 }
 
 
-function handleAvatarFormSubmit() {
-  const avatarLink =document.querySelector('input[name="avatar"]').value;
-  api
- .updateAvatar(avatarLink)
- .then((updateAvatar) => {
-  DOM.avatarImage.src = updateAvatar.avatar;
-  console.log("Successful Upload", updateAvatar);
-  popUpAvatar.close();
- })
-  .catch((error) => {
-    console.error("Error:", error)
-  })
-}
+//function handleAvatarFormSubmit() {
+//  const avatarLink =document.querySelector('input[name="avatar"]').value;
+//  api
+// .updateAvatar(avatarLink)
+// .then((updateAvatar) => {
+//  DOM.avatarImage.src = updateAvatar.avatar;
+//  console.log("Successful Upload", updateAvatar);
+//  popUpAvatar.close();
+// })
+//  .catch((error) => {
+//    console.error("Error:", error)
+//  })//
+//}
 enableValidation(settings);
 // Add Event Listeners
 DOM.profileButtonEdit.addEventListener("click", () => {
