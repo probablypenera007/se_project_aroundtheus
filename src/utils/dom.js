@@ -44,6 +44,7 @@ export const confirmSubmitButton = confirmModal.querySelector("#modal-button-con
 
 /*AVATAR*/
 export const avatarModal = document.querySelector("#modal-avatar");
+export const avatarImgButton = document.querySelector(".profile__avatar-button");
 export const avatarImage = document.querySelector("#profile-avatar");
 export const avatarModalClose = avatarModal.querySelector("#modal-button-close-avatar");
 export const avatarForm = document.querySelector("#avatar-modal-form");

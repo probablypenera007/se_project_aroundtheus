@@ -244,7 +244,7 @@ DOM.profileButtonAdd.addEventListener("click", () => {
   popUpAddItem.open();
 });
 
-DOM.avatarImage.addEventListener("click", () => {
+DOM.avatarImgButton.addEventListener("click", () => {
   //console.log("Successful click")
   const formData = userinfo.getUserInfo();
   formValidators["modal-avatar-form"].resetValidation();
