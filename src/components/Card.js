@@ -48,19 +48,8 @@ export default class Card {
 
   }
 
-  _getElement() {
-    return document
-      .querySelector(this._cardSelector)
-      .content.querySelector(".card")
-      .cloneNode(true);
-  }
-
-
-
-  setLikeStatus(isLiked) {
-    //this._isLiked = isLiked;
-   // this._heartButton = this._cardElement.querySelector(".card__like-button");
-    if(isLiked) {
+  _renderLikes() {
+    if(this._isLiked) {
       this._heartButton.classList.add("card__like-button_active");
       console.log("like added set lke status")
     } else {
@@ -72,9 +61,22 @@ export default class Card {
     //heartButton.classList.toggle("card__like-button_active", isLiked);
     //console.log('setLikeSTATUS your heart has been liked by someone', isLiked)
    // return this._handleHeartButton();
-    return this._isLiked
-    console.log("return this is liked", this._isLiked)
-  }
+   // return this.setLikeStatus();
+     // check if this._isLiked is true/false and render the correct class
+  
+   }
+
+  setLikeStatus(isLiked) {
+    this._isLiked = isLiked;
+    this._renderLikes();
+ }
+ 
+ _getElement() {
+  return document
+    .querySelector(this._cardSelector)
+    .content.querySelector(".card")
+    .cloneNode(true);
+}
 
   getCardElement() {
     this._cardElement = this._getElement();
@@ -88,6 +90,7 @@ export default class Card {
 
    
     this._setEventListeners();
+    this._renderLikes();
     return this._cardElement;
    
   }
