@@ -1,5 +1,5 @@
 export default class Card {
-  constructor({ name, link, _id , isLiked }, cardSelector, handleCardClick, handleTrashButtonClick, handleHeartButton,) {
+  constructor({ name, link, _id , isLiked }, cardSelector, handleCardClick, handleTrashButtonClick, handleHeartButton) {
     this._name = name;
     this._link = link;
     this._id = _id;
@@ -7,16 +7,17 @@ export default class Card {
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._handleTrashButtonClick = handleTrashButtonClick;
-    this._cardElement = this._getElement();
-    this._handleHeartButton = handleHeartButton;
+    this._handleHeartButton = handleHeartButton
+    //this._cardElement = this._getElement();
   }
 
   _setEventListeners() {
-    console.log("setting event listener for cards")
-    this._cardElement
-      .querySelector(".card__like-button")
-      .addEventListener("click", () => {
-        console.log('setEVENTLISTENER your heart has been liked by someone')
+   // console.log("setting event listener for cards")
+    //this._cardElement
+     // .querySelector(".card__like-button")
+      this._heartButton.addEventListener("click", () => {
+       console.log('setEVENTLISTENER your heart has been liked by someone')
+       //this.setLikeStatus(!this.isLiked);
         this._handleHeartButton(this);
       });
 
@@ -35,16 +36,16 @@ export default class Card {
       });
   }
 
-  _handleHeartButton() {
-    const heartButton =
-    this._cardElement
-      .querySelector(".card__like-button");
-      console.log("before toggle");
-      heartButton.classList.toggle("card__like-button_active");
-      console.log("after toggle");
-      console.log(heartButton.classList.contains("card__like-button_active"));
-      console.log('HANDLEHEARTBUTTON your heart has been liked by someone MIGHT BE A DUPLICATE')
-  }
+  //_handleHeartButton() {
+    //const heartButton =
+    //this._cardElement
+      //.querySelector(".card__like-button");
+      //console.log("before toggle");
+   //   this._heartButton.classList.toggle("card__like-button_active");
+      //console.log("after toggle");
+      //console.log(heartButton.classList.contains("card__like-button_active"));
+      //console.log('HANDLEHEARTBUTTON your heart has been liked by someone MIGHT BE A DUPLICATE')
+ // }
 
 
   //_trashButtonClick() {
@@ -72,25 +73,39 @@ export default class Card {
       .cloneNode(true);
   }
 
+  setLikeStatus(isLiked) {
+    //this._isLiked = isLiked;
+   // this._heartButton = this._cardElement.querySelector(".card__like-button");
+    if(isLiked) {
+      this._heartButton.classList.add("card__like-button_active");
+    } else {
+      this._heartButton.classList.remove("card__like-button_active");
+    }  //console.log('setLikeSTATUS your heart has been liked by someone', this._isLiked);
+   return this._handleHeartButton
+    //const heartButton = this._cardElement.querySelector(".card__like-button");
+    //heartButton.classList.toggle("card__like-button_active", isLiked);
+    //console.log('setLikeSTATUS your heart has been liked by someone', isLiked)
+    //return this._handleHeartButton();
+    return this._isLiked
+  }
+
   getCardElement() {
     this._cardElement = this._getElement();
     const cardTitle = this._cardElement.querySelector(".card__title");
     const cardImage = this._cardElement.querySelector(".card__image");
+    this._heartButton = this._cardElement.querySelector(".card__like-button");
 
     cardImage.src = this._link;
     cardImage.alt = this._name;
     cardTitle.textContent = this._name;
+
+   
     this._setEventListeners();
     return this._cardElement;
+   
   }
 
-setLikeStatus(isLiked) {
-  this._isLiked = isLiked;
-  const heartButton = this._cardElement.querySelector(".card__like-button");
-  heartButton.classList.toggle("card__like-button_active", isLiked);
-  //console.log('setLikeSTATUS your heart has been liked by someone', isLiked)
-  this._handleHeartButton();
-}
+
 
   getId(){
     return this._id;

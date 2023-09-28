@@ -58,8 +58,10 @@ export default class PopUpWithForm extends PopUp {
     } else{
       this._popSubmitBtn.textContent = this._popSubmitBtnText;
     }
+   // this._popSubmitBtnText.reset();
   }
   setSubmitCall(callback){
     this._handleFormSubmit = callback;
+    //this._popform.reset();
 }
 }

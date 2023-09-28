@@ -45,6 +45,7 @@ function createCard({name, link, isLiked, _id}) {
  // trashButton.addEventListener("click", ()=> {
    // popUpConfirm.open();
  // });
+
   return cardElement.getCardElement();
 }
 
@@ -65,10 +66,16 @@ section.renderItems();
 Promise.all([api.getInitialCards(), api.getUserInfo()])
 //process the result
 .then(([cardData, formData]) => {
+  console.log("Card Data:", cardData);
+  console.log("Form Data:", formData)
  userinfo.setUserInfo(formData);
  userinfo.setAvatar(formData.avatar);
  cardData.forEach((item) => {
+  console.log("Card Data Loop:" ,cardData)
+  //cardData.setLikeStatus(cardData.isLiked)
+  //const cardElement = createCard(item)
    section.addItem(createCard(item));
+   
  })
 })
 .catch((err) => {
@@ -175,7 +182,6 @@ function handleTrashButtonClick(item) {
   console.log("enter trash index.js")
   popUpConfirm.setLoading(true);
   popUpConfirm.setSubmitCall(() => { 
-   
     api.deleteCard(item.getId())
     .then(() => {
       //const cardElement = document.querySelector(`[data-card-id="${cardId}"]`);
@@ -184,38 +190,42 @@ function handleTrashButtonClick(item) {
         item.removeCard();
      // }
     popUpConfirm.setLoading(false);
+
     })
     .catch((err) => {
       console.error("Error:", err);
      //popUpConfirm.setLoading(false);
+      
     })
-  
+   
+   
   })
   popUpConfirm.close();
   popUpConfirm.open();
-  console.log("exit trash index.js")
-} 
+ console.log("exit trash index.js")
+}  
 
 function handleHeartButton(item) {
-  if(item.isLiked) {
-    api.unlikeCard(item.getId())
-    .then((updatedCard) => {
-      item.setLikeStatus(updatedCard.isLiked);
-    })
-    .catch((err) => {
-      console.error("Error:", err);
-    });
- } else {
-    api.likeCard(item.getId())
-    .then((updatedCard) => {
-      item.setLikeStatus(updatedCard.isLiked);
-    })
-    .catch((err) => {
-      console.error("Error:", err);
-    })
- }
-}
+  item.isLiked = !item.isLiked;
 
+  if (item.isLiked) {
+    api.likeCard(item.getId())
+      .then((updatedCard) => {
+        item.setLikeStatus(true);
+      })
+      .catch((err) => {
+        console.error("Error:", err);
+      });
+  } else {
+    api.unlikeCard(item.getId())
+      .then((updatedCard) => {
+        item.setLikeStatus(false);
+      })
+      .catch((err) => {
+        console.error("Error:", err);
+      });
+  }
+}
 
 enableValidation(settings);
 
