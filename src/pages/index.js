@@ -37,16 +37,16 @@ const userinfo = new UserInfo(".profile__name", ".profile__subtitle", "#profile-
 
 //Card
 function createCard({name, link, isLiked, _id}) {
-  const cardElement = new Card({name, link, isLiked, _id}, "#card-template", handleImageClick, 
+  return new Card({name, link, isLiked, _id}, "#card-template", handleImageClick, 
   handleTrashButtonClick, 
   handleHeartButton,
-  )
+  ).getCardElement();
  // const trashButton = cardElement.getTrashButton();
  // trashButton.addEventListener("click", ()=> {
    // popUpConfirm.open();
  // });
 
-  return cardElement.getCardElement();
+  //return cardElement.getCardElement();
 }
 
 
@@ -66,11 +66,12 @@ section.renderItems();
 Promise.all([api.getInitialCards(), api.getUserInfo()])
 //process the result
 .then(([cardData, formData]) => {
-  console.log("Card Data:", cardData);
-  console.log("Form Data:", formData)
+ // console.log("Card Data:", cardData);
+ // console.log("Form Data:", formData)
  userinfo.setUserInfo(formData);
  userinfo.setAvatar(formData.avatar);
  cardData.forEach((item) => {
+ 
   //console.log("is like and unlike here at ForEach?",cardData)
   //cardData.setLikeStatus(cardData.isLiked)
   //const cardElement = createCard(item)

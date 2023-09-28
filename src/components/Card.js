@@ -1,5 +1,9 @@
 export default class Card {
-  constructor({ name, link, _id , isLiked }, cardSelector, handleCardClick, handleTrashButtonClick, handleHeartButton) {
+  constructor({ name, link, _id , isLiked }, 
+    cardSelector, 
+    handleCardClick, 
+    handleTrashButtonClick, 
+    handleHeartButton) {
     this._name = name;
     this._link = link;
     this._id = _id;
@@ -51,20 +55,25 @@ export default class Card {
       .cloneNode(true);
   }
 
+
+
   setLikeStatus(isLiked) {
     //this._isLiked = isLiked;
    // this._heartButton = this._cardElement.querySelector(".card__like-button");
     if(isLiked) {
       this._heartButton.classList.add("card__like-button_active");
+      console.log("like added set lke status")
     } else {
       this._heartButton.classList.remove("card__like-button_active");
+      console.log("like removed from set like status")
     }  //console.log('setLikeSTATUS your heart has been liked by someone', this._isLiked);
    //return this._handleHeartButton
     //const heartButton = this._cardElement.querySelector(".card__like-button");
     //heartButton.classList.toggle("card__like-button_active", isLiked);
     //console.log('setLikeSTATUS your heart has been liked by someone', isLiked)
-    //return this._handleHeartButton();
+   // return this._handleHeartButton();
     return this._isLiked
+    console.log("return this is liked", this._isLiked)
   }
 
   getCardElement() {
