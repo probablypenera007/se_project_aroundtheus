@@ -7,7 +7,8 @@ export default class Card {
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._handleTrashButtonClick = handleTrashButtonClick;
-    this._handleHeartButton = handleHeartButton
+    this._handleHeartButton = handleHeartButton;
+    //this._setLikeStatus = setLikeStatus;
     //this._cardElement = this._getElement();
   }
 
@@ -58,7 +59,7 @@ export default class Card {
     } else {
       this._heartButton.classList.remove("card__like-button_active");
     }  //console.log('setLikeSTATUS your heart has been liked by someone', this._isLiked);
-   return this._handleHeartButton
+   //return this._handleHeartButton
     //const heartButton = this._cardElement.querySelector(".card__like-button");
     //heartButton.classList.toggle("card__like-button_active", isLiked);
     //console.log('setLikeSTATUS your heart has been liked by someone', isLiked)
