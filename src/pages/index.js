@@ -75,7 +75,6 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
   //cardData.setLikeStatus(cardData.isLiked)
   //const cardElement = createCard(item)
    section.addItem(createCard(item));
-   
  })
 })
 .catch((err) => {
@@ -211,7 +210,7 @@ function handleHeartButton(item) {
   if (item.isLiked) {
     api.likeCard(item.getId())
       .then((updatedCard) => {
-        item.setLikeStatus(true);
+        item.setLikeStatus(updatedCard.isLiked);
       })
       .catch((err) => {
         console.error("Error:", err);
@@ -219,7 +218,7 @@ function handleHeartButton(item) {
   } else {
     api.unlikeCard(item.getId())
       .then((updatedCard) => {
-        item.setLikeStatus(false);
+        item.setLikeStatus(updatedCard.isLiked);
       })
       .catch((err) => {
         console.error("Error:", err);

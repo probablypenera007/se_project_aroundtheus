@@ -36,29 +36,6 @@ export default class Card {
       });
   }
 
-  //_handleHeartButton() {
-    //const heartButton =
-    //this._cardElement
-      //.querySelector(".card__like-button");
-      //console.log("before toggle");
-   //   this._heartButton.classList.toggle("card__like-button_active");
-      //console.log("after toggle");
-      //console.log(heartButton.classList.contains("card__like-button_active"));
-      //console.log('HANDLEHEARTBUTTON your heart has been liked by someone MIGHT BE A DUPLICATE')
- // }
-
-
-  //_trashButtonClick() {
-   
-  //  }
-
-
-  //_handleTrashButton() {
-  //  if (this._handleTrashClick){
-  //    this._handleTrashClick(this._id);
-  //  }
- // }
-
   removeCard(cardElement){
     this._cardElement.remove();
     console.log("removecard method firing");
