@@ -189,16 +189,16 @@ function handleTrashButtonClick(item) {
         popUpConfirm.close();
         item.removeCard();
      // }
-    popUpConfirm.setLoading(false);
+    //popUpConfirm.setLoading(false);
 
     })
     .catch((err) => {
       console.error("Error:", err);
      //popUpConfirm.setLoading(false);
-      
     })
-   
-   
+   .finally(() => {
+    popUpConfirm.setLoading(false);
+   })
   })
   popUpConfirm.close();
   popUpConfirm.open();
