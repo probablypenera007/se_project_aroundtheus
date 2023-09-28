@@ -71,10 +71,11 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
  userinfo.setUserInfo(formData);
  userinfo.setAvatar(formData.avatar);
  cardData.forEach((item) => {
-  console.log("Card Data Loop:" ,cardData)
+  //console.log("is like and unlike here at ForEach?",cardData)
   //cardData.setLikeStatus(cardData.isLiked)
   //const cardElement = createCard(item)
    section.addItem(createCard(item));
+   //console.log("is like and unlike here at addItem???")
  })
 })
 .catch((err) => {
@@ -82,6 +83,7 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
 })
 .finally(() => {
 section.renderItems();
+//console.log("is like and unlike here at renderItems???", renderItems)
 }); 
 
 //Popups
@@ -209,16 +211,16 @@ function handleHeartButton(item) {
 
   if (item.isLiked) {
     api.likeCard(item.getId())
-      .then((updatedCard) => {
-        item.setLikeStatus(updatedCard.isLiked);
+      .then(() => {
+        item.setLikeStatus(item.isLiked);
       })
       .catch((err) => {
         console.error("Error:", err);
       });
   } else {
     api.unlikeCard(item.getId())
-      .then((updatedCard) => {
-        item.setLikeStatus(updatedCard.isLiked);
+      .then(() => {
+        item.setLikeStatus(item.isLiked);
       })
       .catch((err) => {
         console.error("Error:", err);
