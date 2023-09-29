@@ -215,14 +215,16 @@ function handleTrashButtonClick(item) {
 }
 
 function handleHeartButton(item) {
-  item.isLiked = !item.isLiked;
+  const newIsLikedStatus = !item.isLiked;
 
-  if (item.isLiked) {
+  //item.isLiked = !item.isLiked;
+
+  if (newIsLikedStatus) {
     api
       .likeCard(item.getId())
       .then((respond) => {
         console.log("unlike me", respond);
-        item.setLikeStatus(respond.isLiked = true);
+        item.setLikeStatus(respond.isLiked);
         //item.getCardElement().classList.remove("card__like-button_active")
       })
       .catch((err) => {
@@ -233,14 +235,17 @@ function handleHeartButton(item) {
       .unlikeCard(item.getId())
       .then((respond) => {
         console.log(respond)
-        item.setLikeStatus(respond.isLiked = false);
+        item.setLikeStatus(respond.isLiked);
        // item.getCardElement().classList.add("card__like-button_active")
       })
       .catch((err) => {
         console.error("Error:", err);
       });
   }
+  item.isLiked = newIsLikedStatus;
 }
+
+
 
 enableValidation(settings);
 
