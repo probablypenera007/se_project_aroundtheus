@@ -79,11 +79,12 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
       //cardData.setLikeStatus(cardData.isLiked)
       //const cardElement = createCard(item)
      section.addItem(createCard(item));
+     console.log("is this add Item firing", item)
     // section.renderItems(createCard(item));
-   // section.renderItems(cardData);
-
       //console.log("is like and unlike here at addItem???")
-    });
+    }),
+      section.renderItems(cardData);
+      console.log("is this renderItem firing?", cardData);
   })
   .catch((err) => {
     console.error(err); // log the error to the console
