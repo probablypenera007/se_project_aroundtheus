@@ -21,6 +21,6 @@ export default class UserInfo {
   }
   setAvatar(avatar) {
     this._avatarElement.src = avatar;
-    //this._avatarElement.alt = this._nameElement.textContent;
+    this._avatarElement.alt = this._nameElement.textContent;
   }
 }

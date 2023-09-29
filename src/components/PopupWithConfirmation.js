@@ -24,21 +24,38 @@ export default class PopUpWithConfirmation extends Popup {
             this._popForm.addEventListener("submit", (evt) => {
                 evt.preventDefault();
                 this._handleFormSubmit();
+
             })
         }
-       
-        setLoading(isLoading, loadingText="Deleting...") {
-            if(isLoading) {
+
+        
+//        setDeleting(isDeleting, deletingText = "Deleting...") {
+//            //super.setLoading();
+//             this._hasConfirmed = true;
+//            if (isDeleting) {
+//              this._deletePopupSubmit.textContent = deletingText;
+//            } else {
+//                if(this._hasConfirmed){
+//                    this._deletePopUpSubmitText = this._deletePopupSubmit.textContent;
+//                    this._deletePopupSubmit.textContent  =  deletingText  
+//                }else {
+//             this._deletePopUpSubmit.textContent = this._deletePopUpSubmitText;
+//            }this._hasConfirmed = false;
+//          }
+//        }
+        
+        setDeleting(isDeleting, deletingText="Deleting...") {
+            if(isDeleting) {
                 this._hasConfirmed = true;
-                //return this._deletePopupSubmit.textContent  =  loadingText 
-               // his._deletePopupsubmit.textContent = this._deletePopUpSubmitText
+               // his._deletePopupSubmit.textContent  =  deletingText 
+               //this._deletePopupsubmit.textContent = this._deletePopUpSubmitText
                this._deletePopupSubmit.textContent = "YES";
                } else{
                 if(this._hasConfirmed) {
-                //loadingText = this._deletePopUpSubmitText;
+               // deletingText = this._deletePopUpSubmitText;
                 this._deletePopUpSubmitText = this._deletePopupSubmit.textContent;
-                this._deletePopupSubmit.textContent  =  loadingText 
-               } else {
+                this._deletePopupSubmit.textContent  =  deletingText;
+               } else{
                 this._deletePopUpSubmit.textContent = this._deletePopUpSubmitText
                }this._hasConfirmed = false;
             } 

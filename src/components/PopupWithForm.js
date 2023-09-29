@@ -25,12 +25,13 @@ export default class PopUpWithForm extends PopUp {
     this._handleFormSubmit(inputValue)
     .then(() => {
       this.close();
-      this.setLoading(false);
+      //this.setLoading(false);
     })
     .catch((err) => {
       console.error(err);
-      this.setLoading(false);
+     // this.setLoading(false);
     })
+    .finally(() => this.setLoading(false));
   }
 
   setEventListeners() {
