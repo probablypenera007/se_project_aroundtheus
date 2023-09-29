@@ -58,7 +58,6 @@ export default class Card {
     if(this._isLiked) {
      //this._heartButton.document.querySelector(".card__like-button").classList.toggle("card__like-button_active");
       this._heartButton.classList.add("card__like-button_active")
-     // this._heartButton.classList.remove("card__like-button_active");
      // this._heartButton = true; 
      // console.log("like added set lke status")
     } else {
