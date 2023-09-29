@@ -21,7 +21,7 @@ export default class Card {
     //this._cardElement
      // .querySelector(".card__like-button")
       this._heartButton.addEventListener("click", () => {
-       console.log('setEVENTLISTENER your heart has been liked by someone')
+       //console.log('setEVENTLISTENER your heart has been liked by someone')
        //this.setLikeStatus(!this.isLiked);
         this._handleHeartButton(this);
       });
@@ -51,11 +51,14 @@ export default class Card {
   _renderLikes() {
     if(this._isLiked) {
       this._heartButton.classList.add("card__like-button_active");
-      console.log("like added set lke status")
+      //console.log("like added set lke status")
     } else {
       this._heartButton.classList.remove("card__like-button_active");
-      console.log("like removed from set like status")
-    }  //console.log('setLikeSTATUS your heart has been liked by someone', this._isLiked);
+      //console.log("like removed from set like status")
+    }  
+    
+    
+    //console.log('setLikeSTATUS your heart has been liked by someone', this._isLiked);
    //return this._handleHeartButton
     //const heartButton = this._cardElement.querySelector(".card__like-button");
     //heartButton.classList.toggle("card__like-button_active", isLiked);

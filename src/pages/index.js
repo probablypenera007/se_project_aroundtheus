@@ -208,20 +208,20 @@ function handleTrashButtonClick(item) {
 }  
 
 function handleHeartButton(item) {
-  item.isLiked = !item.isLiked;
+  //item.isLiked = !item.isLiked;
 
   if (item.isLiked) {
-    api.likeCard(item.getId())
+    api.unlikeCard(item.getId())
       .then(() => {
-        item.setLikeStatus(item.isLiked);
+        item.setLikeStatus(item.isLiked = false);
       })
       .catch((err) => {
         console.error("Error:", err);
       });
   } else {
-    api.unlikeCard(item.getId())
+    api.likeCard(item.getId())
       .then(() => {
-        item.setLikeStatus(item.isLiked);
+        item.setLikeStatus(item.isLiked = true);
       })
       .catch((err) => {
         console.error("Error:", err);
