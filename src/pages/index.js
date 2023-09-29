@@ -65,13 +65,13 @@ const section = new Section(
   },
   ".cards__content"
 );
-section.renderItems();
+//section.renderItems();
 
 Promise.all([api.getInitialCards(), api.getUserInfo()])
   //process the result
   .then(([cardData, formData]) => {
-    // console.log("Card Data:", cardData);
-    // console.log("Form Data:", formData)
+     console.log("Card Data:", cardData);
+     console.log("Form Data:", formData)
     userinfo.setUserInfo(formData);
     userinfo.setAvatar(formData.avatar);
     cardData.forEach((item) => {
@@ -79,7 +79,7 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
       //cardData.setLikeStatus(cardData.isLiked)
       //const cardElement = createCard(item)
      section.addItem(createCard(item));
-    //  section.renderItems(createCard(item));
+    // section.renderItems(createCard(item));
    // section.renderItems(cardData);
 
       //console.log("is like and unlike here at addItem???")
@@ -147,8 +147,8 @@ const popUpAvatar = new PopUpWithForm("#modal-avatar", (formData) => {
       .updateAvatar(avatar)
       .then((updatedAvatar) => {
         userinfo.setAvatar(updatedAvatar.avatar);
-        popUpAvatar.close();
         resolve();
+        popUpAvatar.close();
       })
       .catch((err) => {
         console.error(err);
@@ -169,9 +169,9 @@ function handleAddProfileFormSubmit(title, link) {
       .createCard({ name: title, link })
       .then((card) => {
         section.addItem(createCard(card));
-        popUpAddItem.close();
         //console.log("CARD CHECK! please please work T_T.", card);
         resolve();
+        popUpAddItem.close();
       })
       .catch((err) => {
         console.error(err);
@@ -214,22 +214,26 @@ function handleTrashButtonClick(item) {
 }
 
 function handleHeartButton(item) {
-  //item.isLiked = !item.isLiked;
+  item.isLiked = !item.isLiked;
 
   if (item.isLiked) {
     api
-      .unlikeCard(item.getId())
-      .then(() => {
-        item.setLikeStatus((item.isLiked = false));
+      .likeCard(item.getId())
+      .then((respond) => {
+        console.log("unlike me", respond);
+        item.setLikeStatus(respond.isLiked = true);
+        //item.getCardElement().classList.remove("card__like-button_active")
       })
       .catch((err) => {
         console.error("Error:", err);
       });
   } else {
     api
-      .likeCard(item.getId())
-      .then(() => {
-        item.setLikeStatus((item.isLiked = true));
+      .unlikeCard(item.getId())
+      .then((respond) => {
+        console.log(respond)
+        item.setLikeStatus(respond.isLiked = false);
+       // item.getCardElement().classList.add("card__like-button_active")
       })
       .catch((err) => {
         console.error("Error:", err);

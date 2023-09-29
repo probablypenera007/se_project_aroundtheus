@@ -48,13 +48,25 @@ export default class Card {
 
   }
 
+
+  setLikeStatus(isLiked) {
+    this._isLiked = isLiked;
+    this._renderLikes();
+ }
+
   _renderLikes() {
     if(this._isLiked) {
-      this._heartButton.classList.add("card__like-button_active");
-      //console.log("like added set lke status")
+     //this._heartButton.document.querySelector(".card__like-button").classList.toggle("card__like-button_active");
+      this._heartButton.classList.add("card__like-button_active")
+     // this._heartButton.classList.remove("card__like-button_active");
+     // this._heartButton = true; 
+     // console.log("like added set lke status")
     } else {
       this._heartButton.classList.remove("card__like-button_active");
-      //console.log("like removed from set like status")
+      //this._heartButton = false;
+      console.log("like removed from set like status")
+     // return this._handleHeartButton;
+     //return this._isLiked;
     }  
     
     
@@ -69,10 +81,6 @@ export default class Card {
   
    }
 
-  setLikeStatus(isLiked) {
-    this._isLiked = isLiked;
-    this._renderLikes();
- }
  
  _getElement() {
   return document
