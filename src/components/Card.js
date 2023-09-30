@@ -7,7 +7,7 @@ export default class Card {
     this._name = name;
     this._link = link;
     this._id = _id;
-    this._isLiked = isLiked;
+    this.isLiked = isLiked;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._handleTrashButtonClick = handleTrashButtonClick;
@@ -50,12 +50,12 @@ export default class Card {
 
 
   setLikeStatus(isLiked) {
-    this._isLiked = isLiked;
+    this.isLiked = isLiked;
     this._renderLikes();
  }
 
   _renderLikes() {
-    if(this._isLiked) {
+    if(this.isLiked) {
      //this._heartButton.document.querySelector(".card__like-button").classList.toggle("card__like-button_active");
       this._heartButton.classList.add("card__like-button_active")
      // this._heartButton = true; 
