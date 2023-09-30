@@ -11,14 +11,7 @@ export default class PopUpWithConfirmation extends Popup {
         this._deletePopUpSubmitText = this._deletePopupSubmit.textContent
        
     }
-    //open(){
-      //  super.open();
-        //this._deletePopupSubmit.removeAttribute("disabled");
-        //close(){
-            //this._popForm.reset();
-            //super.close();
-           
-       // }
+    
         setEventListeners(){
             super.setEventListeners();
             this._popForm.addEventListener("submit", (evt) => {
@@ -28,41 +21,16 @@ export default class PopUpWithConfirmation extends Popup {
             })
         }
 
-        
-//        setDeleting(isDeleting, deletingText = "Deleting...") {
-//            //super.setLoading();
-//             this._hasConfirmed = true;
-//            if (isDeleting) {
-//              this._deletePopupSubmit.textContent = deletingText;
-//            } else {
-//                if(this._hasConfirmed){
-//                    this._deletePopUpSubmitText = this._deletePopupSubmit.textContent;
-//                    this._deletePopupSubmit.textContent  =  deletingText  
-//                }else {
-//             this._deletePopUpSubmit.textContent = this._deletePopUpSubmitText;
-//            }this._hasConfirmed = false;
-//          }
-//        }
-        
-        setDeleting(isDeleting, deletingText="Deleting...") {
-            if(isDeleting) {
-                this._hasConfirmed = true;
-               // his._deletePopupSubmit.textContent  =  deletingText 
-               //this._deletePopupsubmit.textContent = this._deletePopUpSubmitText
-               this._deletePopupSubmit.textContent = "YES";
-               } else{
-                if(this._hasConfirmed) {
-               // deletingText = this._deletePopUpSubmitText;
-                this._deletePopUpSubmitText = this._deletePopupSubmit.textContent;
-                this._deletePopupSubmit.textContent  =  deletingText;
-               } else{
-                this._deletePopUpSubmit.textContent = this._deletePopUpSubmitText
-               }this._hasConfirmed = false;
-            } 
-              //this._deletePopUpSubmitText.reset() 
-            } 
-        setSubmitCall(callback){
-            this._handleFormSubmit = callback;
-        }
-   
-}
+        setDeleting = (isDeleting, deletingText = "Deleting...") => {
+            if (isDeleting) {
+                this._deletePopupSubmit.textContent = deletingText;
+              } else {
+                this._deletePopupSubmit.textContent = this._deletePopUpSubmitText;
+              }
+            };
+
+            setSubmitCall(callback){
+                this._handleFormSubmit = callback;
+            }
+       
+    }

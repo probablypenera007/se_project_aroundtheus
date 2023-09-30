@@ -60,7 +60,8 @@ const section = new Section(
     items: [],
     renderer: (item) => {
       const cardElement = createCard(item);
-      section.addItem(cardElement);
+      //section.addItem(cardElement);
+      //section.renderItems(cardElement);
     },
   },
   ".cards__content"
@@ -81,6 +82,7 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
      section.addItem(createCard(item));
      console.log("is this add Item firing", item)
     // section.renderItems(createCard(item));
+    //section.renderItems(cardData);
       //console.log("is like and unlike here at addItem???")
     }),
       section.renderItems(cardData);
@@ -187,9 +189,10 @@ function handleImageClick(data) {
 
 function handleTrashButtonClick(item) {
   console.log("enter trash index.js");
-  popUpConfirm.setDeleting(true);
+
 // popUpConfirm.setDeleting(false); 
   popUpConfirm.setSubmitCall(() => {
+    popUpConfirm.setDeleting(true);
     api
       .deleteCard(item.getId())
       .then(() => {
@@ -215,7 +218,7 @@ function handleTrashButtonClick(item) {
 }
 
 function handleHeartButton(item) {
-  const newIsLikedStatus = !item.isLiked;
+ // const newIsLikedStatus = !item.isLiked;
 
   //item.isLiked = !item.isLiked;
 
