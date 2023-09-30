@@ -69,7 +69,8 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
      console.log("Form Data:", formData)
     userinfo.setUserInfo(formData);
     userinfo.setAvatar(formData.avatar);
-    cardData.forEach((item) => {
+    section.renderItems(cardData.forEach((item) => {
+      console.log("is this renderItems working? render intialCards", cardData)
       //console.log("is like and unlike here at ForEach?",cardData)
       //cardData.setLikeStatus(cardData.isLiked)
       //const cardElement = createCard(item)
@@ -78,9 +79,9 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
     // section.renderItems(createCard(item));
     //section.renderItems(cardData);
       //console.log("is like and unlike here at addItem???")
-    }),
-      section.renderItems(cardData);
-      console.log("is this renderItem firing?", cardData);
+    }))
+      //section.renderItems(cardData);
+      //console.log("is this renderItem firing?", cardData);
   })
   .catch((err) => {
     console.error(err);
@@ -119,15 +120,10 @@ popUpAddItem.setEventListeners();
 //PopUpWithForm
 const popUpAvatar = new PopUpWithForm("#modal-avatar", (formData) => {
   const avatar = formData.avatar;
-  return new Promise((resolve, reject) => {
-    api
-      .updateAvatar(avatar)
-      .then((updatedAvatar) => {
-        userinfo.setAvatar(updatedAvatar.avatar);
-        resolve();
+  return api.updateAvatar(avatar).then((updatedAvatar) => {
+    userinfo.setAvatar(updatedAvatar.avatar);
+    })
       })
-  });
-});
 popUpAvatar.setEventListeners();
 
 //PopUpWithConfirmation
@@ -136,20 +132,10 @@ popUpConfirm.setEventListeners();
 
 //Event Handlers
 function handleAddProfileFormSubmit(title, link) {
-  return new Promise((resolve, reject) => {
-    api
-      .createCard({ name: title, link })
-      .then((card) => {
+  return api.createCard({ name: title, link}).then((card) => {
         section.addItem(createCard(card));
-        resolve();
-        popUpAddItem.close();
       })
-      .catch((err) => {
-        console.error(err);
-        reject(err);
-      })
-  });
-}
+  }
 
 function handleImageClick(data) {
   popUpWithImage.open(data);
@@ -166,7 +152,7 @@ function handleTrashButtonClick(item) {
       })
       .catch((err) => {
       })
-      .finally (() =>   popUpConfirm.setDeleting(false)); 
+      .finally (() =>  popUpConfirm.setDeleting(false)); 
   });
   popUpConfirm.open();
 }
@@ -177,17 +163,14 @@ function handleHeartButton(item) {
     api
       .likeCard(item.getId())
       .then((respond) => {
-        console.log("unlike me", respond);
         item.setLikeStatus(respond.isLiked);
       })
       .catch((err) => {
-        console.error("Error:", err);
       });
   } else {
     api
       .unlikeCard(item.getId())
       .then((respond) => {
-        console.log(respond)
         item.setLikeStatus(respond.isLiked);
         item.isLiked = newIsLikedStatus;
       })

@@ -6,6 +6,7 @@ export default class UserInfo {
     this._aboutElement = document.querySelector(aboutSelector);
     this._avatarElement = document.querySelector(avatarSelector);
   }
+  
   getUserInfo() {
     const userInput = {
       name: this._nameElement.textContent,
@@ -19,6 +20,7 @@ export default class UserInfo {
     this._nameElement.textContent = data.name;
     this._aboutElement.textContent = data.about;
   }
+
   setAvatar(avatar) {
     this._avatarElement.src = avatar;
     this._avatarElement.alt = this._nameElement.textContent;
