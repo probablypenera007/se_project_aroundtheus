@@ -31,7 +31,7 @@ export default class PopUpWithForm extends PopUp {
       console.error(err);
      // this.setLoading(false);
     })
-    .finally(() => this.setLoading(false));
+       .finally(() => this.setLoading(false));
   }
 
   setEventListeners() {
@@ -48,9 +48,9 @@ export default class PopUpWithForm extends PopUp {
     });
   }
 
-  close() {
-    this._popForm.reset();
-    super.close();
+ close() {
+   this._popForm.reset();
+   super.close();
   }
 
   setLoading(isLoading, loadingText="Saving...") {
