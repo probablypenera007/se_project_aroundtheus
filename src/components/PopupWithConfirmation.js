@@ -7,20 +7,15 @@ export default class PopUpWithConfirmation extends Popup {
         this._deletePopup = document.querySelector("#modal-confirm-delete");
         this._deletePopupCloseBtn = this._popupElement.querySelector("#modal-button-close-confirm-delete");
         this._deletePopupSubmit = this._popupElement.querySelector("#modal-button-confirm-delete");
-        //this._deletePopupSubmit.textContent = this._popSubmitBtnText;
-        this._deletePopUpSubmitText = this._deletePopupSubmit.textContent
-       
+        this._deletePopUpSubmitText = this._deletePopupSubmit.textContent      
     }
-    
         setEventListeners(){
             super.setEventListeners();
             this._popForm.addEventListener("submit", (evt) => {
                 evt.preventDefault();
                 this._handleFormSubmit(evt);
-
             })
         }
-
         setDeleting = (isDeleting, deletingText = "Deleting...") => {
             if (isDeleting) {
                 this._deletePopupSubmit.textContent = deletingText;
@@ -31,6 +26,5 @@ export default class PopUpWithConfirmation extends Popup {
 
             setSubmitCall(callback){
                 this._handleFormSubmit = callback;
-            }
-       
+            }       
     }

@@ -46,12 +46,6 @@ function createCard({ name, link, isLiked, _id }) {
     handleTrashButtonClick,
     handleHeartButton
   ).getCardElement();
-  // const trashButton = cardElement.getTrashButton();
-  // trashButton.addEventListener("click", ()=> {
-  // popUpConfirm.open();
-  // });
-
-  //return cardElement.getCardElement();
 }
 
 //Section
@@ -89,12 +83,8 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
       console.log("is this renderItem firing?", cardData);
   })
   .catch((err) => {
-    console.error(err); // log the error to the console
+    console.error(err);
   })
-  //.finally(() => {
-    //section.renderItems();
-    //console.log("is like and unlike here at renderItems???", renderItems)
- // });
 
 //Popups
 
@@ -106,18 +96,8 @@ popUpWithImage.setEventListeners();
 const popUpEditProfile = new PopUpWithForm(
   "#modal-edit-profile",
   ({ name, about }) => {
-    return new Promise((resolve, reject) => {
-      api
-        .updateEditProfile({ name, about })
-        .then((updateEditProfile) => {
-          userinfo.setUserInfo(updateEditProfile);
-        //  popUpEditProfile.close();
-          resolve();
-        })
-      //  .catch((err) => {
-     //     console.error(err);
-     //     reject(err);
-     //   });
+    return api.updateEditProfile({ name, about }).then((updateEditProfile) => {
+      userinfo.setUserInfo(updateEditProfile);
     });
   }
 );
@@ -130,20 +110,14 @@ const popUpAddItem = new PopUpWithForm("#modal-add-profile", (formData) => {
     const link = formData.link;
     handleAddProfileFormSubmit(name, link)
       .then(() => {
-       // popUpAddItem.close();
         resolve();
       })
-      .catch((err) => {
-        console.error(err);
-        reject(err);
-      });
   });
 });
 popUpAddItem.setEventListeners();
 
 //PopUpWithForm
 const popUpAvatar = new PopUpWithForm("#modal-avatar", (formData) => {
-  //const avatarLink = cardData.avatar;
   const avatar = formData.avatar;
   return new Promise((resolve, reject) => {
     api
@@ -151,12 +125,7 @@ const popUpAvatar = new PopUpWithForm("#modal-avatar", (formData) => {
       .then((updatedAvatar) => {
         userinfo.setAvatar(updatedAvatar.avatar);
         resolve();
-        popUpAvatar.close();
       })
-      .catch((err) => {
-        console.error(err);
-        reject(err);
-      });
   });
 });
 popUpAvatar.setEventListeners();
@@ -172,7 +141,6 @@ function handleAddProfileFormSubmit(title, link) {
       .createCard({ name: title, link })
       .then((card) => {
         section.addItem(createCard(card));
-        //console.log("CARD CHECK! please please work T_T.", card);
         resolve();
         popUpAddItem.close();
       })
@@ -188,47 +156,29 @@ function handleImageClick(data) {
 }
 
 function handleTrashButtonClick(item) {
-  console.log("enter trash index.js");
-
-// popUpConfirm.setDeleting(false); 
   popUpConfirm.setSubmitCall(() => {
     popUpConfirm.setDeleting(true);
     api
       .deleteCard(item.getId())
       .then(() => {
-        //const cardElement = document.querySelector(`[data-card-id="${cardId}"]`);
-        //if (cardElement){
-      
         item.removeCard();
         popUpConfirm.close();
-      
-        // }
-        //popUpConfirm.setLoading(false);
       })
       .catch((err) => {
-        console.error("Error:", err);
-        //popUpConfirm.setLoading(false);
       })
       .finally (() =>   popUpConfirm.setDeleting(false)); 
   });
-  //popUpConfirm.close();
-  
   popUpConfirm.open();
-  //console.log("exit trash index.js");
 }
 
 function handleHeartButton(item) {
- // const newIsLikedStatus = !item.isLiked;
-
-  //item.isLiked = !item.isLiked;
-
+ const newIsLikedStatus = !item.isLiked;
   if (newIsLikedStatus) {
     api
       .likeCard(item.getId())
       .then((respond) => {
         console.log("unlike me", respond);
         item.setLikeStatus(respond.isLiked);
-        //item.getCardElement().classList.remove("card__like-button_active")
       })
       .catch((err) => {
         console.error("Error:", err);
@@ -239,17 +189,13 @@ function handleHeartButton(item) {
       .then((respond) => {
         console.log(respond)
         item.setLikeStatus(respond.isLiked);
-       // item.getCardElement().classList.add("card__like-button_active")
+        item.isLiked = newIsLikedStatus;
       })
       .catch((err) => {
         console.error("Error:", err);
       });
-  }
-  item.isLiked = newIsLikedStatus;
+    }
 }
-
-
-
 enableValidation(settings);
 
 // Add Event Listeners
@@ -266,7 +212,6 @@ DOM.profileButtonAdd.addEventListener("click", () => {
 });
 
 DOM.avatarImgButton.addEventListener("click", () => {
-  //console.log("Successful click")
   const formData = userinfo.getUserInfo();
   formValidators["modal-avatar-form"].resetValidation();
   popUpAvatar.open();

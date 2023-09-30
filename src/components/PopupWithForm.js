@@ -25,11 +25,9 @@ export default class PopUpWithForm extends PopUp {
     this._handleFormSubmit(inputValue)
     .then(() => {
       this.close();
-      //this.setLoading(false);
     })
     .catch((err) => {
       console.error(err);
-     // this.setLoading(false);
     })
        .finally(() => this.setLoading(false));
   }
@@ -59,10 +57,8 @@ export default class PopUpWithForm extends PopUp {
     } else{
       this._popSubmitBtn.textContent = this._popSubmitBtnText;
     }
-   // this._popSubmitBtnText.reset();
   }
   setSubmitCall(callback){
     this._handleFormSubmit = callback;
-    //this._popform.reset();
-}
+  }
 }
