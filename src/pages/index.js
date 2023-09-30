@@ -112,10 +112,10 @@ const popUpEditProfile = new PopUpWithForm(
         //  popUpEditProfile.close();
           resolve();
         })
-        .catch((err) => {
-          console.error(err);
-          reject(err);
-        });
+      //  .catch((err) => {
+     //     console.error(err);
+     //     reject(err);
+     //   });
     });
   }
 );
