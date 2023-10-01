@@ -23,7 +23,7 @@ https://youtu.be/sYJBjAjlpIo
 **Figma**
 [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)
 
-**GitHub**
+**Deployed Page**
 https://probablypenera007.github.io/se_project_aroundtheus/
 
 ### Plan on improving the project
