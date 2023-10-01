@@ -117,16 +117,15 @@ popUpConfirm.setEventListeners();
 
 //Event Handlers
 function handleAddProfileFormSubmit(title, link) {
-  return api.createCard({ name: title, link}).then((card) => {
-    api
-      .createCard({ name: title, link })
+  return api.createCard({ name: title, link})
       .then((card) => {
         section.addItem(createCard(card));
-        resolve();
       })
-  });
-}
-
+      .catch((err) => {
+        console.error("Error:",err)
+      })
+  };
+  
 function handleImageClick(data) {
   popUpWithImage.open(data);
 }
@@ -141,9 +140,9 @@ function handleTrashButtonClick(item) {
         popUpConfirm.close();
       })
       .catch((err) => {
-        console.errpr("Error:",err)
+        console.error("Error:",err)
       })
-      .finally (() =>   popUpConfirm.setDeleting(false)); 
+      .finally (() => popUpConfirm.setDeleting(false)); 
   });
   popUpConfirm.open();
 }
