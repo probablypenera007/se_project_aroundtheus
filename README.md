@@ -6,16 +6,16 @@ Around The U.S. is the third project developed as a part of the Software Enginee
 
 ### Project Features
 
--Semantic HTML: Utilized semantic HTML elements to enhance the structure and readability of the codebase.
--Figma Design Integration: Implemented the design provided in Figma, ensuring visual fidelity and consistency.
--Responsive Design: Utilized Flexbox and Grid Layout to create responsive and adaptive layouts for different devices.
--CSS Transitions and Styling: Incorporated CSS transitions and styles to enhance user interactions and overall aesthetics.
--Flat BEM File Structure: Followed a flat BEM (Block Element Modifier) file structure for organized and maintainable code.
--Positioning: Implemented precise positioning techniques to achieve desired layout and visual appeal.
--Device Compatibility: Ensured content scales appropriately across different devices, providing a seamless user experience.
--Asynchronous Data Handling: Utilized JavaScript Promises and the Fetch API to handle asynchronous data fetching, seamlessly integrating data into the user interface for a smooth and responsive experience.
--Card Component: Implemented a card feature where each card represents a place, including details like the name, image, and the ability to like and dislike. Cards are dynamically rendered based on the data fetched from the API.
--Modal Pop-ups: Implemented modals or pop-ups allowing users to edit their profiles, add new places, and delete existing ones. Careful handling of user inputs and interactions enhanced the overall user experience.
+* Semantic HTML: Utilized semantic HTML elements to enhance the structure and readability of the codebase.
+* Figma Design Integration: Implemented the design provided in Figma, ensuring visual fidelity and consistency.
+* Responsive Design: Utilized Flexbox and Grid Layout to create responsive and adaptive layouts for different devices.
+* CSS Transitions and Styling: Incorporated CSS transitions and styles to enhance user interactions and overall aesthetics.
+* Flat BEM File Structure: Followed a flat BEM (Block Element Modifier) file structure for organized and maintainable code.
+* Positioning: Implemented precise positioning techniques to achieve desired layout and visual appeal.
+*Device Compatibility: Ensured content scales appropriately across different devices, providing a seamless user experience.
+* Asynchronous Data Handling: Utilized JavaScript Promises and the Fetch API to handle asynchronous data fetching, seamlessly integrating data into the user interface for a smooth and responsive experience.
+* Card Component: Implemented a card feature where each card represents a place, including details like the name, image, and the ability to like and dislike. Cards are dynamically rendered based on the data fetched from the API.
+* Modal Pop-ups: Implemented modals or pop-ups allowing users to edit their profiles, add new places, and delete existing ones. Careful handling of user inputs and interactions enhanced the overall user experience.
 
 **Figma**
 
