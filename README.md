@@ -17,8 +17,10 @@ Around The U.S. is the third project developed as a part of the Software Enginee
 * Card Component: Implemented a card feature where each card represents a place, including details like the name, image, and the ability to like and dislike. Cards are dynamically rendered based on the data fetched from the API.
 * Modal Pop-ups: Implemented modals or pop-ups allowing users to edit their profiles, add new places, and delete existing ones. Careful handling of user inputs and interactions enhanced the overall user experience.
 
-**Figma**
+**Video Demo**
+https://youtu.be/sYJBjAjlpIo
 
+**Figma**
 - [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)
 
 **GitHub**
