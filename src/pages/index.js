@@ -60,7 +60,7 @@ const section = new Section(
   },
   ".cards__content"
 );
-//section.renderItems();
+section.renderItems();
 
 Promise.all([api.getInitialCards(), api.getUserInfo()])
   //process the result
@@ -69,8 +69,10 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
      console.log("Form Data:", formData)
     userinfo.setUserInfo(formData);
     userinfo.setAvatar(formData.avatar);
-    section.renderItems(cardData.forEach((item) => {
-      console.log("is this renderItems working? render intialCards", cardData)
+    cardData.forEach((item) => {
+     // section.renderItems((cardData) => {
+ //     section.renderItems(cardData.forEach((item) => {
+ //       console.log("is this renderItems working? render intialCards", cardData)
       //console.log("is like and unlike here at ForEach?",cardData)
       //cardData.setLikeStatus(cardData.isLiked)
       //const cardElement = createCard(item)
@@ -79,9 +81,9 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
     // section.renderItems(createCard(item));
     //section.renderItems(cardData);
       //console.log("is like and unlike here at addItem???")
-    }))
-      //section.renderItems(cardData);
-      //console.log("is this renderItem firing?", cardData);
+    }),
+ //     section.renderItems(cardData);
+      console.log("is this renderItem firing?", cardData);
   })
   .catch((err) => {
     console.error(err);
@@ -133,9 +135,14 @@ popUpConfirm.setEventListeners();
 //Event Handlers
 function handleAddProfileFormSubmit(title, link) {
   return api.createCard({ name: title, link}).then((card) => {
+    api
+      .createCard({ name: title, link })
+      .then((card) => {
         section.addItem(createCard(card));
+        resolve();
       })
-  }
+  });
+}
 
 function handleImageClick(data) {
   popUpWithImage.open(data);
@@ -151,8 +158,9 @@ function handleTrashButtonClick(item) {
         popUpConfirm.close();
       })
       .catch((err) => {
+        console.errpr("Error:",err)
       })
-      .finally (() =>  popUpConfirm.setDeleting(false)); 
+      .finally (() =>   popUpConfirm.setDeleting(false)); 
   });
   popUpConfirm.open();
 }
@@ -163,14 +171,17 @@ function handleHeartButton(item) {
     api
       .likeCard(item.getId())
       .then((respond) => {
+        
         item.setLikeStatus(respond.isLiked);
       })
       .catch((err) => {
+        console.error("Error:", err);
       });
   } else {
     api
       .unlikeCard(item.getId())
       .then((respond) => {
+        console.log(respond)
         item.setLikeStatus(respond.isLiked);
         item.isLiked = newIsLikedStatus;
       })
