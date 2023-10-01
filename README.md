@@ -2,22 +2,20 @@
 
 ### Overview
 
-This is the third project of the Software Engineering Program at TripleTen. It was created using HTML and CSS, it was also based on the design that was provided in Figma.
+Around The U.S. is the third project developed as a part of the Software Engineering Program at TripleTen. This project was created using HTML, CSS, JavaScript and it was meticulously crafted based on the design provided in Figma. The goal was to ensure accurate representation of elements across various screen sizes, offering a comprehensive understanding of Figma design implementation.
 
 ### Project Features
 
-- Semantic HTML
-- Images exported from Figma
-- Flexbox
-- Grid Layout
-- CSS Transition and Styling
-- Scaled Content to Different Devices
-- Flat BEM file structure
-- Positioning
-
-**Intro**
-
-This project is made so all the elements are displayed correctly on popular screen sizes and having a deeper understanding with Figma.
+-Semantic HTML: Utilized semantic HTML elements to enhance the structure and readability of the codebase.
+-Figma Design Integration: Implemented the design provided in Figma, ensuring visual fidelity and consistency.
+-Responsive Design: Utilized Flexbox and Grid Layout to create responsive and adaptive layouts for different devices.
+-CSS Transitions and Styling: Incorporated CSS transitions and styles to enhance user interactions and overall aesthetics.
+-Flat BEM File Structure: Followed a flat BEM (Block Element Modifier) file structure for organized and maintainable code.
+-Positioning: Implemented precise positioning techniques to achieve desired layout and visual appeal.
+-Device Compatibility: Ensured content scales appropriately across different devices, providing a seamless user experience.
+-Asynchronous Data Handling: Utilized JavaScript Promises and the Fetch API to handle asynchronous data fetching, seamlessly integrating data into the user interface for a smooth and responsive experience.
+-Card Component: Implemented a card feature where each card represents a place, including details like the name, image, and the ability to like and dislike. Cards are dynamically rendered based on the data fetched from the API.
+-Modal Pop-ups: Implemented modals or pop-ups allowing users to edit their profiles, add new places, and delete existing ones. Careful handling of user inputs and interactions enhanced the overall user experience.
 
 **Figma**
 
@@ -28,4 +26,4 @@ https://probablypenera007.github.io/se_project_aroundtheus/
 
 ### Plan on improving the project
 
-With the knowledge that I gained from making this project it definitely gave me an idea of what it's like to work with a designer and follow instructions in a scale that i'm very unfamiliar with, as a foundation of this acquired skill I can see myself improving this project as a base in delivering my future clients required theme or vision.
+The experience gained from this project has provided valuable insights into working with designers and adhering to specific design guidelines. As a foundational skill, this expertise can be leveraged to enhance the project further. Future plans include refining the existing codebase, implementing additional features, and using this project as a template to deliver clients’ envisioned themes or designs effectively.
