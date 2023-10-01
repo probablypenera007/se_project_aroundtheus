@@ -48,24 +48,10 @@ function createCard({ name, link, isLiked, _id }) {
   ).getCardElement();
 }
 
-//Section
-// const section = new Section(
-//   {
-//     items: [],
-//     renderer: (item) => {
-//       const cardElement = createCard(item);
-//       section.addItem(cardElement);
-//       //section.renderItems(cardElement);
-//     },
-//   },
-//   ".cards__content"
-// );
-// section.renderItems();
 
 let section;
 
 Promise.all([api.getInitialCards(), api.getUserInfo()])
-  //process the result
   .then(([cardData, formData]) => {
     section = new Section(
     {
@@ -73,7 +59,6 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
            renderer: (item) => {
             const cardElement = createCard(item);
              section.addItem(cardElement);
-        
            },
          },
          ".cards__content"
@@ -86,25 +71,7 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
   .catch((err) => {
     console.error(err);
   })
-   // cardData.forEach((item) => {
-     // section.renderItems((cardData) => {
- //     section.renderItems(cardData.forEach((item) => {
- //       console.log("is this renderItems working? render intialCards", cardData)
-      //console.log("is like and unlike here at ForEach?",cardData)
-      //cardData.setLikeStatus(cardData.isLiked)
-      //const cardElement = createCard(item)
-   //  section.addItem(createCard(item));
-   //  console.log("is this add Item firing", item)
-    // section.renderItems(createCard(item));
-    //section.renderItems(cardData);
-      //console.log("is like and unlike here at addItem???")
-  
- //     section.renderItems(cardData);
-    //  console.log("is this renderItem firing?", cardData);
-  //})
 
-  //console.log("Card Data:", cardData);
-  //   console.log("Form Data:", formData)
 //Popups
 
 //PopUpWithImage
