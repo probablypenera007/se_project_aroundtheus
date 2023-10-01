@@ -43,3 +43,6 @@ export const userInfoSettings = {
   jobNameSelector: ".profile__subtitle",
 }
 
+
+ 
+

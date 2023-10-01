@@ -53,6 +53,8 @@
   background: white;
 }
 
+
+
 .modal__input {
   box-sizing: border-box;
   border: none;
@@ -152,6 +154,23 @@
   border: none;
   border-bottom: 1px solid rgb(255, 0, 0);
 }
+
+.modal__container-confirm{
+  min-width: 430px;
+  min-height: 181px;
+
+}
+
+.modal__button_submit-confirm{
+margin:0;
+}
+
+.modal__form-confirm{
+margin:0 auto;
+padding: 36px;
+}
+
+
 
 @media screen and (max-width: 777px) {
   .modal__container {

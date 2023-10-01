@@ -17,11 +17,3 @@ export default class PopUpWithImage extends PopUp {
   }
  
 }
-
-  
-//super(close)
-//super(setEventListeners) 
-  
-
-
-//export default PopUpWithImage;

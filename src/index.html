@@ -10,17 +10,23 @@
     <link rel="shortcut icon" type="image/jpg" href="./favicon.ico" />
     <!---  <link rel="stylesheet" href="./vendor/normalize.css" />-->
   </head>
+
   <body class="page">
     <div class="page__content">
       <header class="header page__section">
-        <img src="<%=require("./images/headerlogo.svg")%>" alt="user avatar">
+        <img src="<%=require("./images/headerlogo.svg")%>" alt="header logo">
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img class="profile__avatar" <img
-          src="<%=require("./images/jacques-cousteau.jpg")%>" alt="user avatar">
+   <!----     <div class="profile__avatar"></div> -->
+          <img class="profile__avatar" src="" id="profile-avatar" alt="user avatar">
+         <button class="profile__avatar-button" type="button"></button>           
+          
+          
+     <!----   src="<%=require("./images/jacques-cousteau.jpg")%>"  --->
           <div class="profile__info">
-            <h1 class="profile__name">Jacques Cousteau</h1>
+            <h1 class="profile__name"></h1>
+          <!----  <h1 class="profile__name">Jacques Cousteau</h1> --->
             <button
               class="profile__button-edit"
               id="profile-button-edit"
@@ -69,7 +75,7 @@
           <label for="edit-bio" class="modal__form-label"></label>
           <input
             type="text"
-            name="job"
+            name="about"
             class="modal__input"
             id="edit-bio"
             placeholder="Bio"
@@ -151,14 +157,66 @@
         <h2 class="modal__previewTitle" id="preview-title"></h2>
       </div>
     </div>
+     <!-- EDIT PROFILE AVATAR-->
+     <div class="modal" id="modal-avatar">
+      <div class="modal__container modal__container-avatar">
+        <button
+          class="modal__button modal__button-close modal__button-close_avatar"
+          id="modal-button-close-avatar"
+          type="button"
+        ></button>
+        <h3 class="modal__title">Change Profile Picture</h3>
+        <form name="modal-avatar-form" class="modal__form" id="avatar-modal-form">
+          <label for="avatar-imageURL" class="modal__form-label"></label>
+          <input
+            type="url"
+            name="avatar"
+            class="modal__input modal__input_type_url"
+            id="avatar-imageURL"
+            placeholder="Image URL"
+            autocomplete="off"
+            required
+          />
+          <span class="modal__error" id="avatar-imageURL-error"></span>
+          <button
+            class="modal__button modal__button_submit modal__button_disabled"
+            id="modal-button-avatar"
+            type="submit"
+            disabled
+          >
+            Save - Avatar <!--this is for test will delete later-->
+          </button>
+        </form>
+      </div>
+    </div>
+     <!-- CONFIRMATION MODAL-->
+     <div class="modal" id="modal-confirm-delete">
+      <div class="modal__container modal__container-confirm">
+        <button
+          class="modal__button modal__button-close modal__button-close_confirm-delete"
+          id="modal-button-close-confirm-delete"
+          type="button"
+        ></button>
+        <h3 class="modal__title modal__title-confirm">Are You Sure?</h3>
+        <form name="modal-delete-form" class="modal__form modal__form-confirm" id="confirm-delete-modal-form">
+          <button
+            class="modal__button modal__button_submit modal__button_submit-confirm"
+            id="modal-button-confirm-delete"
+            type="submit"  
+          >
+            YES
+          </button>
+        </form>
+      </div>
+    </div>
 
     <template id="card-template">
       <li class="card">
         <img src="#" alt="#" class="card__image" />
-        <div class="card__description">
-          <h2 class="card__title"></h2>
-          <button class="card__like-button" type="button"></button>
-          <button class="card__delete-button" type="button"></button>
+        <div class="card__description" id="card-description">
+          <h2 class="card__title" id="card-title"></h2>
+          <button class="card__like-button" id="card-like" type="button"></button>
+          <button class="card__delete-button" id="card-delete"  type="button"></button>
         </div>
       </li>
     </template>
