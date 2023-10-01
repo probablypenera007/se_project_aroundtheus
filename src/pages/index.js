@@ -49,46 +49,62 @@ function createCard({ name, link, isLiked, _id }) {
 }
 
 //Section
-const section = new Section(
-  {
-    items: [],
-    renderer: (item) => {
-      const cardElement = createCard(item);
-      //section.addItem(cardElement);
-      //section.renderItems(cardElement);
-    },
-  },
-  ".cards__content"
-);
-section.renderItems();
+// const section = new Section(
+//   {
+//     items: [],
+//     renderer: (item) => {
+//       const cardElement = createCard(item);
+//       section.addItem(cardElement);
+//       //section.renderItems(cardElement);
+//     },
+//   },
+//   ".cards__content"
+// );
+// section.renderItems();
+
+let section;
 
 Promise.all([api.getInitialCards(), api.getUserInfo()])
   //process the result
   .then(([cardData, formData]) => {
-     console.log("Card Data:", cardData);
-     console.log("Form Data:", formData)
+    section = new Section(
+    {
+           items: cardData,
+           renderer: (item) => {
+            const cardElement = createCard(item);
+             section.addItem(cardElement);
+        
+           },
+         },
+         ".cards__content"
+       );
+       section.renderItems();
+      
     userinfo.setUserInfo(formData);
     userinfo.setAvatar(formData.avatar);
-    cardData.forEach((item) => {
+  })
+  .catch((err) => {
+    console.error(err);
+  })
+   // cardData.forEach((item) => {
      // section.renderItems((cardData) => {
  //     section.renderItems(cardData.forEach((item) => {
  //       console.log("is this renderItems working? render intialCards", cardData)
       //console.log("is like and unlike here at ForEach?",cardData)
       //cardData.setLikeStatus(cardData.isLiked)
       //const cardElement = createCard(item)
-     section.addItem(createCard(item));
-     console.log("is this add Item firing", item)
+   //  section.addItem(createCard(item));
+   //  console.log("is this add Item firing", item)
     // section.renderItems(createCard(item));
     //section.renderItems(cardData);
       //console.log("is like and unlike here at addItem???")
-    }),
+  
  //     section.renderItems(cardData);
-      console.log("is this renderItem firing?", cardData);
-  })
-  .catch((err) => {
-    console.error(err);
-  })
+    //  console.log("is this renderItem firing?", cardData);
+  //})
 
+  //console.log("Card Data:", cardData);
+  //   console.log("Form Data:", formData)
 //Popups
 
 //PopUpWithImage
@@ -171,7 +187,7 @@ function handleHeartButton(item) {
     api
       .likeCard(item.getId())
       .then((respond) => {
-        
+        console.log(respond);
         item.setLikeStatus(respond.isLiked);
       })
       .catch((err) => {
