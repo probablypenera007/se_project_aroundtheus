@@ -121,9 +121,6 @@ function handleAddProfileFormSubmit(title, link) {
       .then((card) => {
         section.addItem(createCard(card));
       })
-      .catch((err) => {
-        console.error("Error:",err)
-      })
   };
   
 function handleImageClick(data) {
@@ -165,7 +162,6 @@ function handleHeartButton(item) {
       .then((respond) => {
         console.log(respond)
         item.setLikeStatus(respond.isLiked);
-        item.isLiked = newIsLikedStatus;
       })
       .catch((err) => {
         console.error("Error:", err);
